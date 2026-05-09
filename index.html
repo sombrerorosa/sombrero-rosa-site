@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sombrero Rosa — Agencia que conecta</title>
+  <meta name="description" content="Agencia de marketing full service. Hacemos crecer tu marca, negocio y relación con clientes." />
+  <link rel="icon" type="image/png" href="project/assets/logo-sombrero-rosa.png" />
+  <style>
+    /* ---- TOKENS -------------------------------------------------- */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+    :root {
+      --rosa:     #d5848e;
+      --rosa-100: #f5dadd;
+      --rosa-200: #ecbbc1;
+      --rosa-300: #df9ba3;
+      --rosa-500: #c66773;
+      --rosa-600: #ae4f5b;
+      --hot:      #e55a7a;
+      --navy:     #193149;
+      --navy-700: #112338;
+      --ink:      #403f3f;
+      --ink-soft: #6b6968;
+      --bone:     #f2f2f0;
+      --paper:    #fafafa;
+      --black-2:  #0b0b0b;
+      --white:    #ffffff;
+
+      --border:        rgba(25,49,73,0.10);
+      --border-strong: rgba(25,49,73,0.22);
+
+      --font-sans:    'Poppins', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Poppins', ui-sans-serif, sans-serif;
+
+      --r-md:   14px;
+      --r-lg:   22px;
+      --r-pill: 999px;
+
+      --shadow-sm:  0 2px 6px rgba(25,49,73,0.08);
+      --shadow-md:  0 12px 28px -10px rgba(25,49,73,0.18);
+      --shadow-rosa: 0 18px 40px -16px rgba(213,132,142,0.55);
+
+      --ease-out: cubic-bezier(0.22,1,0.36,1);
+      --dur-2: 200ms;
+      --dur-3: 320ms;
+    }
+
+    /* ---- RESET ---------------------------------------------------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px; line-height: 1.5;
+      color: var(--ink); background: var(--bone);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+    ul, ol { list-style: none; padding: 0; }
+
+    /* ---- BUTTONS -------------------------------------------------- */
+    .btn {
+      font-family: var(--font-sans); font-weight: 500; font-size: 14px;
+      padding: 13px 24px; border-radius: var(--r-md); border: 0;
+      line-height: 1; display: inline-flex; align-items: center; gap: 8px;
+      transition: all var(--dur-2) var(--ease-out); cursor: pointer;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-pill    { border-radius: var(--r-pill); padding: 12px 22px; }
+    .btn-primary { background: var(--rosa); color: #fff; }
+    .btn-primary:hover { background: var(--rosa-600); box-shadow: var(--shadow-rosa); transform: translateY(-2px); }
+    .btn-ghost   { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 1.5px var(--navy); }
+    .btn-ghost:hover { background: var(--navy); color: var(--bone); }
+    .btn-ghost-on-dark { background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.6); }
+    .btn-ghost-on-dark:hover { background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1.5px #fff; }
+
+    /* ---- BRAND LOCKUP -------------------------------------------- */
+    .sr-brand { display: inline-flex; align-items: center; gap: 12px; }
+    .sr-brand-mark { width: 44px; height: 44px; object-fit: contain; flex-shrink: 0; }
+    .sr-brand-word {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: 18px; line-height: 1; letter-spacing: -0.01em;
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .sr-brand-word .top { color: var(--navy); }
+    .sr-brand-word .bot { color: var(--rosa); }
+
+    /* ---- HEADER -------------------------------------------------- */
+    .sr-header {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; gap: 24px; padding: 18px 48px;
+      background: rgba(242,242,240,0.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .sr-nav { display: flex; gap: 36px; margin: 0 auto; }
+    .sr-nav-link {
+      font-size: 14px; font-weight: 500; color: var(--navy);
+      padding: 6px 0; position: relative;
+      transition: color var(--dur-2) var(--ease-out);
+    }
+    .sr-nav-link::after {
+      content: ""; position: absolute; left: 0; right: 100%; bottom: 2px;
+      height: 1.5px; background: var(--rosa);
+      transition: right var(--dur-2) var(--ease-out);
+    }
+    .sr-nav-link:hover { color: var(--rosa-600); }
+    .sr-nav-link:hover::after { right: 0; }
+    .sr-menu-btn {
+      display: none; background: none; border: 0; padding: 8px;
+      color: var(--navy); margin-left: auto;
+    }
+
+    /* ---- HERO ---------------------------------------------------- */
+    .sr-hero {
+      position: relative; background: var(--black-2); color: #fff;
+      padding: 96px 32px 110px; overflow: hidden; text-align: center;
+    }
+    .sr-hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .sr-hero-orb {
+      position: absolute; border-radius: 999px;
+      background: radial-gradient(circle at 35% 35%, rgba(213,132,142,0.22), rgba(213,132,142,0) 70%);
+    }
+    .sr-hero-orb.a { width: 320px; height: 320px; top: -60px; left: -80px; }
+    .sr-hero-orb.b {
+      width: 480px; height: 480px; top: 80px; right: -160px;
+      background: radial-gradient(circle at 35% 35%, rgba(229,90,122,0.18), rgba(229,90,122,0) 70%);
+    }
+    .sr-hero-orb.c {
+      width: 220px; height: 220px; bottom: -80px; left: 30%;
+      background: radial-gradient(circle at 35% 35%, rgba(213,132,142,0.16), rgba(213,132,142,0) 70%);
+    }
+    .sr-hero-inner {
+      position: relative; z-index: 1; max-width: 880px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 20px;
+    }
+    .sr-hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: var(--r-pill);
+      background: rgba(213,132,142,0.14); color: var(--rosa-300);
+      font-size: 13px; font-weight: 500;
+    }
+    .sr-hero-pill::before { content: "✦"; font-size: 12px; }
+    .sr-hero-headline {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(48px, 6.5vw, 84px); line-height: 1.05;
+      letter-spacing: -0.025em; color: #fff; margin: 0;
+    }
+    .sr-hero-lead {
+      margin-top: 4px; max-width: 64ch;
+      font-size: 17px; line-height: 1.55; color: rgba(255,255,255,0.78);
+    }
+    .sr-hero-quote {
+      margin-top: 24px; padding: 22px 32px;
+      border-left: 2px solid var(--rosa);
+      font-style: italic; font-size: 15px; line-height: 1.5;
+      color: rgba(255,255,255,0.72); max-width: 60ch; text-align: left;
+    }
+    .sr-hero-quote cite {
+      display: block; margin-top: 8px; font-style: normal;
+      font-size: 13px; color: rgba(255,255,255,0.55);
+    }
+    .sr-hero-ctas { margin-top: 16px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
+    /* ---- SECTION SCAFFOLD ---------------------------------------- */
+    .sr-section-head { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+    .sr-section-head--center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .sr-section-num {
+      font-family: var(--font-display); font-size: 14px; font-weight: 500;
+      color: var(--rosa); margin-bottom: 8px;
+      position: relative; padding-bottom: 12px;
+    }
+    .sr-section-num::after {
+      content: ""; position: absolute; left: 50%; transform: translateX(-50%);
+      bottom: 0; width: 56px; height: 2px; background: var(--rosa-300);
+    }
+    .sr-section-title {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(34px, 4vw, 48px); line-height: 1.1;
+      letter-spacing: -0.02em; margin: 8px 0 0; max-width: 22ch;
+      text-wrap: balance;
+    }
+    .sr-section-title--rose { color: var(--rosa); }
+    .sr-section-lead {
+      margin-top: 16px; max-width: 60ch;
+      font-size: 16px; line-height: 1.6; color: var(--ink-soft);
+    }
+    .sr-section-lead--center { text-align: center; }
+
+    /* ---- SERVICES ------------------------------------------------ */
+    .sr-services { padding: 96px 0 64px; background: var(--bone); }
+    .sr-services-grid {
+      max-width: 1240px; margin: 56px auto 0; padding: 0 32px;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+    }
+    .sr-service-card {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out);
+    }
+    .sr-service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .sr-service-top { display: flex; align-items: center; justify-content: space-between; }
+    .sr-service-icon {
+      width: 44px; height: 44px; border-radius: var(--r-md);
+      background: var(--rosa); color: #fff; display: grid; place-items: center;
+    }
+    .sr-service-icon i { width: 20px; height: 20px; stroke-width: 1.75; }
+    .sr-service-card:nth-child(2) .sr-service-icon { background: var(--navy); }
+    .sr-service-plus {
+      width: 36px; height: 36px; border-radius: 999px;
+      background: var(--rosa); color: #fff; border: 0;
+      display: grid; place-items: center;
+      transition: transform var(--dur-2);
+    }
+    .sr-service-plus i { width: 18px; height: 18px; stroke-width: 2; }
+    .sr-service-plus:hover { transform: rotate(90deg); }
+    .sr-service-title {
+      font-family: var(--font-display); font-weight: 600; font-size: 22px;
+      line-height: 1.2; color: var(--rosa); margin: 6px 0 0;
+    }
+    .sr-service-desc { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
+    .sr-services-cta {
+      max-width: 1240px; margin: 36px auto 0; padding: 24px 32px;
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;
+    }
+    .sr-services-cta-text {
+      font-family: var(--font-display); font-weight: 500; font-size: 18px; color: var(--navy);
+    }
+
+    /* ---- TOOLS MARQUEE ------------------------------------------ */
+    .sr-tools {
+      background: var(--paper); padding: 56px 0; overflow: hidden;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .sr-tools-label {
+      font-family: var(--font-display); font-weight: 500; font-size: 16px;
+      color: var(--ink-soft); letter-spacing: 0.02em;
+      text-align: center; margin: 0 0 28px;
+    }
+    .sr-tools-marquee {
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+              mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    }
+    .sr-tools-track {
+      display: flex; gap: 14px; width: max-content; padding: 0;
+      animation: sr-scroll 38s linear infinite;
+    }
+    .sr-tools:hover .sr-tools-track { animation-play-state: paused; }
+    .sr-tool-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 12px 18px; border-radius: var(--r-pill);
+      background: var(--bone); border: 1px solid var(--border); white-space: nowrap;
+    }
+    .sr-tool-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--rosa); flex-shrink: 0; }
+    .sr-tool-name {
+      font-family: var(--font-display); font-weight: 600; font-size: 15px;
+      color: var(--navy); letter-spacing: -0.01em;
+    }
+    .sr-tool-tag {
+      font-size: 12px; color: var(--ink-soft);
+      padding-left: 10px; border-left: 1px solid var(--border-strong);
+    }
+    @keyframes sr-scroll { to { transform: translateX(-50%); } }
+
+    /* ---- MANIFESTO ----------------------------------------------- */
+    .sr-manifesto {
+      background: var(--black-2); color: #fff;
+      padding: 120px 0 128px; position: relative; overflow: hidden;
+    }
+    .sr-manifesto .sr-section-num { color: var(--rosa-300); }
+    .sr-manifesto .sr-section-num::after { background: rgba(213,132,142,0.4); }
+    .sr-manifesto .sr-section-title--rose { color: var(--rosa); }
+    .sr-manifesto .sr-section-lead { color: rgba(255,255,255,0.72); }
+    .sr-manifesto::before,
+    .sr-manifesto::after {
+      content: ""; position: absolute; border-radius: 999px; pointer-events: none;
+      background: radial-gradient(circle at 35% 35%, rgba(213,132,142,0.14), transparent 70%);
+    }
+    .sr-manifesto::before { width: 380px; height: 380px; top: 10%; left: -120px; }
+    .sr-manifesto::after  { width: 460px; height: 460px; bottom: -100px; right: -120px; }
+    .sr-manifesto-inner { position: relative; z-index: 1; }
+    .sr-manifesto-grid {
+      max-width: 1240px; margin: 56px auto 0; padding: 0 32px;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+    }
+    .sr-manifesto-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--r-lg); padding: 28px;
+      text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      transition: border-color var(--dur-3), background var(--dur-3);
+    }
+    .sr-manifesto-card:hover { border-color: var(--rosa); background: rgba(213,132,142,0.06); }
+    .sr-manifesto-icon {
+      width: 56px; height: 56px; border-radius: 999px;
+      background: rgba(213,132,142,0.16); color: var(--rosa);
+      display: grid; place-items: center;
+    }
+    .sr-manifesto-icon i { width: 24px; height: 24px; stroke-width: 1.75; }
+    .sr-manifesto-card h3 {
+      font-family: var(--font-display); font-weight: 600; font-size: 20px;
+      color: var(--rosa); margin: 6px 0 0; line-height: 1.2;
+    }
+    .sr-manifesto-card p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.7); }
+
+    /* ---- CONTACT ------------------------------------------------- */
+    .sr-contact { padding: 96px 32px 120px; background: var(--bone); }
+    .sr-contact-grid {
+      max-width: 1240px; margin: 56px auto 0;
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: 32px; align-items: start;
+    }
+    .sr-contact-form {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .sr-contact-form h3 {
+      font-family: var(--font-display); font-weight: 500; font-size: 14px;
+      color: var(--ink); margin: 0 0 4px;
+    }
+    .sr-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .sr-contact-form label { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 500; color: var(--ink); }
+    .sr-contact-form input,
+    .sr-contact-form textarea {
+      font-family: var(--font-sans); font-size: 14px;
+      padding: 12px 14px; min-height: 44px;
+      border-radius: var(--r-md); border: 1px solid var(--border-strong);
+      background: #fff; color: var(--ink);
+      transition: border-color var(--dur-2), box-shadow var(--dur-2);
+    }
+    .sr-contact-form textarea { resize: vertical; }
+    .sr-contact-form input:focus,
+    .sr-contact-form textarea:focus {
+      outline: 0; border-color: var(--rosa); border-width: 1.5px;
+      box-shadow: 0 0 0 4px var(--rosa-100);
+    }
+    .sr-contact-form .btn { align-self: flex-start; margin-top: 6px; }
+    .sr-contact-ok { text-align: center; padding: 32px 12px; }
+    .sr-contact-ok-mark {
+      width: 56px; height: 56px; border-radius: 999px;
+      background: var(--rosa-100); color: var(--rosa-600);
+      font-size: 28px; font-weight: 700;
+      display: grid; place-items: center; margin: 0 auto 16px;
+    }
+    .sr-contact-ok h3 {
+      font-family: var(--font-display); font-size: 22px; font-weight: 600;
+      color: var(--navy); margin: 0 0 8px;
+    }
+    .sr-contact-ok p { color: var(--ink-soft); }
+    .sr-contact-side { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
+    .sr-contact-card {
+      background: var(--paper); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 22px;
+      display: flex; flex-direction: column; gap: 6px; min-height: 140px;
+    }
+    .sr-contact-card.full { grid-column: span 2; min-height: 0; }
+    .sr-contact-card .c-icon {
+      width: 40px; height: 40px; border-radius: var(--r-md);
+      background: var(--rosa-100); color: var(--rosa-600);
+      display: grid; place-items: center; margin-bottom: 4px;
+    }
+    .sr-contact-card .c-icon i { width: 20px; height: 20px; stroke-width: 1.75; }
+    .sr-contact-card .c-lbl { font-family: var(--font-display); font-weight: 500; font-size: 14px; color: var(--ink); }
+    .sr-contact-card .c-val { font-size: 14px; color: var(--ink-soft); }
+    .sr-contact-card .c-val a { color: var(--rosa-600); }
+    .sr-contact-card.whatsapp {
+      grid-column: span 2; min-height: 0;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff; border-color: transparent;
+    }
+    .sr-contact-card.whatsapp .c-icon { background: rgba(255,255,255,0.18); color: #fff; }
+    .sr-contact-card.whatsapp .c-lbl,
+    .sr-contact-card.whatsapp .c-val { color: #fff; }
+    .sr-contact-card.whatsapp .btn {
+      align-self: flex-start; margin-top: 8px;
+      background: #fff; color: #128c7e; border: 0;
+    }
+
+    /* ---- FOOTER -------------------------------------------------- */
+    .sr-footer { background: var(--black-2); color: rgba(255,255,255,0.78); padding: 72px 32px 32px; }
+    .sr-footer-top {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.4fr 2fr; gap: 56px;
+    }
+    .sr-footer .sr-brand-word .top { color: #fff; }
+    .sr-footer-brand-desc { margin-top: 14px; font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.6); }
+    .sr-footer-social { margin-top: 16px; display: flex; gap: 10px; }
+    .sr-footer-social a {
+      width: 36px; height: 36px; border-radius: 999px;
+      background: rgba(213,132,142,0.14); color: var(--rosa-300);
+      display: grid; place-items: center;
+      transition: background var(--dur-2), color var(--dur-2);
+    }
+    .sr-footer-social a:hover { background: var(--rosa); color: #fff; }
+    .sr-footer-social i { width: 18px; height: 18px; stroke-width: 1.75; }
+    .sr-footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .sr-footer-col-head {
+      font-family: var(--font-display); font-size: 14px; font-weight: 600;
+      color: #fff; margin-bottom: 16px;
+    }
+    .sr-footer-cols ul { display: flex; flex-direction: column; gap: 10px; }
+    .sr-footer-cols a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color var(--dur-2); }
+    .sr-footer-cols a:hover { color: var(--rosa-300); }
+    .sr-footer-bottom {
+      max-width: 1240px; margin: 56px auto 0;
+      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.10);
+      font-size: 12px; color: rgba(255,255,255,0.5); text-align: center;
+    }
+
+    /* ---- RESPONSIVE --------------------------------------------- */
+    @media (max-width: 980px) {
+      .sr-header { padding: 16px 24px; }
+      .sr-header > .btn-primary { display: none; }
+      .sr-nav { display: none; }
+      .sr-menu-btn { display: flex; align-items: center; }
+      .sr-nav.open {
+        display: flex; flex-direction: column;
+        position: fixed; inset: 0; top: 73px;
+        background: var(--bone); padding: 32px 24px;
+        gap: 4px; z-index: 49; border-top: 1px solid var(--border);
+      }
+      .sr-nav.open .sr-nav-link { font-size: 20px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+      .sr-services-grid, .sr-manifesto-grid,
+      .sr-contact-grid, .sr-footer-top, .sr-footer-cols { grid-template-columns: 1fr; }
+      .sr-form-row { grid-template-columns: 1fr; }
+      .sr-contact-side { grid-template-columns: 1fr; }
+      .sr-contact-card.full, .sr-contact-card.whatsapp { grid-column: auto; }
+    }
+    @media (max-width: 640px) {
+      .sr-hero { padding: 72px 20px 88px; }
+      .sr-hero-ctas { flex-direction: column; align-items: center; }
+      .sr-services { padding: 72px 0 48px; }
+      .sr-services-grid, .sr-services-cta { padding-left: 20px; padding-right: 20px; }
+      .sr-contact { padding: 72px 20px 96px; }
+      .sr-footer  { padding: 56px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER -->
+<header class="sr-header">
+  <a class="sr-brand" href="#top" aria-label="Sombrero Rosa, inicio">
+    <img src="project/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
+    <span class="sr-brand-word">
+      <span class="top">sombrero</span>
+      <span class="bot">rosa</span>
+    </span>
+  </a>
+
+  <nav class="sr-nav" id="main-nav" aria-label="Principal">
+    <a href="#top"       class="sr-nav-link">Inicio</a>
+    <a href="#servicios" class="sr-nav-link">Servicios</a>
+    <a href="#nosotros"  class="sr-nav-link">Nosotros</a>
+    <a href="#contacto"  class="sr-nav-link">Contacto</a>
+  </nav>
+
+  <a href="#contacto" class="btn btn-primary btn-pill">Empezar proyecto</a>
+
+  <button class="sr-menu-btn" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <i data-lucide="menu" style="width:22px;height:22px;"></i>
+  </button>
+</header>
+
+<!-- ============================================================ HERO -->
+<section class="sr-hero" id="top">
+  <div class="sr-hero-bg" aria-hidden="true">
+    <span class="sr-hero-orb a"></span>
+    <span class="sr-hero-orb b"></span>
+    <span class="sr-hero-orb c"></span>
+  </div>
+  <div class="sr-hero-inner">
+    <div class="sr-hero-pill">Agencia boutique de marketing full service</div>
+    <h1 class="sr-hero-headline">Creer, Crear &amp; Crecer</h1>
+    <p class="sr-hero-lead">
+      Hacemos crecer tu marca, negocio y relación con clientes a través de
+      estrategias de marketing full service que generan resultados reales y medibles.
+    </p>
+    <blockquote class="sr-hero-quote">
+      "El mundo te preguntará quién eres. Y si no lo sabes, el mundo te lo dirá."
+      <cite>— Carl Jung</cite>
+    </blockquote>
+    <div class="sr-hero-ctas">
+      <a href="#servicios" class="btn btn-primary btn-pill">Conocer servicios</a>
+      <a href="#contacto"  class="btn btn-ghost-on-dark btn-pill">Empezar proyecto</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SERVICES -->
+<section class="sr-services" id="servicios">
+  <div class="sr-section-head sr-section-head--center">
+    <div class="sr-section-num">01</div>
+    <h2 class="sr-section-title sr-section-title--rose">Servicios</h2>
+    <p class="sr-section-lead sr-section-lead--center">
+      Somos una agencia de marketing full service. Te ofrecemos soluciones
+      integrales para hacer crecer tu negocio en cada etapa.
+    </p>
+  </div>
+
+  <div class="sr-services-grid">
+    <article class="sr-service-card">
+      <div class="sr-service-top">
+        <div class="sr-service-icon"><i data-lucide="user-circle"></i></div>
+        <button class="sr-service-plus" aria-label="Más info"><i data-lucide="plus"></i></button>
+      </div>
+      <h3 class="sr-service-title">Tu marca se conoce</h3>
+      <p class="sr-service-desc">Te ayudamos a hacer más conocida tu marca en tu público objetivo.</p>
+    </article>
+
+    <article class="sr-service-card">
+      <div class="sr-service-top">
+        <div class="sr-service-icon"><i data-lucide="trending-up"></i></div>
+        <button class="sr-service-plus" aria-label="Más info"><i data-lucide="plus"></i></button>
+      </div>
+      <h3 class="sr-service-title">Tu negocio crece</h3>
+      <p class="sr-service-desc">Creamos campañas para atraer nuevos clientes a tu empresa.</p>
+    </article>
+
+    <article class="sr-service-card">
+      <div class="sr-service-top">
+        <div class="sr-service-icon"><i data-lucide="heart"></i></div>
+        <button class="sr-service-plus" aria-label="Más info"><i data-lucide="plus"></i></button>
+      </div>
+      <h3 class="sr-service-title">Te prefieren</h3>
+      <p class="sr-service-desc">Te proponemos ideas para encantar a tus clientes y colaboradores.</p>
+    </article>
+  </div>
+
+  <div class="sr-services-cta">
+    <span class="sr-services-cta-text">¿Listo para hacer crecer tu negocio?</span>
+    <a href="#contacto" class="btn btn-primary btn-pill">Empezar mi proyecto</a>
+  </div>
+</section>
+
+<!-- ============================================================ TOOLS -->
+<section class="sr-tools" aria-labelledby="tools-heading">
+  <h2 class="sr-tools-label" id="tools-heading">Herramientas que utilizamos</h2>
+  <div class="sr-tools-marquee">
+    <ul class="sr-tools-track" aria-label="Plataformas">
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">TiendaNube</span><span class="sr-tool-tag">E-commerce</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">WordPress</span><span class="sr-tool-tag">CMS</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">WooCommerce</span><span class="sr-tool-tag">E-commerce</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">Meta Ads</span><span class="sr-tool-tag">Paid social</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">Google Ads</span><span class="sr-tool-tag">Paid search</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">HubSpot</span><span class="sr-tool-tag">CRM</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">Mailchimp</span><span class="sr-tool-tag">Email</span></li>
+      <li class="sr-tool-chip"><span class="sr-tool-dot" aria-hidden="true"></span><span class="sr-tool-name">Klaviyo</span><span class="sr-tool-tag">Email</span></li>
+      <!-- duplicate set for seamless loop -->
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">TiendaNube</span><span class="sr-tool-tag">E-commerce</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">WordPress</span><span class="sr-tool-tag">CMS</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">WooCommerce</span><span class="sr-tool-tag">E-commerce</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">Meta Ads</span><span class="sr-tool-tag">Paid social</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">Google Ads</span><span class="sr-tool-tag">Paid search</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">HubSpot</span><span class="sr-tool-tag">CRM</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">Mailchimp</span><span class="sr-tool-tag">Email</span></li>
+      <li class="sr-tool-chip" aria-hidden="true"><span class="sr-tool-dot"></span><span class="sr-tool-name">Klaviyo</span><span class="sr-tool-tag">Email</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ MANIFESTO -->
+<section class="sr-manifesto" id="nosotros">
+  <div class="sr-manifesto-inner">
+    <div class="sr-section-head sr-section-head--center">
+      <div class="sr-section-num">02</div>
+      <h2 class="sr-section-title sr-section-title--rose">¿Por qué nosotros?</h2>
+      <p class="sr-section-lead sr-section-lead--center">
+        Somos una agencia de marketing full service que combina creatividad, tecnología y
+        estrategia para crear experiencias de marca memorables.
+      </p>
+    </div>
+
+    <div class="sr-manifesto-grid">
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="target"></i></div>
+        <h3>Enfoque estratégico</h3>
+        <p>Desarrollamos estrategias personalizadas basadas en datos y análisis profundo de tu mercado.</p>
+      </article>
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="bar-chart-3"></i></div>
+        <h3>Resultados medibles</h3>
+        <p>Monitoreamos cada campaña con métricas específicas para asegurar el retorno de tu inversión.</p>
+      </article>
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="users"></i></div>
+        <h3>Atención personalizada</h3>
+        <p>Como agencia boutique, dedicamos tiempo y recursos específicos a cada uno de nuestros clientes.</p>
+      </article>
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="check-circle"></i></div>
+        <h3>Experiencia comprobada</h3>
+        <p>Más de 15 años ayudando a empresas a crecer a través de estrategias de marketing efectivas.</p>
+      </article>
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="shield"></i></div>
+        <h3>Compromiso garantizado</h3>
+        <p>Nos comprometemos con los resultados y trabajamos hasta lograr tus objetivos.</p>
+      </article>
+      <article class="sr-manifesto-card">
+        <div class="sr-manifesto-icon"><i data-lucide="zap"></i></div>
+        <h3>Agilidad y flexibilidad</h3>
+        <p>Respondemos rápidamente a las oportunidades del mercado y las necesidades de tu negocio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT -->
+<section class="sr-contact" id="contacto">
+  <div class="sr-section-head sr-section-head--center">
+    <div class="sr-section-num">03</div>
+    <h2 class="sr-section-title sr-section-title--rose">Conversemos</h2>
+    <p class="sr-section-lead sr-section-lead--center">
+      Contanos sobre tu proyecto y descubrí cómo podemos ayudarte a hacer crecer tu negocio.
+    </p>
+  </div>
+
+  <div class="sr-contact-grid">
+    <form class="sr-contact-form" id="contact-form" novalidate>
+      <h3>Nos encantaría escucharte. Llena el formulario y nos pondremos en contacto contigo lo antes posible.</h3>
+      <div class="sr-form-row">
+        <label>
+          <span>Nombre</span>
+          <input type="text" name="name" placeholder="Sebastián" />
+        </label>
+        <label>
+          <span>Apellidos</span>
+          <input type="text" name="apellidos" placeholder="Lutz" />
+        </label>
+      </div>
+      <label>
+        <span>Nombre de la empresa</span>
+        <input type="text" name="company" placeholder="Mi empresa" />
+      </label>
+      <label>
+        <span>Correo*</span>
+        <input type="email" name="email" placeholder="hola@empresa.com" required />
+      </label>
+      <label>
+        <span>Número de WhatsApp</span>
+        <input type="tel" name="phone" placeholder="+54 11 1234 5678" />
+      </label>
+      <label>
+        <span>Consulta</span>
+        <textarea name="msg" rows="3" placeholder="Contanos sobre tu proyecto…"></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary btn-pill">Enviar</button>
+    </form>
+
+    <div class="sr-contact-side">
+      <div class="sr-contact-card">
+        <div class="c-icon"><i data-lucide="mail"></i></div>
+        <div class="c-lbl">Email</div>
+        <div class="c-val"><a href="mailto:hola@sombrerorosa.com">hola@sombrerorosa.com</a></div>
+      </div>
+      <div class="sr-contact-card">
+        <div class="c-icon"><i data-lucide="phone"></i></div>
+        <div class="c-lbl">Teléfono</div>
+        <div class="c-val"><a href="tel:+541172465685">+54 11 7246 5685</a></div>
+      </div>
+      <div class="sr-contact-card full">
+        <div class="c-icon"><i data-lucide="map-pin"></i></div>
+        <div class="c-lbl">Ubicación</div>
+        <div class="c-val">Buenos Aires, Argentina</div>
+      </div>
+      <div class="sr-contact-card whatsapp">
+        <div class="c-icon"><i data-lucide="message-circle"></i></div>
+        <div class="c-lbl">¿Tenés una consulta urgente?</div>
+        <div class="c-val">Escribinos por WhatsApp y te respondemos lo antes posible.</div>
+        <a href="https://wa.me/541172465685" target="_blank" rel="noopener noreferrer" class="btn btn-pill">
+          Chatear por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER -->
+<footer class="sr-footer">
+  <div class="sr-footer-top">
+    <div>
+      <a class="sr-brand" href="#top" aria-label="Sombrero Rosa, inicio">
+        <img src="project/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
+        <span class="sr-brand-word">
+          <span class="top">sombrero</span>
+          <span class="bot">rosa</span>
+        </span>
+      </a>
+      <p class="sr-footer-brand-desc">
+        Agencia de marketing full service especializada en hacer crecer tu marca,
+        negocio y relación con clientes.
+      </p>
+      <div class="sr-footer-social">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i data-lucide="music-2"></i></a>
+      </div>
+    </div>
+
+    <div class="sr-footer-cols">
+      <div>
+        <div class="sr-footer-col-head">Servicios</div>
+        <ul>
+          <li><a href="#servicios">Estrategia de marca</a></li>
+          <li><a href="#servicios">Redes sociales</a></li>
+          <li><a href="#servicios">Performance marketing</a></li>
+          <li><a href="#servicios">Publicidad digital</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sr-footer-col-head">Empresa</div>
+        <ul>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sr-footer-col-head">Contacto</div>
+        <ul>
+          <li><a href="mailto:hola@sombrerorosa.com">hola@sombrerorosa.com</a></li>
+          <li><a href="tel:+541172465685">+54 11 7246 5685</a></li>
+          <li>Buenos Aires, Argentina</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sr-footer-bottom">© 2026 Sombrero Rosa. Todos los derechos reservados.</div>
+</footer>
+
+<!-- ============================================================ SCRIPTS -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+
+  /* Mobile nav toggle */
+  const menuBtn = document.getElementById('menu-toggle');
+  const nav     = document.getElementById('main-nav');
+
+  function setNavOpen(open) {
+    nav.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.querySelector('i').setAttribute('data-lucide', open ? 'x' : 'menu');
+    lucide.createIcons();
+  }
+
+  menuBtn.addEventListener('click', () => setNavOpen(!nav.classList.contains('open')));
+  nav.querySelectorAll('.sr-nav-link').forEach(link =>
+    link.addEventListener('click', () => setNavOpen(false))
+  );
+
+  /* Contact form — success state */
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.email.value || 'tu email';
+    this.innerHTML = `
+      <div class="sr-contact-ok">
+        <div class="sr-contact-ok-mark">✓</div>
+        <h3>¡Listo, te leímos!</h3>
+        <p>Te escribimos a <strong>${email}</strong> en menos de 24 horas.</p>
+      </div>`;
+  });
+</script>
+</body>
+</html>
