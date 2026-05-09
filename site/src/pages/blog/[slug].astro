@@ -1,0 +1,117 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getBlogPosts, getBlogPost, urlFor } from '../../lib/sanity';
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post: any) => ({ params: { slug: post.slug.current } }));
+}
+
+const { slug } = Astro.params;
+const post = await getBlogPost(slug!);
+
+if (!post) return Astro.redirect('/blog');
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+/* Convert Sanity block content to plain HTML (minimal, no extra deps) */
+function blocksToHtml(blocks: any[]): string {
+  if (!blocks) return '';
+  return blocks.map((block: any) => {
+    if (block._type === 'image') {
+      const src = urlFor(block).width(900).url();
+      const alt = block.alt ?? '';
+      return `<img src="${src}" alt="${alt}" loading="lazy" />`;
+    }
+    if (block._type !== 'block') return '';
+    const tag = { h2:'h2', h3:'h3', blockquote:'blockquote', normal:'p' }[block.style as string] ?? 'p';
+    const inner = (block.children ?? []).map((span: any) => {
+      let t = span.text ?? '';
+      if (span.marks?.includes('strong')) t = `<strong>${t}</strong>`;
+      if (span.marks?.includes('em'))     t = `<em>${t}</em>`;
+      return t;
+    }).join('');
+    return `<${tag}>${inner}</${tag}>`;
+  }).join('\n');
+}
+
+const bodyHtml = blocksToHtml(post.body);
+const coverUrl = post.mainImage ? urlFor(post.mainImage).width(1200).url() : null;
+---
+
+<Base
+  title={`${post.title} — Sombrero Rosa`}
+  description={post.excerpt ?? ''}
+  image={coverUrl ?? undefined}
+>
+  <Header currentPath="/blog" />
+  <main>
+    <article>
+      <div class="post-hero">
+        <div class="post-hero-inner">
+          <a href="/blog" class="post-back">← Volver al blog</a>
+          <div class="post-meta">{post.author} · {post.publishedAt ? formatDate(post.publishedAt) : ''}</div>
+          <h1 class="post-title">{post.title}</h1>
+          {post.excerpt && <p class="post-excerpt">{post.excerpt}</p>}
+        </div>
+      </div>
+
+      {coverUrl && (
+        <div class="post-cover-wrap">
+          <img src={coverUrl} alt={post.mainImage?.alt ?? post.title} class="post-cover" />
+        </div>
+      )}
+
+      <div class="post-body-wrap">
+        <div class="prose" set:html={bodyHtml} />
+      </div>
+    </article>
+
+    <div class="post-footer-cta">
+      <p>¿Te quedaste con ganas de más?</p>
+      <div class="post-footer-cta-btns">
+        <a href="/blog" class="btn btn-ghost btn-pill">Ver más artículos</a>
+        <a href="/#contacto" class="btn btn-primary btn-pill">Hablemos →</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .post-hero {
+    background: var(--black-2); color: #fff;
+    padding: 72px 32px 64px;
+  }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .post-back { font-size: 13px; color: var(--rosa-300); display: inline-block; margin-bottom: 20px; }
+  .post-back:hover { color: var(--rosa); }
+  .post-meta { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .post-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(32px, 5vw, 56px); line-height: 1.1;
+    letter-spacing: -0.02em; color: #fff; margin: 0;
+  }
+  .post-excerpt { margin-top: 16px; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.7); max-width: 60ch; }
+
+  .post-cover-wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; transform: translateY(-32px); }
+  .post-cover { width: 100%; border-radius: var(--r-xl); box-shadow: var(--shadow-md); }
+
+  .post-body-wrap { max-width: 760px; margin: 0 auto; padding: 0 32px 80px; }
+
+  .post-footer-cta {
+    background: var(--bone); border-top: 1px solid var(--border);
+    padding: 64px 32px; text-align: center;
+  }
+  .post-footer-cta p { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--navy); margin-bottom: 24px; }
+  .post-footer-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  @media (max-width: 640px) {
+    .post-hero { padding: 56px 20px 48px; }
+    .post-cover-wrap, .post-body-wrap { padding-left: 20px; padding-right: 20px; }
+  }
+</style>

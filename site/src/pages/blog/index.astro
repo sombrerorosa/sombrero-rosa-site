@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getBlogPosts } from '../../lib/sanity';
+
+const posts = await getBlogPosts();
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<Base title="Blog — Sombrero Rosa" description="Artículos de marketing, estrategia y crecimiento de marca.">
+  <Header currentPath="/blog" />
+  <main class="blog-main">
+    <div class="blog-hero">
+      <div class="blog-hero-inner">
+        <div class="sr-section-num" style="margin-bottom:12px">Blog</div>
+        <h1>Ideas que hacen <em>crecer</em>.</h1>
+        <p>Estrategia, creatividad y marketing. Sin relleno.</p>
+      </div>
+    </div>
+
+    <div class="blog-container">
+      {posts.length === 0 ? (
+        <div class="blog-empty">
+          <p>Los primeros artículos están en camino. Volvé pronto.</p>
+          <a href="/" class="btn btn-primary btn-pill">Volver al inicio</a>
+        </div>
+      ) : (
+        <ul class="blog-grid">
+          {posts.map((post: any) => (
+            <li>
+              <a href={`/blog/${post.slug.current}`} class="blog-card">
+                {post.mainImage && (
+                  <div class="blog-card-img-wrap">
+                    <img
+                      src={`https://cdn.sanity.io/images/${import.meta.env.SANITY_PROJECT_ID}/production/${post.mainImage.asset._ref.replace('image-','').replace(/-(\w+)$/, '.$1').replace(/-(\d+x\d+)-/, '-')}`}
+                      alt={post.mainImage.alt ?? post.title}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="blog-card-body">
+                  <div class="blog-card-meta">{post.author} · {post.publishedAt ? formatDate(post.publishedAt) : ''}</div>
+                  <h2 class="blog-card-title">{post.title}</h2>
+                  {post.excerpt && <p class="blog-card-excerpt">{post.excerpt}</p>}
+                  <span class="blog-card-cta">Leer artículo →</span>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .blog-main { background: var(--bone); min-height: 60vh; }
+
+  .blog-hero {
+    background: var(--black-2); color: #fff;
+    padding: 80px 32px 88px; text-align: center;
+  }
+  .blog-hero-inner { max-width: 680px; margin: 0 auto; }
+  .blog-hero .sr-section-num { color: var(--rosa-300); }
+  .blog-hero .sr-section-num::after { background: rgba(213,132,142,0.4); }
+  .blog-hero h1 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(40px, 6vw, 72px); line-height: 1.05;
+    letter-spacing: -0.025em; color: #fff; margin: 8px 0 16px;
+  }
+  .blog-hero h1 em { font-style: italic; color: var(--rosa); }
+  .blog-hero p { font-size: 18px; color: rgba(255,255,255,0.7); }
+
+  .blog-container { max-width: 1240px; margin: 0 auto; padding: 64px 32px 96px; }
+
+  .blog-empty { text-align: center; padding: 80px 0; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+  .blog-empty p { font-size: 18px; color: var(--ink-soft); }
+
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .blog-card {
+    display: flex; flex-direction: column;
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--dur-3) var(--ease-out), box-shadow var(--dur-3) var(--ease-out);
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .blog-card-img-wrap { aspect-ratio: 16/9; overflow: hidden; }
+  .blog-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-3); }
+  .blog-card:hover .blog-card-img-wrap img { transform: scale(1.04); }
+  .blog-card-body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .blog-card-meta { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; text-transform: uppercase; }
+  .blog-card-title { font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.25; color: var(--navy); letter-spacing: -0.01em; }
+  .blog-card-excerpt { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin-top: 4px; flex: 1; }
+  .blog-card-cta { margin-top: auto; padding-top: 14px; font-size: 13px; font-weight: 600; color: var(--rosa-600); }
+
+  @media (max-width: 980px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-container { padding: 40px 20px 72px; }
+  }
+</style>

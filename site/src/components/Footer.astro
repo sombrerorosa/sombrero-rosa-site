@@ -1,0 +1,84 @@
+---
+---
+<footer class="sr-footer">
+  <div class="sr-footer-top">
+    <div>
+      <a class="sr-brand" href="/" aria-label="Sombrero Rosa, inicio">
+        <img src="/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
+        <span class="sr-brand-word">
+          <span class="top" style="color:#fff">sombrero</span>
+          <span class="bot">rosa</span>
+        </span>
+      </a>
+      <p class="sr-footer-brand-desc">
+        Agencia de marketing full service especializada en hacer crecer tu marca,
+        negocio y relación con clientes.
+      </p>
+      <div class="sr-footer-social">
+        <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+        <a href="#" aria-label="TikTok"><i data-lucide="music-2"></i></a>
+      </div>
+    </div>
+    <div class="sr-footer-cols">
+      <div>
+        <div class="sr-footer-col-head">Servicios</div>
+        <ul>
+          <li><a href="/#servicios">Estrategia de marca</a></li>
+          <li><a href="/#servicios">Redes sociales</a></li>
+          <li><a href="/#servicios">Performance marketing</a></li>
+          <li><a href="/#servicios">Publicidad digital</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sr-footer-col-head">Empresa</div>
+        <ul>
+          <li><a href="/#nosotros">Sobre nosotros</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="sr-footer-col-head">Contacto</div>
+        <ul>
+          <li><a href="mailto:hola@sombrerorosa.com">hola@sombrerorosa.com</a></li>
+          <li><a href="tel:+541172465685">+54 11 7246 5685</a></li>
+          <li>Buenos Aires, Argentina</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="sr-footer-bottom">© {new Date().getFullYear()} Sombrero Rosa. Todos los derechos reservados.</div>
+</footer>
+
+<style>
+  .sr-footer { background: var(--black-2); color: rgba(255,255,255,0.78); padding: 72px 32px 32px; }
+  .sr-footer-top {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.4fr 2fr; gap: 56px;
+  }
+  .sr-footer-brand-desc { margin-top: 14px; font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.6); }
+  .sr-footer-social { margin-top: 16px; display: flex; gap: 10px; }
+  .sr-footer-social a {
+    width: 36px; height: 36px; border-radius: 999px;
+    background: rgba(213,132,142,0.14); color: var(--rosa-300);
+    display: grid; place-items: center; transition: background var(--dur-2), color var(--dur-2);
+  }
+  .sr-footer-social a:hover { background: var(--rosa); color: #fff; }
+  .sr-footer-social i { width: 18px; height: 18px; stroke-width: 1.75; }
+  .sr-footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .sr-footer-col-head { font-family: var(--font-display); font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 16px; }
+  .sr-footer-cols ul { display: flex; flex-direction: column; gap: 10px; }
+  .sr-footer-cols a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color var(--dur-2); }
+  .sr-footer-cols a:hover { color: var(--rosa-300); }
+  .sr-footer-bottom {
+    max-width: 1240px; margin: 56px auto 0;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.10);
+    font-size: 12px; color: rgba(255,255,255,0.5); text-align: center;
+  }
+  @media (max-width: 980px) {
+    .sr-footer-top, .sr-footer-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .sr-footer { padding: 56px 20px 24px; }
+  }
+</style>

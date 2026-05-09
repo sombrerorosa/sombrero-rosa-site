@@ -1,0 +1,82 @@
+---
+interface Props { currentPath?: string; }
+const { currentPath = '/' } = Astro.props;
+---
+<header class="sr-header">
+  <a class="sr-brand" href="/" aria-label="Sombrero Rosa, inicio">
+    <img src="/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
+    <span class="sr-brand-word">
+      <span class="top">sombrero</span>
+      <span class="bot">rosa</span>
+    </span>
+  </a>
+
+  <nav class="sr-nav" id="main-nav" aria-label="Principal">
+    <a href="/#servicios" class="sr-nav-link">Servicios</a>
+    <a href="/#nosotros"  class="sr-nav-link">Nosotros</a>
+    <a href="/blog"       class="sr-nav-link" data-active={currentPath.startsWith('/blog')}>Blog</a>
+    <a href="/#contacto"  class="sr-nav-link">Contacto</a>
+  </nav>
+
+  <a href="/#contacto" class="btn btn-primary btn-pill">Empezar proyecto</a>
+
+  <button class="sr-menu-btn" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+    <i data-lucide="menu" style="width:22px;height:22px;"></i>
+  </button>
+</header>
+
+<style>
+  .sr-header {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 24px; padding: 18px 48px;
+    background: rgba(242,242,240,0.92);
+    backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .sr-nav { display: flex; gap: 36px; margin: 0 auto; }
+  .sr-nav-link {
+    font-size: 14px; font-weight: 500; color: var(--navy);
+    padding: 6px 0; position: relative;
+    transition: color var(--dur-2) var(--ease-out);
+  }
+  .sr-nav-link::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: 2px;
+    height: 1.5px; background: var(--rosa);
+    transition: right var(--dur-2) var(--ease-out);
+  }
+  .sr-nav-link:hover,
+  .sr-nav-link[data-active="true"] { color: var(--rosa-600); }
+  .sr-nav-link:hover::after,
+  .sr-nav-link[data-active="true"]::after { right: 0; }
+  .sr-menu-btn {
+    display: none; background: none; border: 0; padding: 8px;
+    color: var(--navy); margin-left: auto;
+  }
+  @media (max-width: 980px) {
+    .sr-header { padding: 16px 24px; }
+    .sr-header > .btn-primary { display: none; }
+    .sr-nav { display: none; }
+    .sr-menu-btn { display: flex; align-items: center; }
+    .sr-nav.open {
+      display: flex; flex-direction: column;
+      position: fixed; inset: 0; top: 73px;
+      background: var(--bone); padding: 32px 24px;
+      gap: 4px; z-index: 49; border-top: 1px solid var(--border);
+    }
+    .sr-nav.open .sr-nav-link { font-size: 20px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('menu-toggle')!;
+  const nav = document.getElementById('main-nav')!;
+  function setOpen(open: boolean) {
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.querySelector('i')!.setAttribute('data-lucide', open ? 'x' : 'menu');
+    // @ts-ignore
+    if (window.lucide) window.lucide.createIcons();
+  }
+  btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+  nav.querySelectorAll('.sr-nav-link').forEach(l => l.addEventListener('click', () => setOpen(false)));
+</script>

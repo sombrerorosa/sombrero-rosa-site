@@ -1,0 +1,162 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getHomePage, getSiteSettings } from '../lib/sanity';
+
+const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
+
+const hero = page?.hero ?? {
+  pill: 'Agencia boutique de marketing full service',
+  headline: 'Creer, Crear & Crecer',
+  lead: 'Hacemos crecer tu marca, negocio y relación con clientes a través de estrategias de marketing full service que generan resultados reales y medibles.',
+  quote: '"El mundo te preguntará quién eres. Y si no lo sabes, el mundo te lo dirá."',
+  quoteAuthor: '— Carl Jung',
+  ctaPrimary: 'Conocer servicios',
+  ctaSecondary: 'Empezar proyecto',
+};
+const services = page?.services ?? {
+  title: 'Servicios', lead: 'Somos una agencia de marketing full service.',
+  ctaText: '¿Listo para hacer crecer tu negocio?',
+  items: [
+    { icon: 'user-circle', title: 'Tu marca se conoce', desc: 'Te ayudamos a hacer más conocida tu marca en tu público objetivo.' },
+    { icon: 'trending-up', title: 'Tu negocio crece',   desc: 'Creamos campañas para atraer nuevos clientes a tu empresa.' },
+    { icon: 'heart',       title: 'Te prefieren',       desc: 'Te proponemos ideas para encantar a tus clientes y colaboradores.' },
+  ],
+};
+const manifesto = page?.manifesto ?? {
+  title: '¿Por qué nosotros?', lead: 'Combinamos creatividad, tecnología y estrategia para crear experiencias de marca memorables.',
+  items: [
+    { icon: 'target',       title: 'Enfoque estratégico',     desc: 'Desarrollamos estrategias personalizadas basadas en datos y análisis profundo de tu mercado.' },
+    { icon: 'bar-chart-3',  title: 'Resultados medibles',     desc: 'Monitoreamos cada campaña con métricas específicas para asegurar el retorno de tu inversión.' },
+    { icon: 'users',        title: 'Atención personalizada',  desc: 'Como agencia boutique, dedicamos tiempo y recursos específicos a cada uno de nuestros clientes.' },
+    { icon: 'check-circle', title: 'Experiencia comprobada',  desc: 'Más de 15 años ayudando a empresas a crecer a través de estrategias de marketing efectivas.' },
+    { icon: 'shield',       title: 'Compromiso garantizado',  desc: 'Nos comprometemos con los resultados y trabajamos hasta lograr tus objetivos.' },
+    { icon: 'zap',          title: 'Agilidad y flexibilidad', desc: 'Respondemos rápidamente a las oportunidades del mercado y las necesidades de tu negocio.' },
+  ],
+};
+const tools = page?.tools ?? {
+  label: 'Herramientas que utilizamos',
+  items: [
+    { name: 'TiendaNube', tag: 'E-commerce' }, { name: 'WordPress',  tag: 'CMS' },
+    { name: 'WooCommerce',tag: 'E-commerce' }, { name: 'Meta Ads',   tag: 'Paid social' },
+    { name: 'Google Ads', tag: 'Paid search'},  { name: 'HubSpot',    tag: 'CRM' },
+    { name: 'Mailchimp',  tag: 'Email' },       { name: 'Klaviyo',    tag: 'Email' },
+  ],
+};
+const email    = settings?.email    ?? 'hola@sombrerorosa.com';
+const phone    = settings?.phone    ?? '+54 11 7246 5685';
+const whatsapp = settings?.whatsapp ?? 'https://wa.me/541172465685';
+const address  = settings?.address  ?? 'Buenos Aires, Argentina';
+---
+<Base>
+  <Header />
+  <main>
+    <section class="sr-hero" id="top">
+      <div class="sr-hero-bg" aria-hidden="true">
+        <span class="sr-hero-orb a"></span><span class="sr-hero-orb b"></span><span class="sr-hero-orb c"></span>
+      </div>
+      <div class="sr-hero-inner">
+        <div class="sr-hero-pill">{hero.pill}</div>
+        <h1 class="sr-hero-headline">{hero.headline}</h1>
+        <p class="sr-hero-lead">{hero.lead}</p>
+        {hero.quote && <blockquote class="sr-hero-quote">{hero.quote}<cite>{hero.quoteAuthor}</cite></blockquote>}
+        <div class="sr-hero-ctas">
+          <a href="#servicios" class="btn btn-primary btn-pill">{hero.ctaPrimary}</a>
+          <a href="#contacto"  class="btn btn-ghost-on-dark btn-pill">{hero.ctaSecondary}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sr-services" id="servicios">
+      <div class="sr-section-head sr-section-head--center">
+        <div class="sr-section-num">01</div>
+        <h2 class="sr-section-title sr-section-title--rose">{services.title}</h2>
+        <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
+      </div>
+      <div class="sr-services-grid">
+        {services.items.map((s: any, i: number) => (
+          <article class="sr-service-card">
+            <div class="sr-service-top">
+              <div class={`sr-service-icon${i === 1 ? ' navy' : ''}`}><i data-lucide={s.icon}></i></div>
+              <button class="sr-service-plus" aria-label="Más info"><i data-lucide="plus"></i></button>
+            </div>
+            <h3 class="sr-service-title">{s.title}</h3>
+            <p class="sr-service-desc">{s.desc}</p>
+          </article>
+        ))}
+      </div>
+      <div class="sr-services-cta">
+        <span class="sr-services-cta-text">{services.ctaText}</span>
+        <a href="#contacto" class="btn btn-primary btn-pill">Empezar mi proyecto</a>
+      </div>
+    </section>
+
+    <section class="sr-tools" aria-labelledby="tools-h">
+      <h2 class="sr-tools-label" id="tools-h">{tools.label}</h2>
+      <div class="sr-tools-marquee">
+        <ul class="sr-tools-track">
+          {[...tools.items, ...tools.items].map((t: any, i: number) => (
+            <li class="sr-tool-chip" aria-hidden={i >= tools.items.length ? 'true' : undefined}>
+              <span class="sr-tool-dot" aria-hidden="true"></span>
+              <span class="sr-tool-name">{t.name}</span>
+              <span class="sr-tool-tag">{t.tag}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="sr-manifesto" id="nosotros">
+      <div class="sr-manifesto-inner">
+        <div class="sr-section-head sr-section-head--center">
+          <div class="sr-section-num">02</div>
+          <h2 class="sr-section-title sr-section-title--rose">{manifesto.title}</h2>
+          <p class="sr-section-lead sr-section-lead--center">{manifesto.lead}</p>
+        </div>
+        <div class="sr-manifesto-grid">
+          {manifesto.items.map((c: any) => (
+            <article class="sr-manifesto-card">
+              <div class="sr-manifesto-icon"><i data-lucide={c.icon}></i></div>
+              <h3>{c.title}</h3><p>{c.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="sr-contact" id="contacto">
+      <div class="sr-section-head sr-section-head--center">
+        <div class="sr-section-num">03</div>
+        <h2 class="sr-section-title sr-section-title--rose">Conversemos</h2>
+        <p class="sr-section-lead sr-section-lead--center">Contanos sobre tu proyecto y descubrí cómo podemos ayudarte a hacer crecer tu negocio.</p>
+      </div>
+      <div class="sr-contact-grid">
+        <form class="sr-contact-form" id="contact-form" novalidate>
+          <h3>Nos encantaría escucharte. Llená el formulario y nos ponemos en contacto lo antes posible.</h3>
+          <div class="sr-form-row">
+            <label><span>Nombre</span><input type="text" name="name" placeholder="Sebastián" /></label>
+            <label><span>Apellidos</span><input type="text" name="apellidos" placeholder="Lutz" /></label>
+          </div>
+          <label><span>Empresa</span><input type="text" name="company" placeholder="Mi empresa" /></label>
+          <label><span>Correo*</span><input type="email" name="email" placeholder="hola@empresa.com" required /></label>
+          <label><span>WhatsApp</span><input type="tel" name="phone" placeholder="+54 11 1234 5678" /></label>
+          <label><span>Consulta</span><textarea name="msg" rows="3" placeholder="Contanos sobre tu proyecto…"></textarea></label>
+          <button type="submit" class="btn btn-primary btn-pill">Enviar</button>
+        </form>
+        <div class="sr-contact-side">
+          <div class="sr-contact-card"><div class="c-icon"><i data-lucide="mail"></i></div><div class="c-lbl">Email</div><div class="c-val"><a href={`mailto:${email}`}>{email}</a></div></div>
+          <div class="sr-contact-card"><div class="c-icon"><i data-lucide="phone"></i></div><div class="c-lbl">Teléfono</div><div class="c-val"><a href={`tel:${phone.replace(/\s/g,'')}`}>{phone}</a></div></div>
+          <div class="sr-contact-card full"><div class="c-icon"><i data-lucide="map-pin"></i></div><div class="c-lbl">Ubicación</div><div class="c-val">{address}</div></div>
+          <div class="sr-contact-card whatsapp">
+            <div class="c-icon"><i data-lucide="message-circle"></i></div>
+            <div class="c-lbl">¿Tenés una consulta urgente?</div>
+            <div class="c-val">Escribinos por WhatsApp y te respondemos lo antes posible.</div>
+            <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-pill">Chatear por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
