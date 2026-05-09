@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px 28px; background: var(--bone); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 13px; font-weight: 500; color: var(--navy); }
+  input, textarea, select {
+    font-family: var(--font-sans); font-size: 14px;
+    padding: 12px 14px; height: 44px;
+    border-radius: var(--r-md);
+    border: 1px solid var(--border-strong);
+    background: var(--paper);
+    color: var(--ink);
+    transition: border-color 200ms, box-shadow 200ms;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: 0; border-color: var(--rosa); border-width: 1.5px;
+    box-shadow: 0 0 0 4px var(--rosa-100);
+  }
+  .help { font-size: 12px; color: var(--ink-soft); }
+  .err { color: var(--hot); }
+  .field.err input { border-color: var(--hot); }
+  .field.focus input {
+    border-color: var(--rosa); border-width: 1.5px;
+    box-shadow: 0 0 0 4px var(--rosa-100);
+  }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="field">
+      <label>Nombre</label>
+      <input value="María Solis" />
+      <div class="help">Como te llaman tus clientes.</div>
+    </div>
+    <div class="field focus">
+      <label>Email</label>
+      <input value="hola@" />
+      <div class="help">Te respondemos en 24 h.</div>
+    </div>
+    <div class="field err">
+      <label>Sitio web</label>
+      <input value="ejemplo" />
+      <div class="help err">Falta el dominio. Probá con https://</div>
+    </div>
+    <div class="field">
+      <label>Mensaje</label>
+      <textarea style="height: 60px; resize:none;">Queremos crecer en redes…</textarea>
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--bone); font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { border-radius: var(--r-md); padding: 18px 20px; min-height: 110px; display: flex; flex-direction: column; gap: 6px; }
+  .ok    { box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06); }
+  .bad   { box-shadow: inset 0 0 0 1.5px var(--hot); position: relative; }
+  .bad::after {
+    content: "evitar"; position: absolute; top: 10px; right: 10px;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--hot); padding: 3px 8px; border-radius: 999px;
+    background: rgba(229,90,122,0.12);
+  }
+  .lbl { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+  h3 { font-family: var(--font-display); font-weight: 600; font-size: 18px; margin: 2px 0 0; letter-spacing: -0.01em; }
+  p { font-size: 12px; margin: 2px 0 0; opacity: 0.75; line-height: 1.4; }
+
+  .black { background: var(--black-2); color: white; }
+  .black .lbl { color: var(--rosa-300); }
+  .black h3 { color: white; }
+
+  .navy  { background: var(--navy); color: white; }
+  .navy .lbl { color: var(--rosa-300); }
+
+  .bone  { background: var(--bone); color: var(--navy); border: 1px solid var(--border); }
+  .bone .lbl { color: var(--rosa-600); }
+
+  .stripe-bad { background: linear-gradient(90deg, var(--black-2) 50%, var(--navy) 50%); color: white; }
+  .stripe-bad h3 { color: rgba(255,255,255,0.9); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="card black ok">
+      <span class="lbl">Black canvas</span>
+      <h3>Hero · footer · cierre</h3>
+      <p>Negro = lienzo. Tipografía blanca, acentos rosa.</p>
+    </div>
+    <div class="card bone ok">
+      <span class="lbl">Bone + navy ink</span>
+      <h3>Cuerpo del sitio</h3>
+      <p>Navy = tinta para titulares y body. Rosa de acento.</p>
+    </div>
+    <div class="card stripe-bad bad">
+      <span class="lbl" style="color:rgba(255,255,255,0.7)">50 / 50 navy + black</span>
+      <h3>No los enfrentes</h3>
+    </div>
+    <div class="card navy bad" style="color: var(--black-2)">
+      <span class="lbl">Black text on navy</span>
+      <h3 style="color: var(--black-2)">Texto que vibra</h3>
+      <p style="color: rgba(11,11,11,0.7)">Bajo contraste — usa blanco o rose.</p>
+    </div>
+  </div>
+</body></html>

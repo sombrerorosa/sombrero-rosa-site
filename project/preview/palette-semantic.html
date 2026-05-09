@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--bone); }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .row {
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 14px;
+  }
+  .chip { width: 56px; height: 44px; border-radius: var(--r-sm); border: 1px solid var(--border); }
+  .name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--navy); line-height: 1.1;}
+  .role { font-size: 12px; color: var(--ink-soft); margin-top: 2px;}
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="row"><div class="chip" style="background:var(--bg)"></div><div><div class="name">--bg</div><div class="role">Page background</div></div><div class="hex">bone</div></div>
+    <div class="row"><div class="chip" style="background:var(--fg)"></div><div><div class="name">--fg</div><div class="role">Body text</div></div><div class="hex">ink</div></div>
+    <div class="row"><div class="chip" style="background:var(--fg-strong)"></div><div><div class="name">--fg-strong</div><div class="role">Headlines</div></div><div class="hex">navy</div></div>
+    <div class="row"><div class="chip" style="background:var(--fg-muted)"></div><div><div class="name">--fg-muted</div><div class="role">Secondary copy</div></div><div class="hex">ink-soft</div></div>
+    <div class="row"><div class="chip" style="background:var(--link)"></div><div><div class="name">--link</div><div class="role">Links · CTA</div></div><div class="hex">hot</div></div>
+    <div class="row"><div class="chip" style="background:var(--link-hover)"></div><div><div class="name">--link-hover</div><div class="role">Link hover</div></div><div class="hex">rosa-600</div></div>
+    <div class="row"><div class="chip" style="background:var(--bg-accent)"></div><div><div class="name">--bg-accent</div><div class="role">Soft accent zones</div></div><div class="hex">rosa-100</div></div>
+    <div class="row"><div class="chip" style="background:var(--bg-dark)"></div><div><div class="name">--bg-dark</div><div class="role">Dark sections</div></div><div class="hex">navy</div></div>
+  </div>
+</body></html>

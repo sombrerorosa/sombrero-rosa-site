@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sombrero Rosa — Plantillas de slides</title>
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="icon" type="image/png" href="../assets/logo-sombrero-rosa.png" />
+<style>
+  :root {
+    --slide-pad-x: 96px;
+    --slide-pad-y: 80px;
+  }
+  body { margin: 0; background: #1a1a1a; }
+
+  deck-stage > section {
+    width: 1280px; height: 720px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: var(--slide-pad-y) var(--slide-pad-x);
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    display: flex; flex-direction: column;
+  }
+
+  /* shared chrome */
+  .chrome-mark {
+    position: absolute; top: 36px; left: var(--slide-pad-x);
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 16px; color: var(--navy); letter-spacing: -0.01em;
+  }
+  .chrome-mark img { width: 28px; height: 28px; object-fit: contain; }
+  .chrome-mark em { font-style: italic; font-weight: 600; color: var(--rosa-500); }
+  .chrome-foot {
+    position: absolute; bottom: 36px; left: var(--slide-pad-x); right: var(--slide-pad-x);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--ink-soft); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  .eyebrow-s {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--rosa-600);
+  }
+
+  /* ===== TITLE ===== */
+  .s-title {
+    background:
+      radial-gradient(60% 80% at 90% 20%, var(--rosa-100) 0%, transparent 60%),
+      var(--bone);
+    justify-content: center;
+  }
+  .s-title-watermark {
+    position: absolute; right: -120px; top: 60px;
+    width: 640px; height: 640px;
+    opacity: 0.45; pointer-events: none;
+  }
+  .s-title h1 {
+    position: relative; z-index: 1;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 110px; line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--navy); margin: 0; max-width: 14ch;
+  }
+  .s-title h1 em { font-style: italic; font-weight: 600; color: var(--rosa-500); }
+  .s-title .lead {
+    margin-top: 24px; font-size: 22px; color: var(--ink-soft); max-width: 50ch;
+    position: relative; z-index: 1;
+  }
+  .s-title .by {
+    position: absolute; bottom: 80px; left: var(--slide-pad-x);
+    font-size: 14px; color: var(--ink-soft);
+  }
+
+  /* ===== SECTION OPENER (rose-on-rose) ===== */
+  .s-section { background: var(--rosa); color: white; justify-content: center; }
+  .s-section .num {
+    font-family: var(--font-mono); font-size: 16px; letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.8); margin-bottom: 24px;
+  }
+  .s-section h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 96px; line-height: 0.96; letter-spacing: -0.025em;
+    color: white; margin: 0; max-width: 14ch;
+  }
+  .s-section h2 em { font-style: italic; font-weight: 600; color: var(--navy); }
+  .s-section-hat {
+    position: absolute; left: -100px; bottom: -180px;
+    width: 560px; height: 560px; opacity: 0.18;
+    filter: brightness(2);
+  }
+  .s-section .chrome-foot { color: rgba(255,255,255,0.7); }
+
+  /* ===== AGENDA ===== */
+  .s-agenda h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 56px; letter-spacing: -0.02em; color: var(--navy);
+    margin: 18px 0 36px;
+  }
+  .s-agenda ol {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px 56px;
+    counter-reset: ag;
+  }
+  .s-agenda li {
+    counter-increment: ag;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: baseline; gap: 24px;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 26px; color: var(--navy); letter-spacing: -0.01em;
+  }
+  .s-agenda li::before {
+    content: "0" counter(ag);
+    font-family: var(--font-mono); font-size: 14px; font-weight: 600;
+    color: var(--rosa-500); letter-spacing: 0.14em; min-width: 36px;
+  }
+  .s-agenda li small {
+    display: block; margin-top: 4px;
+    font-family: var(--font-sans); font-weight: 400; font-size: 14px;
+    color: var(--ink-soft); letter-spacing: 0;
+  }
+
+  /* ===== BIG QUOTE ===== */
+  .s-quote { background: var(--navy); color: var(--bone); justify-content: center; }
+  .s-quote .mark-q {
+    font-family: var(--font-display); font-weight: 700; font-size: 220px;
+    line-height: 0.6; color: var(--rosa-500); margin-bottom: -40px;
+  }
+  .s-quote blockquote {
+    font-family: var(--font-display); font-weight: 600; font-style: italic;
+    font-size: 56px; line-height: 1.18; letter-spacing: -0.015em;
+    color: var(--bone); margin: 0; max-width: 22ch;
+  }
+  .s-quote blockquote em { font-style: normal; color: var(--rosa-300); }
+  .s-quote .author {
+    margin-top: 36px; display: flex; align-items: center; gap: 14px;
+  }
+  .s-quote .avatar {
+    width: 48px; height: 48px; border-radius: 999px;
+    background: var(--rosa); display: grid; place-items: center;
+    color: white; font-weight: 600;
+  }
+  .s-quote .author .who { font-weight: 600; color: var(--bone); }
+  .s-quote .author .role { font-size: 13px; color: rgba(242,242,240,0.65); }
+  .s-quote .chrome-mark { color: var(--bone); }
+  .s-quote .chrome-foot { color: rgba(242,242,240,0.5); }
+
+  /* ===== STAT ===== */
+  .s-stat { justify-content: center; align-items: flex-start; }
+  .s-stat .num {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 360px; line-height: 0.85; letter-spacing: -0.04em;
+    color: var(--navy); margin: 0;
+  }
+  .s-stat .num em { font-style: italic; color: var(--rosa-500); }
+  .s-stat .num sup { font-size: 100px; vertical-align: super; color: var(--rosa-500); }
+  .s-stat .label {
+    margin-top: 20px; font-size: 28px; line-height: 1.3; color: var(--ink); max-width: 32ch;
+    text-wrap: balance;
+  }
+  .s-stat .source { margin-top: 16px; font-size: 13px; color: var(--ink-soft); }
+
+  /* ===== SERVICES (3-up) ===== */
+  .s-services h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 48px; letter-spacing: -0.02em; color: var(--navy);
+    margin: 16px 0 0; max-width: 26ch;
+  }
+  .s-services h2 em { font-style: italic; color: var(--rosa-500); }
+  .s-services .grid {
+    margin-top: 48px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    flex: 1;
+  }
+  .s-services .card {
+    background: var(--paper); border: 1px solid var(--border);
+    border-radius: var(--r-lg); padding: 26px;
+    box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .s-services .card .num {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; color: var(--rosa-600);
+  }
+  .s-services .card h3 {
+    font-family: var(--font-display); font-weight: 700; font-size: 26px;
+    letter-spacing: -0.01em; color: var(--navy); margin: 4px 0 0;
+  }
+  .s-services .card p { font-size: 15px; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+  .s-services .card ul { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-direction: column; gap: 6px; }
+  .s-services .card li {
+    font-size: 13px; color: var(--ink); padding-left: 16px; position: relative;
+  }
+  .s-services .card li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 7px; height: 7px; border-radius: 999px; background: var(--rosa);
+  }
+
+  /* ===== COMPARISON ===== */
+  .s-compare h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 48px; letter-spacing: -0.02em; color: var(--navy);
+    margin: 16px 0 36px; max-width: 26ch;
+  }
+  .s-compare .row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; }
+  .s-compare .col {
+    border-radius: var(--r-lg); padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .s-compare .col.before { background: var(--paper); border: 1px solid var(--border); }
+  .s-compare .col.after  { background: var(--rosa); color: white; }
+  .s-compare .col h3 {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: inherit; opacity: 0.8; margin: 0;
+  }
+  .s-compare .col .big {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 36px; letter-spacing: -0.015em; line-height: 1.1;
+    color: inherit; margin: 0;
+  }
+  .s-compare .col.before .big { color: var(--navy); }
+  .s-compare .col ul { list-style: none; padding: 0; margin: auto 0 0; display: flex; flex-direction: column; gap: 8px; }
+  .s-compare .col li { font-size: 15px; line-height: 1.4; padding-left: 22px; position: relative; }
+  .s-compare .col.before li::before { content: "—"; position: absolute; left: 0; color: var(--ink-soft); }
+  .s-compare .col.after  li::before { content: "✓"; position: absolute; left: 0; color: var(--navy); font-weight: 700; }
+
+  /* ===== CLOSING ===== */
+  .s-close {
+    background:
+      radial-gradient(50% 70% at 80% 30%, var(--rosa-100) 0%, transparent 60%),
+      var(--bone);
+    justify-content: center;
+  }
+  .s-close h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 96px; line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--navy); margin: 0; max-width: 14ch;
+    position: relative; z-index: 1;
+  }
+  .s-close h2 em { font-style: italic; font-weight: 600; color: var(--rosa-500); }
+  .s-close .meta {
+    position: absolute; bottom: 96px; left: var(--slide-pad-x);
+    display: flex; gap: 56px;
+  }
+  .s-close .meta div {
+    font-size: 14px; color: var(--ink-soft);
+  }
+  .s-close .meta strong { display: block; color: var(--navy); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+  .s-close-hat {
+    position: absolute; right: -180px; bottom: -120px;
+    width: 720px; height: 720px; opacity: 0.5; pointer-events: none;
+  }
+
+</style>
+</head>
+<body>
+
+<deck-stage width="1280" height="720">
+
+  <!-- 01 · TITLE -->
+  <section class="s-title" data-screen-label="01 Title">
+    <img src="../assets/logo-sombrero-rosa.png" alt="" class="s-title-watermark" />
+    <div class="chrome-mark">
+      <img src="../assets/logo-sombrero-rosa.png" alt="" />
+      Sombrero <em>Rosa</em>
+    </div>
+    <h1>Hacemos crecer<br />tu <em>marca</em>.</h1>
+    <p class="lead">Una agencia de marketing full-service. Creatividad, tecnología y estrategia para experiencias memorables.</p>
+    <div class="by">Propuesta para Lacteria · Mayo 2026</div>
+  </section>
+
+  <!-- 02 · AGENDA -->
+  <section class="s-agenda" data-screen-label="02 Agenda">
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" />Sombrero <em>Rosa</em></div>
+    <div class="eyebrow-s" style="margin-top: 8px;">Hoy</div>
+    <h2>De qué vamos a <em style="font-style:italic;color:var(--rosa-500);font-weight:600;">hablar</em>.</h2>
+    <ol>
+      <li>Quiénes somos<small>5 min · contexto y manifiesto</small></li>
+      <li>Diagnóstico<small>10 min · qué vimos en tu marca</small></li>
+      <li>Propuesta creativa<small>15 min · narrativa y campañas</small></li>
+      <li>Plan de crecimiento<small>10 min · performance y métricas</small></li>
+      <li>Equipo y proceso<small>5 min · cómo trabajamos juntos</small></li>
+      <li>Inversión<small>10 min · alcance y números</small></li>
+    </ol>
+    <div class="chrome-foot"><span>02 · Agenda</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 03 · SECTION OPENER -->
+  <section class="s-section" data-screen-label="03 Section opener">
+    <img src="../assets/logo-sombrero-rosa.png" alt="" class="s-section-hat" style="filter: brightness(2)" />
+    <div style="position: relative; z-index: 1;">
+      <div class="num">03 — PROPUESTA</div>
+      <h2>Una idea que tu <em>cliente</em><br />quiere ver.</h2>
+    </div>
+    <div class="chrome-foot"><span>SECCIÓN 03</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 04 · BIG QUOTE -->
+  <section class="s-quote" data-screen-label="04 Big quote">
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" style="filter: brightness(1.5)" />Sombrero <em>Rosa</em></div>
+    <div>
+      <div class="mark-q">"</div>
+      <blockquote>Hablan como <em>nosotros</em>, pero nos hacen ver mejor.</blockquote>
+      <div class="author">
+        <div class="avatar">SR</div>
+        <div>
+          <div class="who">Sofía Ramírez</div>
+          <div class="role">Marketing Lead, Lacteria</div>
+        </div>
+      </div>
+    </div>
+    <div class="chrome-foot"><span>04 · Testimonio</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 05 · STAT -->
+  <section class="s-stat" data-screen-label="05 Stat">
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" />Sombrero <em>Rosa</em></div>
+    <div class="eyebrow-s" style="margin-top: 8px;">Resultado · Lacteria</div>
+    <div class="num"><em>+182</em><sup>%</sup></div>
+    <div class="label">de crecimiento en conversión, en seis meses, sin tocar el presupuesto de pauta.</div>
+    <div class="source">Fuente: Google Analytics · ene–jun 2026</div>
+    <div class="chrome-foot"><span>05 · Stat</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 06 · SERVICES (3-up) -->
+  <section class="s-services" data-screen-label="06 Services">
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" />Sombrero <em>Rosa</em></div>
+    <div class="eyebrow-s" style="margin-top: 8px;">Cómo trabajamos</div>
+    <h2>Tres formas de <em style="font-style:italic;color:var(--rosa-500);font-weight:600;">hacer crecer</em> tu negocio.</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01 · ESTRATEGIA</div>
+        <h3>Entendemos primero.</h3>
+        <p>Auditoría, posicionamiento y narrativa. Cero plantillas.</p>
+        <ul>
+          <li>Brand audit</li>
+          <li>Tono de voz</li>
+          <li>Arquitectura</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="num">02 · CREATIVO</div>
+        <h3>Ideas que importan.</h3>
+        <p>Identidad, campañas y contenido que tu cliente quiere ver.</p>
+        <ul>
+          <li>Identidad visual</li>
+          <li>Campañas 360</li>
+          <li>Producción</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="num">03 · CRECIMIENTO</div>
+        <h3>Resultados medibles.</h3>
+        <p>Pauta, CRM y automatización. Dashboards claros, sin humo.</p>
+        <ul>
+          <li>Performance</li>
+          <li>SEO · SEM</li>
+          <li>CRM · email</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chrome-foot"><span>06 · Servicios</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 07 · COMPARISON -->
+  <section class="s-compare" data-screen-label="07 Comparison">
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" />Sombrero <em>Rosa</em></div>
+    <div class="eyebrow-s" style="margin-top: 8px;">Antes / después</div>
+    <h2>Cómo cambia trabajar con <em style="font-style:italic;color:var(--rosa-500);font-weight:600;">una agencia que conecta</em>.</h2>
+    <div class="row">
+      <div class="col before">
+        <h3>Antes</h3>
+        <p class="big">Vendor que entrega entregables.</p>
+        <ul>
+          <li>Brief llega y se ejecuta</li>
+          <li>Métricas que nadie mira</li>
+          <li>Reuniones de status sin decisiones</li>
+          <li>Creatividad enlatada</li>
+        </ul>
+      </div>
+      <div class="col after">
+        <h3>Después</h3>
+        <p class="big">Socio que piensa con vos.</p>
+        <ul>
+          <li>Diagnóstico antes de la propuesta</li>
+          <li>Dashboards revisados cada lunes</li>
+          <li>Decisiones, no actualizaciones</li>
+          <li>Ideas hechas a medida</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chrome-foot"><span>07 · Comparativa</span><span>Sombrero Rosa</span></div>
+  </section>
+
+  <!-- 08 · CLOSING -->
+  <section class="s-close" data-screen-label="08 Closing">
+    <img src="../assets/logo-sombrero-rosa.png" alt="" class="s-close-hat" />
+    <div class="chrome-mark"><img src="../assets/logo-sombrero-rosa.png" alt="" />Sombrero <em>Rosa</em></div>
+    <h2>Hagamos <em>crecer</em><br />esto juntos.</h2>
+    <div class="meta">
+      <div><strong>Email</strong>hola@sombrerorosa.com</div>
+      <div><strong>WhatsApp</strong>+54 9 11 5555 1234</div>
+      <div><strong>Web</strong>sombrerorosa.com</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

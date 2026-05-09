@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--bone); }
+  .grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 16px; }
+  .swatch {
+    border-radius: var(--r-md);
+    padding: 18px 18px 16px;
+    height: 130px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border: 1px solid var(--border);
+  }
+  .swatch.hero { grid-row: span 1; height: 130px; }
+  .label { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
+  .hex { font-family: var(--font-mono); font-size: 12px; opacity: .85; }
+  .name { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+
+  .s-rosa { background: var(--rosa); color: white; border-color: transparent; }
+  .s-hot  { background: var(--hot); color: white; border-color: transparent; }
+  .s-rosa-100 { background: var(--rosa-100); color: var(--rosa-700); }
+  .s-rosa-300 { background: var(--rosa-300); color: white; border-color: transparent; }
+  .s-rosa-600 { background: var(--rosa-600); color: white; border-color: transparent; }
+  .s-rosa-50  { background: var(--rosa-50);  color: var(--rosa-700); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="swatch s-rosa hero">
+      <div class="label">Primary</div>
+      <div>
+        <div class="name">Rosa</div>
+        <div class="hex">#d5848e · --rosa</div>
+      </div>
+    </div>
+    <div class="swatch s-hot">
+      <div class="label">Accent</div>
+      <div>
+        <div class="name">Hot</div>
+        <div class="hex">#e55a7a</div>
+      </div>
+    </div>
+    <div class="swatch s-rosa-600">
+      <div class="label">Hover</div>
+      <div>
+        <div class="name">Rosa 600</div>
+        <div class="hex">#ae4f5b</div>
+      </div>
+    </div>
+    <div class="swatch s-rosa-50">
+      <div class="label">Tint 50</div>
+      <div>
+        <div class="name">Whisper</div>
+        <div class="hex">#fbf0f1</div>
+      </div>
+    </div>
+    <div class="swatch s-rosa-100">
+      <div class="label">Tint 100</div>
+      <div>
+        <div class="name">Petal</div>
+        <div class="hex">#f5dadd</div>
+      </div>
+    </div>
+    <div class="swatch s-rosa-300">
+      <div class="label">Tint 300</div>
+      <div>
+        <div class="name">Blush</div>
+        <div class="hex">#df9ba3</div>
+      </div>
+    </div>
+  </div>
+</body></html>

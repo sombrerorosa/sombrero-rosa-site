@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px 32px; background: var(--bone); }
+  .row { display: flex; gap: 20px; align-items: stretch; }
+  .mark-box {
+    flex: 1;
+    height: 150px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    display: grid; place-items: center;
+    box-shadow: var(--shadow-sm);
+    padding: 18px;
+  }
+  .mark-box.dark { background: var(--black-2); border-color: transparent; }
+  .mark-box.rose { background: var(--rosa); border-color: transparent; }
+
+  /* HTML lockup — editable: hat image + Poppins text */
+  .lockup { display: inline-flex; align-items: center; gap: 14px; }
+  .lockup img { width: 78px; height: 78px; object-fit: contain; flex-shrink: 0; }
+  .lockup .word {
+    font-family: var(--font-display);
+    font-weight: 600; font-size: 30px; line-height: 1;
+    letter-spacing: -0.02em;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .lockup .word .top { color: var(--navy); }
+  .lockup .word .bot { color: var(--rosa); }
+
+  .mark-box.dark .lockup .word .top { color: white; }
+  .mark-box.rose .lockup img { filter: brightness(0) invert(1); }
+  .mark-box.rose .lockup .word .top,
+  .mark-box.rose .lockup .word .bot { color: white; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="mark-box">
+      <div class="lockup">
+        <img src="../assets/logo-sombrero-rosa.png" alt="">
+        <div class="word"><span class="top">sombrero</span><span class="bot">rosa</span></div>
+      </div>
+    </div>
+    <div class="mark-box dark">
+      <div class="lockup">
+        <img src="../assets/logo-sombrero-rosa.png" alt="">
+        <div class="word"><span class="top">sombrero</span><span class="bot">rosa</span></div>
+      </div>
+    </div>
+    <div class="mark-box rose">
+      <div class="lockup">
+        <img src="../assets/logo-sombrero-rosa.png" alt="">
+        <div class="word"><span class="top">sombrero</span><span class="bot">rosa</span></div>
+      </div>
+    </div>
+  </div>
+</body></html>

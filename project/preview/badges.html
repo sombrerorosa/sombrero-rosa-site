@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: var(--bone); }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .pill, .badge, .tag {
+    font-family: var(--font-sans); font-size: 12px; font-weight: 600;
+    padding: 5px 12px; border-radius: var(--r-pill); display: inline-flex; align-items: center; gap: 6px;
+    line-height: 1.2;
+  }
+  .pill-rosa { background: var(--rosa-100); color: var(--rosa-700); }
+  .pill-navy { background: var(--navy); color: var(--bone); }
+  .pill-hot  { background: var(--hot); color: white; }
+  .pill-ghost { background: transparent; color: var(--navy); box-shadow: inset 0 0 0 1px var(--border-strong); }
+  .pill-bone { background: var(--bone-2); color: var(--ink); }
+  .pill-eyebrow {
+    background: transparent; color: var(--rosa-600); padding: 0;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; }
+</style></head>
+<body>
+  <div class="row">
+    <span class="pill pill-rosa">Nuevo</span>
+    <span class="pill pill-hot"><span class="dot"></span>En vivo</span>
+    <span class="pill pill-navy">Premium</span>
+    <span class="pill pill-ghost">Featured</span>
+    <span class="pill pill-bone">Beta</span>
+  </div>
+  <div class="row">
+    <span class="pill-eyebrow pill">Servicios · 01</span>
+    <span class="pill-eyebrow pill">Caso de éxito</span>
+    <span class="pill-eyebrow pill">Manifiesto</span>
+  </div>
+  <div class="row">
+    <span class="pill" style="background: var(--rosa-100); color: var(--rosa-700); padding: 6px 14px; font-size: 13px;">+182% conversión</span>
+    <span class="pill" style="background: var(--navy); color: var(--bone); padding: 6px 14px; font-size: 13px;">12 marcas</span>
+    <span class="pill" style="background: white; color: var(--navy); padding: 6px 14px; font-size: 13px; box-shadow: var(--shadow-sm);">Lectura · 4 min</span>
+  </div>
+</body></html>

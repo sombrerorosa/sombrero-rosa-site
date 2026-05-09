@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px 28px; background: var(--bone); color: var(--navy); }
+  .row { display: grid; grid-template-columns: 90px 1fr 96px; gap: 16px; align-items: center; padding: 12px 0; border-bottom: 1px dashed var(--border); }
+  .row:last-child { border: 0; }
+  .lbl { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); }
+  .desc { font-size: 13px; color: var(--ink); line-height: 1.4; }
+  .desc b { color: var(--navy); font-weight: 600; }
+  .ms { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--rosa-500); text-align: right; }
+  .track {
+    position: relative; height: 4px; background: var(--bone-2); border-radius: 999px; overflow: hidden;
+  }
+  .ball {
+    position: absolute; top: -3px; width: 10px; height: 10px; border-radius: 999px; background: var(--rosa);
+  }
+  .row.full { grid-template-columns: 90px 1fr; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="lbl">--ease-out</div>
+    <div class="desc"><b>Default for everything.</b> Fast start, soft landing — confident.</div>
+    <div class="ms">200–320 ms</div>
+  </div>
+  <div class="row">
+    <div class="lbl">--ease-spring</div>
+    <div class="desc"><b>Micro-confirmations only</b> (a "✓ saved" pill, the hat bob).</div>
+    <div class="ms">≤ 520 ms</div>
+  </div>
+  <div class="row full">
+    <div class="lbl">stagger</div>
+    <div>
+      <div class="desc"><b>60 ms between siblings</b> on page-load reveals.</div>
+      <div class="track" style="margin-top: 10px;">
+        <div class="ball" style="left: 8%;"></div>
+        <div class="ball" style="left: 32%; opacity: .8;"></div>
+        <div class="ball" style="left: 56%; opacity: .5;"></div>
+        <div class="ball" style="left: 80%; opacity: .25;"></div>
+      </div>
+    </div>
+  </div>
+</body></html>

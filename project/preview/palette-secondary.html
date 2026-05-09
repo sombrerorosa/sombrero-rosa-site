@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--bone); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .swatch {
+    border-radius: var(--r-md);
+    padding: 16px;
+    height: 130px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border: 1px solid var(--border);
+  }
+  .label { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; opacity: .8; }
+  .hex { font-family: var(--font-mono); font-size: 11px; opacity: .8; }
+  .name { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+
+  .s-navy  { background: var(--navy); color: var(--bone); border-color: transparent; }
+  .s-ink   { background: var(--ink); color: var(--bone); border-color: transparent; }
+  .s-bone  { background: var(--bone); color: var(--ink); }
+  .s-paper { background: var(--paper); color: var(--ink); }
+  .s-black { background: var(--black-2); color: var(--bone); border-color: transparent; }
+  .s-bone2 { background: var(--bone-2); color: var(--ink); }
+  .s-soft  { background: var(--ink-soft); color: var(--bone); border-color: transparent; }
+  .s-white { background: var(--white); color: var(--ink); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="swatch s-navy">    <div class="label">Anchor</div> <div><div class="name">Navy</div><div class="hex">#193149</div></div></div>
+    <div class="swatch s-ink">     <div class="label">Body</div>   <div><div class="name">Ink</div><div class="hex">#403f3f</div></div></div>
+    <div class="swatch s-soft">    <div class="label">Muted</div>  <div><div class="name">Ink Soft</div><div class="hex">#6b6968</div></div></div>
+    <div class="swatch s-black">   <div class="label">Max</div>    <div><div class="name">Black</div><div class="hex">#0b0b0b</div></div></div>
+    <div class="swatch s-bone">    <div class="label">Page bg</div><div><div class="name">Bone</div><div class="hex">#f2f2f0</div></div></div>
+    <div class="swatch s-bone2">   <div class="label">Bone 2</div> <div><div class="name">Sand</div><div class="hex">#e9e8e3</div></div></div>
+    <div class="swatch s-paper">   <div class="label">Card</div>   <div><div class="name">Paper</div><div class="hex">#fafafa</div></div></div>
+    <div class="swatch s-white">   <div class="label">Pure</div>   <div><div class="name">White</div><div class="hex">#ffffff</div></div></div>
+  </div>
+</body></html>
