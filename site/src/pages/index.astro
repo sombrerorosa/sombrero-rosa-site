@@ -75,7 +75,7 @@ const address  = settings?.address  ?? 'Buenos Aires, Argentina';
         <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
       </div>
       <div class="sr-services-grid">
-        {services.items.map((s: any, i: number) => (
+        {(services.items ?? []).map((s: any, i: number) => (
           <article class="sr-service-card">
             <div class="sr-service-top">
               <div class={`sr-service-icon${i === 1 ? ' navy' : ''}`}><i data-lucide={s.icon}></i></div>
@@ -96,7 +96,7 @@ const address  = settings?.address  ?? 'Buenos Aires, Argentina';
       <h2 class="sr-tools-label" id="tools-h">{tools.label}</h2>
       <div class="sr-tools-marquee">
         <ul class="sr-tools-track">
-          {[...tools.items, ...tools.items].map((t: any, i: number) => (
+          {[...(tools.items ?? []), ...(tools.items ?? [])].map((t: any, i: number) => (
             <li class="sr-tool-chip" aria-hidden={i >= tools.items.length ? 'true' : undefined}>
               <span class="sr-tool-dot" aria-hidden="true"></span>
               <span class="sr-tool-name">{t.name}</span>
@@ -115,7 +115,7 @@ const address  = settings?.address  ?? 'Buenos Aires, Argentina';
           <p class="sr-section-lead sr-section-lead--center">{manifesto.lead}</p>
         </div>
         <div class="sr-manifesto-grid">
-          {manifesto.items.map((c: any) => (
+          {(manifesto.items ?? []).map((c: any) => (
             <article class="sr-manifesto-card">
               <div class="sr-manifesto-icon"><i data-lucide={c.icon}></i></div>
               <h3>{c.title}</h3><p>{c.desc}</p>
