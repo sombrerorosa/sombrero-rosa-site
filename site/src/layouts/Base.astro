@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -25,7 +27,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="/assets/logo-sombrero-rosa.png" />
-  <link rel="stylesheet" href="/src/styles/global.css" />
 </head>
 <body>
   <slot />
