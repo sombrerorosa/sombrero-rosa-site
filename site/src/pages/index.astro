@@ -166,3 +166,52 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
   </main>
   <Footer />
 </Base>
+
+<script>
+document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget as HTMLFormElement;
+  const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  const fields = [
+    { name: 'firstname',  value: (form.elements.namedItem('name')      as HTMLInputElement)?.value ?? '' },
+    { name: 'lastname',   value: (form.elements.namedItem('apellidos')  as HTMLInputElement)?.value ?? '' },
+    { name: 'company',    value: (form.elements.namedItem('company')    as HTMLInputElement)?.value ?? '' },
+    { name: 'email',      value: (form.elements.namedItem('email')      as HTMLInputElement)?.value ?? '' },
+    { name: 'phone',      value: (form.elements.namedItem('phone')      as HTMLInputElement)?.value ?? '' },
+    { name: 'message',    value: (form.elements.namedItem('msg')        as HTMLTextAreaElement)?.value ?? '' },
+  ];
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  try {
+    const res = await fetch(
+      'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields,
+          context: { pageUri: window.location.href, pageName: 'Contacto — Sombrero Rosa' }
+        })
+      }
+    );
+
+    if (res.ok) {
+      form.innerHTML = `
+        <div class="sr-contact-ok">
+          <div class="sr-contact-ok-mark">✓</div>
+          <h3>¡Mensaje enviado!</h3>
+          <p>Nos ponemos en contacto a la brevedad.</p>
+        </div>`;
+    } else {
+      throw new Error('server error');
+    }
+  } catch {
+    btn.disabled = false;
+    btn.textContent = 'Enviar';
+    alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+  }
+});
+</script>
