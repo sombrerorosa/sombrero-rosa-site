@@ -6,27 +6,32 @@ import { getHomePage, getSiteSettings } from '../lib/sanity';
 
 const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
-const hero = page?.hero ?? {
-  pill: 'Agencia boutique de marketing full service',
-  headline: 'Creer, Crear & Crecer',
-  lead: 'Hacemos crecer tu marca, negocio y relación con clientes a través de estrategias de marketing full service que generan resultados reales y medibles.',
-  quote: '"El mundo te preguntará quién eres. Y si no lo sabes, el mundo te lo dirá."',
-  quoteAuthor: '— Carl Jung',
-  ctaPrimary: 'Conocer servicios',
-  ctaSecondary: 'Empezar proyecto',
+const _hero = page?.hero;
+const hero = {
+  pill:         _hero?.pill         || 'Agencia boutique de marketing full service',
+  headline:     _hero?.headline     || 'Creer, Crear & Crecer',
+  lead:         _hero?.lead         || 'Hacemos crecer tu marca, negocio y relación con clientes a través de estrategias de marketing full service que generan resultados reales y medibles.',
+  quote:        _hero?.quote        || '"El mundo te preguntará quién eres. Y si no lo sabes, el mundo te lo dirá."',
+  quoteAuthor:  _hero?.quoteAuthor  || '— Carl Jung',
+  ctaPrimary:   _hero?.ctaPrimary   || 'Conocer servicios',
+  ctaSecondary: _hero?.ctaSecondary || 'Empezar proyecto',
 };
-const services = page?.services ?? {
-  title: 'Servicios', lead: 'Somos una agencia de marketing full service.',
-  ctaText: '¿Listo para hacer crecer tu negocio?',
-  items: [
+const _svc = page?.services;
+const services = {
+  title:   _svc?.title   || 'Servicios',
+  lead:    _svc?.lead    || 'Somos una agencia de marketing full service.',
+  ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
+  items: _svc?.items?.length ? _svc.items : [
     { icon: 'user-circle', title: 'Tu marca se conoce', desc: 'Te ayudamos a hacer más conocida tu marca en tu público objetivo.' },
     { icon: 'trending-up', title: 'Tu negocio crece',   desc: 'Creamos campañas para atraer nuevos clientes a tu empresa.' },
     { icon: 'heart',       title: 'Te prefieren',       desc: 'Te proponemos ideas para encantar a tus clientes y colaboradores.' },
   ],
 };
-const manifesto = page?.manifesto ?? {
-  title: '¿Por qué nosotros?', lead: 'Combinamos creatividad, tecnología y estrategia para crear experiencias de marca memorables.',
-  items: [
+const _man = page?.manifesto;
+const manifesto = {
+  title: _man?.title || '¿Por qué nosotros?',
+  lead:  _man?.lead  || 'Combinamos creatividad, tecnología y estrategia para crear experiencias de marca memorables.',
+  items: _man?.items?.length ? _man.items : [
     { icon: 'target',       title: 'Enfoque estratégico',     desc: 'Desarrollamos estrategias personalizadas basadas en datos y análisis profundo de tu mercado.' },
     { icon: 'bar-chart-3',  title: 'Resultados medibles',     desc: 'Monitoreamos cada campaña con métricas específicas para asegurar el retorno de tu inversión.' },
     { icon: 'users',        title: 'Atención personalizada',  desc: 'Como agencia boutique, dedicamos tiempo y recursos específicos a cada uno de nuestros clientes.' },
@@ -35,19 +40,20 @@ const manifesto = page?.manifesto ?? {
     { icon: 'zap',          title: 'Agilidad y flexibilidad', desc: 'Respondemos rápidamente a las oportunidades del mercado y las necesidades de tu negocio.' },
   ],
 };
-const tools = page?.tools ?? {
-  label: 'Herramientas que utilizamos',
-  items: [
+const _tools = page?.tools;
+const tools = {
+  label: _tools?.label || 'Herramientas que utilizamos',
+  items: _tools?.items?.length ? _tools.items : [
     { name: 'TiendaNube', tag: 'E-commerce' }, { name: 'WordPress',  tag: 'CMS' },
     { name: 'WooCommerce',tag: 'E-commerce' }, { name: 'Meta Ads',   tag: 'Paid social' },
     { name: 'Google Ads', tag: 'Paid search'},  { name: 'HubSpot',    tag: 'CRM' },
     { name: 'Mailchimp',  tag: 'Email' },       { name: 'Klaviyo',    tag: 'Email' },
   ],
 };
-const email    = settings?.email    ?? 'hola@sombrerorosa.com';
-const phone    = settings?.phone    ?? '+54 11 7246 5685';
-const whatsapp = settings?.whatsapp ?? 'https://wa.me/541172465685';
-const address  = settings?.address  ?? 'Buenos Aires, Argentina';
+const email    = settings?.email    || 'hola@sombrerorosa.com';
+const phone    = settings?.phone    || '+54 11 7246 5685';
+const whatsapp = settings?.whatsapp || 'https://wa.me/541172465685';
+const address  = settings?.address  || 'Buenos Aires, Argentina';
 ---
 <Base>
   <Header />
