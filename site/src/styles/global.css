@@ -180,11 +180,15 @@ ul, ol { list-style: none; padding: 0; }
   line-height: 1.2; color: var(--rosa); margin: 6px 0 0;
 }
 .sr-service-desc { font-size: 15px; line-height: 1.55; color: var(--ink-soft); }
-.sr-service-expand {
-  overflow: hidden; max-height: 0; opacity: 0;
-  transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
+.sr-service-expand { display: none; }
+.sr-service-card.is-open .sr-service-expand {
+  display: block;
+  animation: svcExpand 0.22s ease;
 }
-.sr-service-card.is-open .sr-service-expand { max-height: 600px; opacity: 1; }
+@keyframes svcExpand {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 .sr-service-expand-desc {
   font-size: 14px; line-height: 1.6; color: var(--ink);
   padding-top: 14px; border-top: 1px solid var(--border); margin-bottom: 12px;
