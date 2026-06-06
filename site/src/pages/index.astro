@@ -22,9 +22,15 @@ const services = {
   lead:    _svc?.lead    || 'Somos una agencia de marketing full service.',
   ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
   items: _svc?.items?.length ? _svc.items : [
-    { icon: 'user-circle', title: 'Tu marca se conoce', desc: 'Te ayudamos a hacer más conocida tu marca en tu público objetivo.' },
-    { icon: 'trending-up', title: 'Tu negocio crece',   desc: 'Creamos campañas para atraer nuevos clientes a tu empresa.' },
-    { icon: 'heart',       title: 'Te prefieren',       desc: 'Te proponemos ideas para encantar a tus clientes y colaboradores.' },
+    { icon: 'user-circle', title: 'Tu marca se conoce', desc: 'Te ayudamos a hacer más conocida tu marca en tu público objetivo.',
+      expandDesc: 'Desarrollamos estrategias integrales de branding y comunicación digital para posicionar tu marca en la mente de tu audiencia ideal.',
+      expandItems: ['Estrategia de marca', 'Redes sociales', 'Generación de contenido', 'Community management', 'Publicidad digital para brand awareness', 'Optimización SEO'] },
+    { icon: 'trending-up', title: 'Tu negocio crece', desc: 'Creamos campañas para atraer nuevos clientes a tu empresa.',
+      expandDesc: 'Implementamos estrategias de performance marketing orientadas a resultados medibles y crecimiento sostenible de tu negocio.',
+      expandItems: ['Performance digital', 'Publicidad en Meta, Google y YouTube', 'Identificación de audiencias', 'Lead nurturing', 'Email Marketing Automatizado', 'CRO (Conversion Rate Optimization)'] },
+    { icon: 'heart', title: 'Te prefieren', desc: 'Te proponemos ideas para encantar a tus clientes y colaboradores.',
+      expandDesc: 'Fortalecemos la relación con tus clientes actuales y optimizamos la experiencia de tu equipo para crear una marca verdaderamente preferida.',
+      expandItems: ['Comunicación digital', 'Optimización de la base de clientes', 'Gestión de Reseñas y Reputación Online', 'Eventos de relacionamiento con clientes', 'Marketing Interno'] },
   ],
 };
 const _man = page?.manifesto;
@@ -85,10 +91,22 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
           <article class="sr-service-card">
             <div class="sr-service-top">
               <div class={`sr-service-icon${i === 1 ? ' navy' : ''}`}><i data-lucide={s.icon}></i></div>
-              <button class="sr-service-plus" aria-label="Más info"><i data-lucide="plus"></i></button>
+              <button class="sr-service-plus" aria-label="Expandir" aria-expanded="false"><i data-lucide="plus"></i></button>
             </div>
-            <h3 class="sr-service-title">{s.title}</h3>
-            <p class="sr-service-desc">{s.desc}</p>
+            <div class="sr-service-clickable">
+              <h3 class="sr-service-title">{s.title}</h3>
+              <p class="sr-service-desc">{s.desc}</p>
+            </div>
+            {(s.expandDesc || s.expandItems?.length) && (
+              <div class="sr-service-expand">
+                {s.expandDesc && <p class="sr-service-expand-desc">{s.expandDesc}</p>}
+                {s.expandItems?.length && (
+                  <ul class="sr-service-expand-list">
+                    {s.expandItems.map((item: string) => <li>{item}</li>)}
+                  </ul>
+                )}
+              </div>
+            )}
           </article>
         ))}
       </div>
@@ -168,6 +186,24 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
 </Base>
 
 <script>
+/* Service card expand/collapse */
+document.querySelectorAll('.sr-service-card').forEach(card => {
+  const btn = card.querySelector('.sr-service-plus') as HTMLButtonElement | null;
+  const clickable = card.querySelector('.sr-service-clickable');
+
+  function toggle() {
+    const open = card.classList.toggle('is-open');
+    btn?.setAttribute('aria-expanded', String(open));
+    const icon = btn?.querySelector('i');
+    if (icon) icon.setAttribute('data-lucide', open ? 'minus' : 'plus');
+    // @ts-ignore
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  btn?.addEventListener('click', toggle);
+  clickable?.addEventListener('click', toggle);
+});
+
 document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const form = e.currentTarget as HTMLFormElement;
