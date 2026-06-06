@@ -40,7 +40,14 @@ export default {
             fields: [
               { name: 'icon',  title: 'Ícono (nombre Lucide)', type: 'string' },
               { name: 'title', title: 'Título', type: 'string' },
-              { name: 'desc',  title: 'Descripción', type: 'text', rows: 2 },
+              { name: 'desc',  title: 'Descripción corta', type: 'text', rows: 2 },
+              { name: 'expandDesc', title: 'Detalle (al expandir)', type: 'text', rows: 3 },
+              {
+                name: 'expandItems',
+                title: 'Lista de servicios',
+                type: 'array',
+                of: [{ type: 'string' }],
+              },
             ],
             preview: { select: { title: 'title', subtitle: 'desc' } },
           }],
