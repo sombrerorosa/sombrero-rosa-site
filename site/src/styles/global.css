@@ -116,7 +116,7 @@ ul, ol { list-style: none; padding: 0; }
   position: absolute; border-radius: 999px;
 }
 .sr-hero-orb.a {
-  width: 600px; height: 600px; top: -280px; left: -200px;
+  width: 600px; height: 600px; top: -300px; left: -300px;
   background: radial-gradient(circle at 50% 50%, rgba(213,132,142,0.07), rgba(213,132,142,0) 65%);
 }
 .sr-hero-inner {
