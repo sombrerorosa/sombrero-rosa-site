@@ -108,8 +108,6 @@ ul, ol { list-style: none; padding: 0; }
 .hat-a { width: 680px; top: 60px; left: -500px; transform: rotate(-18deg); opacity: 0.22; }
 /* Right side — big, mostly off-screen, thin sliver near "Crecer" */
 .hat-b { width: 620px; top: -50px; right: -450px; transform: rotate(16deg); opacity: 0.16; }
-/* Bottom left — mostly below, shows top of crown */
-.hat-c { width: 500px; bottom: -200px; left: 8%; transform: rotate(-6deg); opacity: 0.14; }
 
 /* Single large orb top-left, very transparent */
 .sr-hero-orb {
