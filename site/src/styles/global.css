@@ -409,6 +409,8 @@ ul, ol { list-style: none; padding: 0; }
 @media (max-width: 640px) {
   .sr-hero { padding: 72px 20px 88px; }
   .sr-hero-ctas { flex-direction: column; align-items: center; }
+  .hat-a { width: 320px; left: -140px; top: 30px; }
+  .hat-b { width: 320px; right: -140px; top: -20px; }
   .sr-services { padding: 72px 0 48px; }
   .sr-services-grid, .sr-services-cta { padding-left: 20px; padding-right: 20px; }
   .sr-contact { padding: 72px 20px 96px; }
