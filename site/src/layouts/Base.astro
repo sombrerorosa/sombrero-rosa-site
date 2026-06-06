@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import WhatsAppBubble from '../components/WhatsAppBubble.astro';
 
 interface Props {
   title?: string;
@@ -30,6 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 </head>
 <body>
   <slot />
+  <WhatsAppBubble />
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     // @ts-ignore
