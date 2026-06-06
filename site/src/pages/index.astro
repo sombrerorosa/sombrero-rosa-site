@@ -83,14 +83,14 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     </section>
 
     <section class="sr-services" id="servicios">
-      <div class="sr-section-head sr-section-head--center">
+      <div class="sr-section-head sr-section-head--center" data-animate="up">
         <div class="sr-section-num">01</div>
         <h2 class="sr-section-title sr-section-title--rose">{services.title}</h2>
         <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
       </div>
       <div class="sr-services-grid">
         {(services.items ?? []).map((s: any, i: number) => (
-          <article class="sr-service-card">
+          <article class="sr-service-card" data-animate={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} style={`--anim-delay:${i * 0.1}s`}>
             <div class="sr-service-top">
               <div class={`sr-service-icon${i === 1 ? ' navy' : ''}`}><i data-lucide={s.icon}></i></div>
               <button class="sr-service-plus" aria-label="Expandir" aria-expanded="false"><i data-lucide="plus"></i></button>
@@ -119,7 +119,7 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     </section>
 
     <section class="sr-tools" aria-labelledby="tools-h">
-      <h2 class="sr-tools-label" id="tools-h">{tools.label}</h2>
+      <h2 class="sr-tools-label" id="tools-h" data-animate="up">{tools.label}</h2>
       <div class="sr-tools-marquee">
         <ul class="sr-tools-track">
           {[...(tools.items ?? []), ...(tools.items ?? [])].map((t: any, i: number) => (
@@ -135,14 +135,14 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
 
     <section class="sr-manifesto" id="nosotros">
       <div class="sr-manifesto-inner">
-        <div class="sr-section-head sr-section-head--center">
+        <div class="sr-section-head sr-section-head--center" data-animate="up">
           <div class="sr-section-num">02</div>
           <h2 class="sr-section-title sr-section-title--rose">{manifesto.title}</h2>
           <p class="sr-section-lead sr-section-lead--center">{manifesto.lead}</p>
         </div>
         <div class="sr-manifesto-grid">
-          {(manifesto.items ?? []).map((c: any) => (
-            <article class="sr-manifesto-card">
+          {(manifesto.items ?? []).map((c: any, i: number) => (
+            <article class="sr-manifesto-card" data-animate={i % 3 === 0 ? 'left' : i % 3 === 2 ? 'right' : 'up'} style={`--anim-delay:${(i % 3) * 0.1}s`}>
               <div class="sr-manifesto-icon"><i data-lucide={c.icon}></i></div>
               <h3>{c.title}</h3><p>{c.desc}</p>
             </article>
@@ -152,13 +152,13 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     </section>
 
     <section class="sr-contact" id="contacto">
-      <div class="sr-section-head sr-section-head--center">
+      <div class="sr-section-head sr-section-head--center" data-animate="up">
         <div class="sr-section-num">03</div>
         <h2 class="sr-section-title sr-section-title--rose">Conversemos</h2>
         <p class="sr-section-lead sr-section-lead--center">Contanos sobre tu proyecto y descubrí cómo podemos ayudarte a hacer crecer tu negocio.</p>
       </div>
       <div class="sr-contact-grid">
-        <form class="sr-contact-form" id="contact-form" novalidate>
+        <form class="sr-contact-form" id="contact-form" novalidate data-animate="left">
           <h3>Nos encantaría escucharte. Llená el formulario y nos ponemos en contacto lo antes posible.</h3>
           <div class="sr-form-row">
             <label><span>Nombre</span><input type="text" name="name" placeholder="Sebastián" /></label>
@@ -170,7 +170,7 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
           <label><span>Consulta</span><textarea name="msg" rows="3" placeholder="Contanos sobre tu proyecto…"></textarea></label>
           <button type="submit" class="btn btn-primary btn-pill">Enviar</button>
         </form>
-        <div class="sr-contact-side">
+        <div class="sr-contact-side" data-animate="right">
           <div class="sr-contact-card"><div class="c-icon"><i data-lucide="mail"></i></div><div class="c-lbl">Email</div><div class="c-val"><a href={`mailto:${email}`}>{email}</a></div></div>
           <div class="sr-contact-card"><div class="c-icon"><i data-lucide="phone"></i></div><div class="c-lbl">Teléfono</div><div class="c-val"><a href={`tel:${phone.replace(/\s/g,'')}`}>{phone}</a></div></div>
           <div class="sr-contact-card full"><div class="c-icon"><i data-lucide="map-pin"></i></div><div class="c-lbl">Ubicación</div><div class="c-val">{address}</div></div>
@@ -188,6 +188,17 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
 </Base>
 
 <script>
+/* Scroll entrance animations */
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach(({ target, isIntersecting }) => {
+    if (isIntersecting) {
+      target.classList.add('is-visible');
+      animObserver.unobserve(target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-animate]').forEach(el => animObserver.observe(el));
+
 /* Service card expand/collapse */
 document.querySelectorAll('.sr-service-card').forEach(card => {
   const btn = card.querySelector('.sr-service-plus') as HTMLButtonElement | null;
