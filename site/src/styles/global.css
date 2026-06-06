@@ -106,26 +106,18 @@ ul, ol { list-style: none; padding: 0; }
 }
 /* Left side — big image, mostly off-screen, only right edge of hat visible */
 .hat-a { width: 680px; top: 60px; left: -500px; transform: rotate(-18deg); opacity: 0.22; }
-/* Right side top — big, mostly off-screen right */
+/* Right side — big, mostly off-screen, thin sliver near "Crecer" */
 .hat-b { width: 620px; top: -50px; right: -450px; transform: rotate(16deg); opacity: 0.16; }
 /* Bottom left — mostly below, shows top of crown */
 .hat-c { width: 500px; bottom: -200px; left: 8%; transform: rotate(-6deg); opacity: 0.14; }
-/* Bottom right — rotated, mostly below */
-.hat-d { width: 360px; bottom: -130px; right: 4%; transform: rotate(26deg); opacity: 0.10;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(300deg) brightness(1.1) blur(1px); }
-/* Top right — small, blurry, barely there */
-.hat-e { width: 300px; top: -110px; right: 18%; transform: rotate(-10deg); opacity: 0.08;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(300deg) brightness(1.1) blur(4px); }
 
-/* Orbs — kept but much more subtle, just 2 */
+/* Single large orb top-left, very transparent */
 .sr-hero-orb {
   position: absolute; border-radius: 999px;
-  background: radial-gradient(circle at 35% 35%, rgba(213,132,142,0.09), rgba(213,132,142,0) 70%);
 }
-.sr-hero-orb.a { width: 300px; height: 300px; top: -40px; left: 38%; }
-.sr-hero-orb.b {
-  width: 200px; height: 200px; bottom: 10px; right: 28%;
-  background: radial-gradient(circle at 35% 35%, rgba(229,90,122,0.07), rgba(229,90,122,0) 70%);
+.sr-hero-orb.a {
+  width: 600px; height: 600px; top: -280px; left: -200px;
+  background: radial-gradient(circle at 50% 50%, rgba(213,132,142,0.07), rgba(213,132,142,0) 65%);
 }
 .sr-hero-inner {
   position: relative; z-index: 1; max-width: 880px; margin: 0 auto;
