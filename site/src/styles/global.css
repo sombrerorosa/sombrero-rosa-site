@@ -119,7 +119,7 @@ ul, ol { list-style: none; padding: 0; }
   mix-blend-mode: screen;
 }
 /* Left side — big image, mostly off-screen, only right edge of hat visible */
-.hat-a { width: 680px; top: 60px; left: -340px; transform: rotate(-18deg); opacity: 0.22; }
+.hat-a { width: 680px; top: 60px; left: -230px; transform: rotate(-18deg); opacity: 0.22; }
 /* Right side — big, mostly off-screen, thin sliver near "Crecer" */
 .hat-b { width: 620px; top: -50px; right: -450px; transform: rotate(16deg); opacity: 0.16; }
 
@@ -423,8 +423,8 @@ ul, ol { list-style: none; padding: 0; }
 @media (max-width: 640px) {
   .sr-hero { padding: 72px 20px 88px; }
   .sr-hero-ctas { flex-direction: column; align-items: center; }
-  .hat-a { width: 320px; left: -140px; top: 30px; }
-  .hat-b { width: 320px; right: -140px; top: -20px; }
+  .hat-a { width: 320px; left: -140px; top: 120px; }
+  .hat-b { width: 320px; right: -224px; top: -20px; }
   .sr-services { padding: 72px 0 48px; }
   .sr-services-grid, .sr-services-cta { padding-left: 20px; padding-right: 20px; }
   .sr-contact { padding: 72px 20px 96px; }
