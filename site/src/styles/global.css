@@ -119,7 +119,7 @@ ul, ol { list-style: none; padding: 0; }
   mix-blend-mode: screen;
 }
 /* Left side — big image, mostly off-screen, only right edge of hat visible */
-.hat-a { width: 680px; top: 60px; left: -500px; transform: rotate(-18deg); opacity: 0.22; }
+.hat-a { width: 680px; top: 60px; left: -340px; transform: rotate(-18deg); opacity: 0.22; }
 /* Right side — big, mostly off-screen, thin sliver near "Crecer" */
 .hat-b { width: 620px; top: -50px; right: -450px; transform: rotate(16deg); opacity: 0.16; }
 
