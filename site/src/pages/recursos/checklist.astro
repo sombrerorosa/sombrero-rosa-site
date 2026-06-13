@@ -40,9 +40,7 @@ import ResourceGate from '../../components/ResourceGate.astro';
       </div>
 
       <!-- SIGNALS -->
-      <section class="ck-signals">
-        <ul class="ck-list" id="ck-list"></ul>
-      </section>
+      <section class="ck-signals" id="ck-signals"></section>
 
       <!-- RESULT -->
       <section class="ck-result" id="ck-result">
@@ -132,7 +130,17 @@ import ResourceGate from '../../components/ResourceGate.astro';
   .ck-jump.show { opacity: 1; pointer-events: auto; }
   .ck-jump:hover { color: var(--rosa-300); }
   .ck-signals { padding: 18px 0 8px; }
-  .ck-list { list-style: none; }
+  .ck-block { margin-bottom: 36px; }
+  .ck-block-head {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 0 2px 14px; margin-bottom: 4px;
+    border-bottom: 1px solid rgba(242,242,240,.12);
+  }
+  .ck-block-num { font-size: 13px; font-weight: 700; color: var(--rosa); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+  .ck-block-title { font-size: clamp(13px, 2vw, 16px); font-weight: 600; color: var(--bone); letter-spacing: .08em; text-transform: uppercase; }
+  .ck-block-counter { margin-left: auto; font-size: 13px; font-weight: 600; color: rgba(242,242,240,.45); font-variant-numeric: tabular-nums; }
+  .ck-block-counter b { color: var(--rosa); }
+  .ck-block-body { list-style: none; padding-top: 16px; }
   .ck-signal {
     background: var(--black-2); border: 1px solid rgba(242,242,240,.1);
     border-left: 3px solid var(--rosa);
@@ -195,43 +203,54 @@ import ResourceGate from '../../components/ResourceGate.astro';
 </style>
 
 <script>
-  const SIGNALS: [string, string, string][] = [
-    ["Tu facturación creció, pero tu marca quedó en otra etapa",
-     "El negocio factura hoy mucho más que el día que armaste el logo, la web o el catálogo. Pero la marca sigue contando la historia de la empresa que eras, no la que sos.",
-     "Si te da un poco de pudor mandar tu web a un cliente nuevo, esa es la señal."],
-    ["Tu web tarda más de 3 segundos en cargar",
-     "Cada segundo de más es gente que se va antes de ver lo que ofrecés. En una empresa que factura en serio, eso son ventas que ni se enteraron de que existías.",
-     "La velocidad no es un tema técnico: es el primer mensaje que das sobre cómo trabajás."],
-    ["No sabés de dónde vienen tus mejores clientes",
-     "Si te preguntamos cuál de tus canales trae a los clientes que más compran y la respuesta es \"y… de todo un poco\", estás decidiendo a ciegas.",
-     "Sin esa claridad, cada peso de inversión es una apuesta, no una estrategia."],
-    ["Tu competencia aparece primero y vos no",
-     "Cuando un cliente busca lo que vendés, la marca que aparece primero parece la más seria, aunque vos tengas mejor producto.",
-     "No es casualidad: es trabajo de posicionamiento que se puede hacer."],
-    ["Tu identidad cambia según quién la use",
-     "El logo de la factura no es igual al del local, ni al del Instagram, ni al de la propuesta que mandás por mail. Cada pieza parece de una empresa distinta.",
-     "Una marca que se ve coherente transmite que la empresa también lo es."],
-    ["Producís contenido, pero no sabés si sirve",
-     "Publicás en redes porque \"hay que estar\", pero no tenés idea de si eso te trae clientes o solo te quita tiempo.",
-     "Contenido sin estrategia es esfuerzo que se evapora."],
-    ["Dependés de las recomendaciones para crecer",
-     "El boca a boca es maravilloso y dice mucho de tu trabajo. Pero si es tu único motor, tu crecimiento depende de la suerte del mes.",
-     "Una marca sólida genera demanda propia, no solo la espera."],
-    ["Tus canales digitales están abandonados",
-     "El último posteo es de hace meses. La info de contacto está vieja. El catálogo online no coincide con lo que realmente vendés.",
-     "Un canal desactualizado comunica más que uno vacío: dice \"aquí no hay nadie\"."],
-    ["No tenés activos digitales propios",
-     "Tu presencia vive prestada en redes que no controlás. Si mañana cambia el algoritmo o se cae una plataforma, te quedás sin nada.",
-     "Una base de datos, una web propia, una comunidad: eso es patrimonio del negocio."],
-    ["Hablás de vos y no de tu cliente",
-     "Tu comunicación cuenta lo grande que sos, cuántos años tenés, cuántas máquinas importás. Pero el cliente quiere saber qué problema le resolvés a él.",
-     "La marca que entiende a su cliente siempre le gana a la que solo habla de sí misma."],
-    ["Tomás decisiones de marketing por intuición",
-     "\"Probemos esto\", \"me dijeron que conviene\", \"el sobrino sabe de redes\". Las decisiones se toman por corazonada, no por datos.",
-     "La intuición es valiosa, pero sola es cara. Los datos la hacen rentable."],
-    ["Sentís que tu marca no se parece a lo que sos",
-     "En el fondo sabés que tu empresa vale más de lo que muestra. Que hay algo propio, una forma de hacer las cosas, que todavía no está afuera.",
-     "Esa distancia entre lo que sos y lo que se ve es, justamente, donde empieza nuestro trabajo."],
+  type Signal = [string, string, string];
+  type Group  = { title: string; signals: Signal[] };
+
+  const GROUPS: Group[] = [
+    { title: 'Tu marca', signals: [
+      ["Tu identidad cambia según quién la use",
+       "El logo de la factura no es igual al del local, ni al del Instagram, ni al de la propuesta que mandás por mail. Cada pieza parece de una empresa distinta.",
+       "Una marca que se ve coherente transmite que la empresa también lo es."],
+      ["Hablás de vos y no de tu cliente",
+       "Tu comunicación cuenta lo grande que sos, cuántos años tenés, cuántas máquinas importás. Pero el cliente quiere saber qué problema le resolvés a él.",
+       "La marca que entiende a su cliente siempre le gana a la que solo habla de sí misma."],
+      ["Sentís que tu marca no se parece a lo que sos",
+       "En el fondo sabés que tu empresa vale más de lo que muestra. Que hay algo propio, una forma de hacer las cosas, que todavía no está afuera.",
+       "Esa distancia entre lo que sos y lo que se ve es, justamente, donde empieza nuestro trabajo."],
+    ]},
+    { title: 'Tu presencia', signals: [
+      ["Tu web tarda más de 3 segundos en cargar",
+       "Cada segundo de más es gente que se va antes de ver lo que ofrecés. En una empresa que factura en serio, eso son ventas que ni se enteraron de que existías.",
+       "La velocidad no es un tema técnico: es el primer mensaje que das sobre cómo trabajás."],
+      ["Tus canales digitales están abandonados",
+       "El último posteo es de hace meses. La info de contacto está vieja. El catálogo online no coincide con lo que realmente vendés.",
+       "Un canal desactualizado comunica más que uno vacío: dice \"aquí no hay nadie\"."],
+      ["No tenés activos digitales propios",
+       "Tu presencia vive prestada en redes que no controlás. Si mañana cambia el algoritmo o se cae una plataforma, te quedás sin nada.",
+       "Una base de datos, una web propia, una comunidad: eso es patrimonio del negocio."],
+    ]},
+    { title: 'Tu visibilidad', signals: [
+      ["Tu competencia aparece primero y vos no",
+       "Cuando un cliente busca lo que vendés, la marca que aparece primero parece la más seria, aunque vos tengas mejor producto.",
+       "No es casualidad: es trabajo de posicionamiento que se puede hacer."],
+      ["Dependés de las recomendaciones para crecer",
+       "El boca a boca es maravilloso y dice mucho de tu trabajo. Pero si es tu único motor, tu crecimiento depende de la suerte del mes.",
+       "Una marca sólida genera demanda propia, no solo la espera."],
+      ["Producís contenido, pero no sabés si sirve",
+       "Publicás en redes porque \"hay que estar\", pero no tenés idea de si eso te trae clientes o solo te quita tiempo.",
+       "Contenido sin estrategia es esfuerzo que se evapora."],
+    ]},
+    { title: 'Tus decisiones', signals: [
+      ["No sabés de dónde vienen tus mejores clientes",
+       "Si te preguntamos cuál de tus canales trae a los clientes que más compran y la respuesta es \"y… de todo un poco\", estás decidiendo a ciegas.",
+       "Sin esa claridad, cada peso de inversión es una apuesta, no una estrategia."],
+      ["Tomás decisiones de marketing por intuición",
+       "\"Probemos esto\", \"me dijeron que conviene\", \"el sobrino sabe de redes\". Las decisiones se toman por corazonada, no por datos.",
+       "La intuición es valiosa, pero sola es cara. Los datos la hacen rentable."],
+      ["Tu facturación creció, pero tu marca quedó en otra etapa",
+       "El negocio factura hoy mucho más que el día que armaste el logo, la web o el catálogo. Pero la marca sigue contando la historia de la empresa que eras, no la que sos.",
+       "Si te da un poco de pudor mandar tu web a un cliente nuevo, esa es la señal."],
+    ]},
   ];
 
   const VERDICTS: Record<string, [string, string]> = {
@@ -242,29 +261,57 @@ import ResourceGate from '../../components/ResourceGate.astro';
   };
 
   const checkSvg = '<svg class="ck-check-svg" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const list = document.getElementById('ck-list')!;
+  const root = document.getElementById('ck-signals')!;
   let checked = 0;
 
-  SIGNALS.forEach((s) => {
-    const li = document.createElement('li');
-    li.className = 'ck-signal';
-    li.setAttribute('role', 'button');
-    li.setAttribute('tabindex', '0');
-    li.setAttribute('aria-pressed', 'false');
-    li.innerHTML = '<span class="ck-box">' + checkSvg + '</span>' +
-      '<div><h3>' + s[0] + '</h3><p>' + s[1] + '</p><p class="ck-tell">' + s[2] + '</p></div>';
-    const toggle = () => {
-      li.classList.toggle('ck-checked');
-      const on = li.classList.contains('ck-checked');
-      li.setAttribute('aria-pressed', String(on));
-      checked += on ? 1 : -1;
-      update();
-    };
-    li.addEventListener('click', toggle);
-    li.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+  const blockCounters: { el: HTMLElement; count: number; total: number }[] = [];
+
+  GROUPS.forEach((g, gi) => {
+    const block = document.createElement('div');
+    block.className = 'ck-block';
+
+    const counterEl = document.createElement('span');
+    counterEl.className = 'ck-block-counter';
+    counterEl.innerHTML = '<b>0</b>/' + g.signals.length;
+    blockCounters.push({ el: counterEl, count: 0, total: g.signals.length });
+
+    const head = document.createElement('div');
+    head.className = 'ck-block-head';
+    head.innerHTML = '<span class="ck-block-num">0' + (gi + 1) + '</span>' +
+                     '<span class="ck-block-title">' + g.title + '</span>';
+    head.appendChild(counterEl);
+    block.appendChild(head);
+
+    const ul = document.createElement('ul');
+    ul.className = 'ck-block-body';
+
+    g.signals.forEach((s) => {
+      const li = document.createElement('li');
+      li.className = 'ck-signal';
+      li.setAttribute('role', 'button');
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('aria-pressed', 'false');
+      li.innerHTML = '<span class="ck-box">' + checkSvg + '</span>' +
+        '<div><h3>' + s[0] + '</h3><p>' + s[1] + '</p><p class="ck-tell">' + s[2] + '</p></div>';
+      const toggle = () => {
+        li.classList.toggle('ck-checked');
+        const on = li.classList.contains('ck-checked');
+        li.setAttribute('aria-pressed', String(on));
+        checked += on ? 1 : -1;
+        const bc = blockCounters[gi];
+        bc.count += on ? 1 : -1;
+        bc.el.innerHTML = '<b>' + bc.count + '</b>/' + bc.total;
+        update();
+      };
+      li.addEventListener('click', toggle);
+      li.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+      });
+      ul.appendChild(li);
     });
-    list.appendChild(li);
+
+    block.appendChild(ul);
+    root.appendChild(block);
   });
 
   const countEl = document.getElementById('ck-count')!;
