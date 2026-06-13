@@ -1,0 +1,189 @@
+---
+interface Props {
+  resource: string;
+}
+const { resource } = Astro.props;
+---
+
+<div id="sr-gate">
+  <div class="gate-card">
+    <div class="gate-brand">
+      <img src="/assets/logo-sombrero-rosa.png" alt="" class="gate-brand-img" />
+      <span class="gate-brand-name">Sombrero Rosa</span>
+    </div>
+
+    <h2 class="gate-title">Recurso gratuito</h2>
+    <p class="gate-desc">Dejanos tu nombre y mail para acceder al contenido. Sin spam, prometido.</p>
+
+    <form class="gate-form" id="sr-gate-form" novalidate>
+      <label class="gate-label">
+        <span>Nombre <em>*</em></span>
+        <input type="text" name="name" placeholder="Juan" autocomplete="given-name" required />
+      </label>
+      <label class="gate-label">
+        <span>Email <em>*</em></span>
+        <input type="email" name="email" placeholder="hola@empresa.com" autocomplete="email" required />
+      </label>
+      <button type="submit" class="gate-btn" id="sr-gate-btn">
+        Ver {resource} →
+      </button>
+      <p class="gate-note">Solo te vamos a escribir si tenés algo que vale la pena leer.</p>
+    </form>
+
+    <div class="gate-success" id="sr-gate-ok" hidden>
+      <div class="gate-success-mark">✓</div>
+      <p>¡Listo! Abriendo el contenido…</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #sr-gate {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(8, 17, 30, 0.92);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    transition: opacity 0.45s cubic-bezier(.22,1,.36,1);
+  }
+  #sr-gate.sr-gate-out { opacity: 0; pointer-events: none; }
+
+  .gate-card {
+    background: var(--bone); border-radius: 22px;
+    padding: clamp(28px, 6vw, 52px);
+    max-width: 420px; width: 100%;
+    box-shadow: 0 40px 80px -20px rgba(0,0,0,.7);
+    animation: gateIn .35s cubic-bezier(.22,1,.36,1) both;
+  }
+  @keyframes gateIn {
+    from { opacity: 0; transform: translateY(20px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .gate-brand {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 24px;
+  }
+  .gate-brand-img { width: 28px; height: 28px; object-fit: contain; }
+  .gate-brand-name {
+    font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--navy);
+  }
+
+  .gate-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 4vw, 30px); font-weight: 700;
+    color: var(--navy); letter-spacing: -.02em; margin-bottom: 10px;
+  }
+  .gate-desc {
+    font-size: 14px; font-weight: 300; color: var(--ink);
+    line-height: 1.65; margin-bottom: 24px;
+  }
+
+  .gate-form { display: flex; flex-direction: column; gap: 14px; }
+  .gate-label { display: flex; flex-direction: column; gap: 5px; }
+  .gate-label span {
+    font-size: 12px; font-weight: 600; color: var(--navy); letter-spacing: .02em;
+  }
+  .gate-label span em { color: var(--rosa); font-style: normal; }
+  .gate-label input {
+    border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 11px 14px; font-size: 14px; font-family: inherit;
+    color: var(--navy); background: #fff; outline: none;
+    transition: border-color .2s;
+  }
+  .gate-label input:focus { border-color: var(--rosa); }
+  .gate-label input.gate-err { border-color: #d44; background: #fff8f8; }
+
+  .gate-btn {
+    background: var(--rosa); color: #fff; border: none; border-radius: 999px;
+    padding: 14px 24px; font-size: 14px; font-weight: 600;
+    font-family: inherit; cursor: pointer; margin-top: 4px;
+    transition: background .2s, transform .2s;
+  }
+  .gate-btn:hover:not(:disabled) { background: var(--rosa-600); transform: translateY(-1px); }
+  .gate-btn:disabled { opacity: .6; cursor: not-allowed; }
+
+  .gate-note {
+    font-size: 11px; color: rgba(64,63,63,.45);
+    text-align: center; line-height: 1.5;
+  }
+
+  .gate-success { text-align: center; padding: 12px 0; }
+  .gate-success-mark {
+    font-size: 42px; line-height: 1; color: var(--rosa); margin-bottom: 10px;
+  }
+  .gate-success p { font-size: 16px; font-weight: 500; color: var(--navy); }
+</style>
+
+<script define:vars={{ resource }}>
+  const STORAGE_KEY = 'sr-gate-recursos';
+  const gate = document.getElementById('sr-gate');
+
+  function unlock() {
+    gate.classList.add('sr-gate-out');
+    document.body.style.overflow = '';
+    setTimeout(() => gate.remove(), 460);
+  }
+
+  if (localStorage.getItem(STORAGE_KEY) === '1') {
+    gate.remove();
+  } else {
+    document.body.style.overflow = 'hidden';
+
+    const form = document.getElementById('sr-gate-form');
+    const btn  = document.getElementById('sr-gate-btn');
+    const okEl = document.getElementById('sr-gate-ok');
+
+    form.querySelectorAll('input').forEach(inp =>
+      inp.addEventListener('input', () => inp.classList.remove('gate-err'))
+    );
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nameEl  = form.elements.namedItem('name');
+      const emailEl = form.elements.namedItem('email');
+
+      let valid = true;
+      [nameEl, emailEl].forEach(el => {
+        if (!el.value.trim()) { el.classList.add('gate-err'); valid = false; }
+      });
+      if (!valid) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      try {
+        const res = await fetch(
+          'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: [
+                { name: 'firstname', value: nameEl.value.trim() },
+                { name: 'email',     value: emailEl.value.trim() },
+                { name: 'message',   value: 'Recurso: ' + resource },
+              ],
+              context: { pageUri: window.location.href, pageName: document.title }
+            })
+          }
+        );
+
+        if (res.ok) {
+          localStorage.setItem(STORAGE_KEY, '1');
+          form.hidden = true;
+          okEl.hidden = false;
+          setTimeout(unlock, 900);
+        } else {
+          throw new Error();
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Ver ' + resource + ' →';
+        const nameEl2 = form.elements.namedItem('email');
+        nameEl2.setCustomValidity('');
+        alert('Hubo un error. Por favor intentá de nuevo.');
+      }
+    });
+  }
+</script>
