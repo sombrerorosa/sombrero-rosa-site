@@ -1,0 +1,412 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Base
+  title="Las 7 Preguntas del Principito — Sombrero Rosa"
+  description="No son preguntas de negocio. Son preguntas de alma. Un ejercicio para encontrar la esencia de tu marca."
+>
+  <Fragment slot="head">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600&display=swap" rel="stylesheet">
+  </Fragment>
+
+  <Header />
+
+  <div id="p7-progress-bar"></div>
+  <nav id="p7-nav-dots" aria-label="Navegación por secciones"></nav>
+
+  <main id="p7-app">
+
+    <!-- COVER -->
+    <section class="p7-section p7-dark" id="p7-cover">
+      <div class="p7-stars-deco" id="p7-stars"></div>
+      <div class="p7-content p7-visible" style="text-align:center;max-width:600px;">
+        <div class="p7-cover-logo">Sombrero Rosa</div>
+        <div class="p7-cover-hat">
+          <img src="/assets/logo-sombrero-rosa.png" alt="" style="width:80px;height:80px;object-fit:contain;filter:invert(1) sepia(1) saturate(2) hue-rotate(300deg) brightness(1.2);" />
+        </div>
+        <h1 class="p7-cover-title">Las <em>7 preguntas</em><br>del Principito</h1>
+        <p class="p7-cover-subtitle">para tu marca</p>
+        <p class="p7-cover-desc">
+          No son preguntas de negocio. Son preguntas de alma.<br>
+          Respondelas con calma, sin pensar en la respuesta "correcta".<br>
+          Lo que salga de verdad es lo que necesitamos.
+        </p>
+        <a href="#p7-q1" class="p7-btn-start">Comenzar →</a>
+      </div>
+    </section>
+
+    <!-- Q1 -->
+    <section class="p7-section p7-navy" id="p7-q1">
+      <div class="p7-bg-num">1</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow">Pregunta 1 de 7</div>
+        <div class="p7-quote-box">
+          <p class="p7-quote-text">"Lo que hace especial a mi rosa es que es <em>ella</em>. No una entre miles. Ella."</p>
+          <p class="p7-quote-source">— El Principito</p>
+        </div>
+        <h2 class="p7-question">¿Qué tiene tu marca que <em>ninguna otra</em> puede copiar exactamente?</h2>
+        <p class="p7-context">
+          No hablamos de tu producto o servicio. Hablamos de la historia detrás, de cómo lo hacés, de quién sos vos cuando lo hacés. Eso que, aunque alguien intente imitarte, siempre va a ser tuyo.
+        </p>
+        <div class="p7-response-area">
+          <div class="p7-response-label">Tu respuesta</div>
+          <textarea class="p7-textarea" placeholder="Escribí lo que se te venga, sin filtro…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q2 -->
+    <section class="p7-section p7-light" id="p7-q2">
+      <div class="p7-bg-num p7-bg-num--dark">2</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow p7-eyebrow--dark">Pregunta 2 de 7</div>
+        <div class="p7-quote-box p7-quote-box--gold">
+          <p class="p7-quote-text p7-quote-text--dark">"Es el tiempo que pasaste con tu rosa lo que la hace importante."</p>
+          <p class="p7-quote-source p7-quote-source--dark">— El Zorro</p>
+        </div>
+        <h2 class="p7-question p7-question--dark">¿A quién le estás hablando <em>de verdad</em>?</h2>
+        <p class="p7-context p7-context--dark">
+          No el cliente ideal del manual. La persona real que ya te eligió, que vuelve, que te recomienda. ¿Quién es? ¿Qué tiene en la cabeza cuando te busca? ¿Qué le importa más allá de lo que vendés?
+        </p>
+        <div class="p7-response-area p7-response-area--dark">
+          <div class="p7-response-label p7-response-label--dark">Tu respuesta</div>
+          <textarea class="p7-textarea p7-textarea--dark" placeholder="Describila como si me estuvieras contando de una persona real…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q3 -->
+    <section class="p7-section p7-dark" id="p7-q3">
+      <div class="p7-bg-num">3</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow">Pregunta 3 de 7</div>
+        <div class="p7-quote-box">
+          <p class="p7-quote-text">"Los baobabs, si no los arrancás a tiempo, destruyen todo el planeta."</p>
+          <p class="p7-quote-source">— El Principito</p>
+        </div>
+        <h2 class="p7-question">¿Qué problema concreto <em>resolvés</em> en la vida de esa persona?</h2>
+        <p class="p7-context">
+          No el problema genérico del rubro. El problema específico que tiene esa persona antes de encontrarte a vos. ¿Qué le faltaba? ¿Qué tenía que resolver? ¿Cómo es su vida o su negocio después de trabajar con vos?
+        </p>
+        <div class="p7-response-area">
+          <div class="p7-response-label">Tu respuesta</div>
+          <textarea class="p7-textarea" placeholder="Antes de encontrarme, mi cliente tenía…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q4 -->
+    <section class="p7-section p7-cream" id="p7-q4">
+      <div class="p7-bg-num p7-bg-num--dark">4</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow p7-eyebrow--dark">Pregunta 4 de 7</div>
+        <div class="p7-quote-box p7-quote-box--gold">
+          <p class="p7-quote-text p7-quote-text--dark">"Hay que ver con el corazón. Lo esencial es invisible a los ojos."</p>
+          <p class="p7-quote-source p7-quote-source--dark">— El Zorro</p>
+        </div>
+        <h2 class="p7-question p7-question--dark">¿Qué querés que <em>sienta</em> alguien cuando termina de interactuar con tu marca?</h2>
+        <p class="p7-context p7-context--dark">
+          No lo que querés que piense ni lo que querés que compre. Lo que querés que <em>sienta</em>. Esa emoción o sensación que, si la logramos, significa que hicimos bien el trabajo.
+        </p>
+        <div class="p7-response-area p7-response-area--dark">
+          <div class="p7-response-label p7-response-label--dark">Tu respuesta</div>
+          <textarea class="p7-textarea p7-textarea--dark" placeholder="Cuando alguien interactúa con mi marca, quiero que se sienta…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q5 -->
+    <section class="p7-section p7-navy" id="p7-q5">
+      <div class="p7-bg-num">5</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow">Pregunta 5 de 7</div>
+        <div class="p7-quote-box">
+          <p class="p7-quote-text">"¿Y de qué sirve tener una estrella si no se la puede dar a nadie?"</p>
+          <p class="p7-quote-source">— El Principito</p>
+        </div>
+        <h2 class="p7-question">¿Qué <em>NO</em> querés que nunca se asocie con tu marca?</h2>
+        <p class="p7-context">
+          A veces es más fácil definir lo que no somos que lo que somos. ¿Hay palabras, imágenes, tonos o sensaciones que definitivamente no van con vos? ¿Marcas que no querés parecerte? ¿Cosas que te hacen decir "eso jamás"?
+        </p>
+        <div class="p7-response-area">
+          <div class="p7-response-label">Tu respuesta</div>
+          <textarea class="p7-textarea" placeholder="Lo que nunca quiero que digan de mi marca es…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q6 -->
+    <section class="p7-section p7-light" id="p7-q6">
+      <div class="p7-bg-num p7-bg-num--dark">6</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow p7-eyebrow--dark">Pregunta 6 de 7</div>
+        <div class="p7-quote-box p7-quote-box--gold">
+          <p class="p7-quote-text p7-quote-text--dark">"Cuando domás algo, creás lazos. Sos responsable de lo que has domesticado."</p>
+          <p class="p7-quote-source p7-quote-source--dark">— El Zorro</p>
+        </div>
+        <h2 class="p7-question p7-question--dark">¿Cómo te imaginás tu marca <em>dentro de 3 años</em>?</h2>
+        <p class="p7-context p7-context--dark">
+          No el número de ventas ni el tamaño del equipo. ¿Cómo es la conversación que la gente tiene sobre tu marca? ¿Dónde aparece? ¿Qué lugar ocupa en la vida de tus clientes? ¿Qué pudiste construir que hoy todavía no existe?
+        </p>
+        <div class="p7-response-area p7-response-area--dark">
+          <div class="p7-response-label p7-response-label--dark">Tu respuesta</div>
+          <textarea class="p7-textarea p7-textarea--dark" placeholder="En 3 años, cuando alguien hable de mi marca va a decir…" rows="4"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q7 -->
+    <section class="p7-section p7-dark" id="p7-q7">
+      <div class="p7-bg-num">7</div>
+      <div class="p7-content">
+        <div class="p7-eyebrow">Pregunta 7 de 7</div>
+        <div class="p7-quote-box">
+          <p class="p7-quote-text">"Soy responsable de mi rosa. Y mi rosa es única en el mundo."</p>
+          <p class="p7-quote-source">— El Principito</p>
+        </div>
+        <h2 class="p7-question">¿Qué deseás <em>vos</em> de tu marca?</h2>
+        <p class="p7-context">
+          Esta es diferente a la anterior. No lo que querés que logre tu marca. Lo que querés que te dé <em>a vos</em>. ¿Qué te gustaría sentir cuando la mirás dentro de unos años? ¿Qué significa para vos construirla?
+        </p>
+        <div class="p7-response-area">
+          <div class="p7-response-label">Tu respuesta</div>
+          <textarea class="p7-textarea" placeholder="Lo que más quiero para mí a través de mi marca es…" rows="4"></textarea>
+        </div>
+        <div class="p7-divider"><span>◆</span></div>
+        <div style="margin-top:8px;">
+          <div class="p7-eyebrow" style="margin-bottom:14px;">Una pregunta más, opcional</div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3vw,26px);font-weight:600;line-height:1.3;margin-bottom:10px;">¿Hay algo que no te pregunté y que sentís que es importante que sepamos?</h3>
+          <textarea class="p7-textarea" placeholder="Cualquier cosa que te parezca relevante…" rows="3"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL -->
+    <section class="p7-section p7-dark p7-final" id="p7-final">
+      <div class="p7-stars-deco" id="p7-stars2"></div>
+      <div class="p7-content" style="text-align:center;max-width:560px;">
+        <div style="margin-bottom:24px;">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#D4748C" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
+            <path d="M8 12s1.5 2 4 2 4-2 4-2"/>
+            <line x1="9" y1="9" x2="9.01" y2="9"/>
+            <line x1="15" y1="9" x2="15.01" y2="9"/>
+          </svg>
+        </div>
+        <h2 class="p7-final-title">Lo <em>esencial</em> ya<br>está en vos.</h2>
+        <p style="font-size:15px;font-weight:300;opacity:.6;line-height:1.8;margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;">
+          Gracias por tomarte el tiempo de responder esto con honestidad. Lo que escribiste acá es el punto de partida de todo lo que vamos a construir juntos.
+        </p>
+        <div class="p7-cta-box" style="text-align:left;">
+          <div class="p7-cta-title">El siguiente paso</div>
+          <p class="p7-cta-text">Compartinos tus respuestas y agendamos una llamada de 30 minutos para explorar juntos cómo ayudarte a encontrar la voz de tu marca.</p>
+          <ul class="p7-check-list" style="margin-bottom:20px;">
+            <li>Sin compromiso ni presión</li>
+            <li>La llamada es exploratoria — para los dos</li>
+            <li>Si hay fit, te contamos cómo trabajamos</li>
+          </ul>
+          <a href="/#contacto" class="p7-btn-start">Hablar con el equipo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Base>
+
+<style is:global>
+  /* ── 7 PREGUNTAS PAGE ── */
+  #p7-progress-bar {
+    position: fixed; top: 73px; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--rosa), #C9A84C);
+    width: 0%; z-index: 400; transition: width .4s ease; pointer-events: none;
+  }
+  #p7-nav-dots {
+    position: fixed; right: 24px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 10px; z-index: 200;
+  }
+  .p7-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(247,244,240,.2); border: 1px solid rgba(247,244,240,.3);
+    cursor: pointer; transition: all .3s; padding: 0; line-height: 1;
+  }
+  .p7-dot.p7-active {
+    background: var(--rosa); border-color: var(--rosa); transform: scale(1.3);
+  }
+  #p7-app .p7-section {
+    min-height: 100vh; display: flex; align-items: center;
+    justify-content: center; padding: 80px 24px;
+    position: relative; overflow: hidden;
+  }
+  #p7-app .p7-dark  { background: #08111E; color: #F7F4F0; }
+  #p7-app .p7-navy  { background: #0D1E3A; color: #F7F4F0; }
+  #p7-app .p7-light { background: #EEEAE3; color: #0D1E3A; }
+  #p7-app .p7-cream { background: #E8E3D8; color: #0D1E3A; }
+  .p7-bg-num {
+    position: absolute; font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(180px, 28vw, 320px); font-weight: 200; line-height: 1;
+    opacity: .04; right: -20px; top: 50%; transform: translateY(-50%);
+    pointer-events: none; user-select: none; letter-spacing: -.02em; color: #F7F4F0;
+  }
+  .p7-bg-num--dark { color: #0D1E3A; }
+  .p7-content {
+    max-width: 720px; width: 100%; position: relative; z-index: 1;
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .p7-content.p7-visible { opacity: 1; transform: translateY(0); }
+  .p7-eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: .4em;
+    text-transform: uppercase; color: #C9A84C; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .p7-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: #C9A84C; flex-shrink: 0; }
+  .p7-eyebrow--dark { color: #A88830; }
+  .p7-eyebrow--dark::before { background: #A88830; }
+  .p7-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 48px); font-weight: 700;
+    line-height: 1.2; margin-bottom: 20px; letter-spacing: -.01em;
+  }
+  .p7-question em { font-style: italic; color: var(--rosa); }
+  .p7-question--dark em { color: #C05A72; }
+  .p7-context {
+    font-size: 15px; font-weight: 300; line-height: 1.75; opacity: .75; max-width: 560px; margin-bottom: 28px;
+  }
+  .p7-context--dark { color: #0D1E3A; opacity: 1; }
+  .p7-response-area { margin-top: 28px; border-top: 1px solid rgba(247,244,240,.12); padding-top: 20px; }
+  .p7-response-area--dark { border-top-color: rgba(13,30,58,.12); }
+  .p7-response-label { font-size: 10px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; opacity: .4; margin-bottom: 10px; }
+  .p7-response-label--dark { color: #0D1E3A; }
+  .p7-textarea {
+    width: 100%; min-height: 100px;
+    background: rgba(247,244,240,.06); border: 1px solid rgba(247,244,240,.15);
+    border-radius: 6px; color: #F7F4F0;
+    font-family: inherit; font-size: 14px; font-weight: 300;
+    padding: 14px 16px; resize: vertical; outline: none;
+    transition: border-color .2s, background .2s; line-height: 1.6;
+  }
+  .p7-textarea--dark { background: rgba(13,30,58,.05); border-color: rgba(13,30,58,.15); color: #0D1E3A; }
+  .p7-textarea:focus { border-color: var(--rosa); background: rgba(212,116,140,.06); }
+  .p7-textarea::placeholder { opacity: .35; }
+  .p7-quote-box {
+    border-left: 3px solid var(--rosa); padding: 16px 20px;
+    margin-bottom: 28px; background: rgba(212,116,140,.07); border-radius: 0 8px 8px 0;
+  }
+  .p7-quote-box--gold { border-left-color: #C9A84C; background: rgba(201,168,76,.07); }
+  .p7-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 20px); font-weight: 400;
+    font-style: italic; line-height: 1.6; opacity: .85;
+  }
+  .p7-quote-text--dark { color: #0D1E3A; }
+  .p7-quote-source { font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #C9A84C; margin-top: 10px; opacity: .7; }
+  .p7-quote-source--dark { color: #A88830; opacity: .8; }
+  .p7-divider { display: flex; align-items: center; gap: 14px; margin: 28px 0; opacity: .2; }
+  .p7-divider::before, .p7-divider::after { content: ''; flex: 1; height: 1px; background: currentColor; }
+  .p7-divider span { font-size: 10px; letter-spacing: .2em; }
+  /* Cover */
+  #p7-cover { flex-direction: column; text-align: center; }
+  .p7-cover-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 300;
+    letter-spacing: .5em; text-transform: uppercase; color: #C9A84C; margin-bottom: 32px; opacity: .8;
+  }
+  .p7-cover-hat {
+    margin-bottom: 24px; display: flex; justify-content: center;
+    animation: p7float 4s ease-in-out infinite;
+  }
+  @keyframes p7float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  .p7-cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 7vw, 72px); font-weight: 600;
+    line-height: 1.1; letter-spacing: -.02em; margin-bottom: 8px;
+  }
+  .p7-cover-title em { font-style: italic; color: var(--rosa); }
+  .p7-cover-subtitle {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 3vw, 26px);
+    font-weight: 300; font-style: italic; opacity: .6; margin-bottom: 32px;
+  }
+  .p7-cover-desc { font-size: 14px; font-weight: 300; line-height: 1.8; opacity: .55; max-width: 480px; margin: 0 auto 40px; }
+  .p7-btn-start {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--rosa); color: #F7F4F0;
+    font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+    padding: 14px 32px; border-radius: 40px; text-decoration: none;
+    transition: background .2s, transform .2s;
+  }
+  .p7-btn-start:hover { background: var(--rosa-600); transform: translateY(-2px); }
+  /* Stars */
+  .p7-stars-deco { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .p7-star {
+    position: absolute; width: 2px; height: 2px; border-radius: 50%;
+    background: #C9A84C; opacity: 0;
+    animation: p7twinkle var(--p7d, 3s) ease-in-out infinite var(--p7delay, 0s);
+  }
+  @keyframes p7twinkle { 0%,100% { opacity: 0; transform: scale(.5); } 50% { opacity: var(--p7op, .6); transform: scale(1); } }
+  /* CTA Box */
+  .p7-cta-box { background: rgba(212,116,140,.1); border: 1px solid rgba(212,116,140,.25); border-radius: 12px; padding: 24px 28px; margin-top: 32px; }
+  .p7-cta-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  .p7-cta-text { font-size: 13px; font-weight: 300; line-height: 1.7; opacity: .7; margin-bottom: 16px; }
+  .p7-check-list { list-style: none; display: grid; gap: 10px; margin-top: 12px; }
+  .p7-check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; font-weight: 300; line-height: 1.6; opacity: .8; }
+  .p7-check-list li::before { content: '◆'; font-size: 8px; color: #C9A84C; margin-top: 5px; flex-shrink: 0; }
+  /* Final */
+  #p7-app .p7-final { flex-direction: column; }
+  .p7-final-title {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 6vw, 60px);
+    font-weight: 600; line-height: 1.15; margin-bottom: 16px; letter-spacing: -.01em;
+  }
+  .p7-final-title em { font-style: italic; color: var(--rosa); }
+  @media (max-width: 600px) {
+    #p7-nav-dots { display: none; }
+    #p7-app .p7-section { padding: 56px 20px; }
+    .p7-bg-num { font-size: 140px; opacity: .03; right: -10px; }
+  }
+</style>
+
+<script>
+  const sections = Array.from(document.querySelectorAll('#p7-app .p7-section')) as HTMLElement[];
+  const totalSections = sections.length;
+  const navDots = document.getElementById('p7-nav-dots')!;
+
+  sections.forEach((sec, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'p7-dot';
+    dot.setAttribute('aria-label', `Ir a sección ${i + 1}`);
+    dot.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth' }));
+    navDots.appendChild(dot);
+  });
+  const dots = navDots.querySelectorAll('.p7-dot');
+
+  function createStars(containerId: string, count: number) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('div');
+      s.className = 'p7-star';
+      s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--p7d:${2+Math.random()*4}s;--p7delay:${Math.random()*4}s;--p7op:${.3+Math.random()*.5};`;
+      el.appendChild(s);
+    }
+  }
+  createStars('p7-stars', 60);
+  createStars('p7-stars2', 50);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const content = entry.target.querySelector('.p7-content') as HTMLElement | null;
+        if (content) setTimeout(() => content.classList.add('p7-visible'), 80);
+        const idx = sections.indexOf(entry.target as HTMLElement);
+        if (idx >= 0) {
+          dots.forEach((d, i) => d.classList.toggle('p7-active', i === idx));
+          const pct = ((idx + 1) / totalSections) * 100;
+          (document.getElementById('p7-progress-bar') as HTMLElement).style.width = pct + '%';
+        }
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(sec => observer.observe(sec));
+</script>
