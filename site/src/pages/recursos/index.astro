@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Base title="Recursos — Sombrero Rosa" description="Herramientas gratuitas para pensar tu marca con más claridad.">
+  <Header />
+  <main class="rc-main">
+    <section class="rc-hero">
+      <div class="rc-hero-inner">
+        <div class="sr-section-num">Recursos</div>
+        <h1 class="rc-title">Para pensar tu marca<br><em>con más claridad.</em></h1>
+        <p class="rc-lead">Herramientas gratuitas para founders y equipos que quieren construir marcas más sólidas.</p>
+      </div>
+    </section>
+
+    <section class="rc-cards-section">
+      <div class="rc-cards-grid">
+        <a href="/recursos/7-preguntas" class="rc-card">
+          <div class="rc-card-tag">Reflexión de marca</div>
+          <h2 class="rc-card-title">Las 7 preguntas<br>del Principito</h2>
+          <p class="rc-card-desc">No son preguntas de negocio. Son preguntas de alma. Un ejercicio introspectivo para encontrar la esencia de tu marca y lo que la hace única.</p>
+          <span class="rc-card-cta">Comenzar ejercicio →</span>
+        </a>
+        <a href="/recursos/checklist" class="rc-card">
+          <div class="rc-card-tag">Diagnóstico digital</div>
+          <h2 class="rc-card-title">12 señales de que tu presencia digital no está a la altura de tu facturación</h2>
+          <p class="rc-card-desc">Una checklist honesta para empresas que crecieron en facturación pero cuya marca todavía no acompañó ese crecimiento. Tardás 3 minutos.</p>
+          <span class="rc-card-cta">Ver checklist →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .rc-main { background: var(--bone); }
+  .rc-hero {
+    background: var(--black-2); color: #fff;
+    padding: 96px 48px 80px;
+  }
+  .rc-hero-inner { max-width: 860px; margin: 0 auto; }
+  .rc-hero .sr-section-num {
+    font-size: 11px; font-weight: 700; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--rosa); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .rc-hero .sr-section-num::before {
+    content: ''; display: block; width: 28px; height: 2px; background: var(--rosa);
+  }
+  .rc-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.5vw, 68px);
+    font-weight: 700; letter-spacing: -.02em; line-height: 1.1;
+    color: #fff; margin-bottom: 24px;
+  }
+  .rc-title em { font-style: italic; color: var(--rosa); }
+  .rc-lead {
+    font-size: clamp(16px, 2vw, 19px); font-weight: 300;
+    color: rgba(255,255,255,.6); max-width: 52ch; line-height: 1.7;
+  }
+  .rc-cards-section { padding: 72px 48px 96px; max-width: 1200px; margin: 0 auto; }
+  .rc-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .rc-card {
+    display: flex; flex-direction: column; gap: 16px;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px;
+    text-decoration: none; color: inherit;
+    transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out), border-color .25s;
+  }
+  .rc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px -16px rgba(0,0,0,.12);
+    border-color: var(--rosa-300);
+  }
+  .rc-card-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--rosa);
+  }
+  .rc-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.6vw, 28px); font-weight: 700;
+    line-height: 1.2; letter-spacing: -.01em; color: var(--navy);
+  }
+  .rc-card-desc {
+    font-size: 15px; font-weight: 300; line-height: 1.7;
+    color: var(--ink); flex: 1;
+  }
+  .rc-card-cta {
+    font-size: 14px; font-weight: 600; color: var(--rosa);
+    margin-top: 8px; display: inline-block;
+    transition: color .2s;
+  }
+  .rc-card:hover .rc-card-cta { color: var(--rosa-600); }
+
+  @media (max-width: 768px) {
+    .rc-hero { padding: 64px 24px 56px; }
+    .rc-cards-section { padding: 48px 24px 72px; }
+    .rc-cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
