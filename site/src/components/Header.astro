@@ -1,6 +1,6 @@
 ---
 interface Props { currentPath?: string; }
-const { currentPath = '/' } = Astro.props;
+const { currentPath = Astro.url.pathname } = Astro.props;
 ---
 <header class="sr-header">
   <a class="sr-brand" href="/" aria-label="Sombrero Rosa, inicio">
@@ -15,6 +15,7 @@ const { currentPath = '/' } = Astro.props;
     <a href="/#servicios" class="sr-nav-link">Servicios</a>
     <a href="/#nosotros"  class="sr-nav-link">Nosotros</a>
     <a href="/blog"       class="sr-nav-link" data-active={currentPath.startsWith('/blog')}>Artículos</a>
+    <a href="/recursos"   class="sr-nav-link" data-active={currentPath.startsWith('/recursos')}>Recursos</a>
     <a href="/#contacto"  class="sr-nav-link">Contacto</a>
   </nav>
 
