@@ -1,0 +1,297 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+<Base
+  title="12 señales de que tu presencia digital no está a la altura de tu facturación — Sombrero Rosa"
+  description="Una checklist honesta para empresas que crecieron en facturación pero cuya marca todavía no acompañó ese crecimiento. Marcá las señales y descubrí dónde empezar."
+>
+  <Header />
+  <div id="ck-progress"></div>
+
+  <main id="ck-app">
+    <div class="ck-wrap">
+
+      <!-- HERO -->
+      <header class="ck-hero">
+        <span class="ck-eyebrow">Guía gratuita</span>
+        <h1 class="ck-h1">12 señales de que tu presencia digital no está a la altura de tu <em>facturación</em>.</h1>
+        <p class="ck-lead">Una checklist honesta para empresas que crecieron de verdad, pero cuya marca todavía no acompañó ese crecimiento.</p>
+        <p class="ck-meta">Tardás 3 minutos. No pedimos tu mail para empezar.</p>
+      </header>
+
+      <!-- INTRO -->
+      <section class="ck-intro">
+        <div class="ck-intro-label">Antes de empezar</div>
+        <h2 class="ck-intro-h2">Esto no es un examen. Es un espejo.</h2>
+        <p>Si tu empresa factura bien, ya hiciste lo más difícil: construiste algo que funciona. Pero muchas veces, en ese camino, la marca queda atrás. La comunicación, la web y los canales digitales siguen contando la historia de una empresa más chica de la que hoy sos.</p>
+        <p>No vinimos a decirte qué está mal. Vinimos a ayudarte a ver lo que quizás ya intuías. Marcá las señales que reconozcas, con sinceridad. No hace falta marcarlas todas: con tres o cuatro, ya vale la pena tener una conversación.</p>
+        <p class="ck-pull">Primero escuchamos. Después preguntamos. Recién ahí, construimos.</p>
+      </section>
+
+      <!-- COUNTER -->
+      <div class="ck-counter" id="ck-counter">
+        <span class="ck-counter-txt">Señales que reconocés</span>
+        <span class="ck-counter-num"><b id="ck-count">0</b> / 12</span>
+        <button class="ck-jump" id="ck-jump">Ver tu resultado →</button>
+      </div>
+
+      <!-- SIGNALS -->
+      <section class="ck-signals">
+        <ul class="ck-list" id="ck-list"></ul>
+      </section>
+
+      <!-- RESULT -->
+      <section class="ck-result" id="ck-result">
+        <div class="ck-result-card">
+          <div class="ck-result-label">Tu resultado</div>
+          <h2>¿Cuántas reconociste?</h2>
+          <div class="ck-big"><span id="ck-rcount">0</span><span class="ck-big-denom"> / 12 señales</span></div>
+          <div class="ck-verdict">
+            <h3 id="ck-verdict-title">Marcá las señales de arriba</h3>
+            <p id="ck-verdict-text">A medida que vayas marcando, acá te mostramos qué significa tu resultado.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="ck-cta">
+        <div class="ck-cta-card">
+          <div class="ck-cta-label">El siguiente paso</div>
+          <h2 class="ck-cta-h2">Tomemos un café, aunque sea virtual.</h2>
+          <p>Si reconociste varias señales, no significa que algo esté mal. Significa que hay margen para crecer. Te ofrecemos una consultoría inicial gratuita: sin compromiso, sin presión, sin venderte humo. Una charla para entender tu negocio y mostrarte por dónde empezar.</p>
+          <a class="ck-btn" href="/#contacto">
+            Quiero mi consultoría gratuita
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <p class="ck-alt">O escribinos por Instagram <a href="https://instagram.com/sombrerorosastudio" target="_blank" rel="noopener">@sombrerorosastudio</a></p>
+        </div>
+      </section>
+
+      <div style="height:72px;"></div>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
+
+<style is:global>
+  /* ── CHECKLIST PAGE ── */
+  #ck-progress {
+    position: fixed; top: 73px; left: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--rosa), var(--rosa-600));
+    z-index: 400; transition: width .3s cubic-bezier(.22,1,.36,1); pointer-events: none;
+  }
+  #ck-app {
+    background: var(--black-2); color: var(--bone);
+    -webkit-font-smoothing: antialiased;
+  }
+  #ck-app ::selection { background: var(--rosa); color: var(--black-2); }
+  .ck-wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  .ck-hero { padding: 80px 0 56px; position: relative; overflow: hidden; }
+  .ck-hero::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(60% 50% at 88% 8%, rgba(213,132,142,.16), transparent 60%);
+    pointer-events: none;
+  }
+  .ck-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .34em; text-transform: uppercase;
+    color: var(--rosa); display: inline-flex; align-items: center; gap: 12px;
+  }
+  .ck-eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--rosa); }
+  .ck-h1 {
+    font-size: clamp(28px, 5vw, 54px); font-weight: 700; line-height: 1.06;
+    letter-spacing: -.02em; margin: 22px 0 0; color: var(--bone);
+  }
+  .ck-h1 em { font-style: italic; font-weight: 600; color: var(--rosa); }
+  .ck-lead { margin-top: 22px; font-size: clamp(15px, 2vw, 18px); font-weight: 300; color: rgba(242,242,240,.62); max-width: 54ch; line-height: 1.65; }
+  .ck-meta { margin-top: 28px; font-size: 13px; letter-spacing: .04em; color: rgba(242,242,240,.5); }
+  .ck-intro { padding: 8px 0; }
+  .ck-intro-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa-300); margin-bottom: 14px; }
+  .ck-intro-h2 { font-size: clamp(20px, 2.8vw, 28px); font-weight: 600; letter-spacing: -.01em; color: var(--bone); line-height: 1.2; margin-bottom: 18px; }
+  #ck-app .ck-intro p { font-size: 16px; font-weight: 300; color: rgba(242,242,240,.62); margin-bottom: 16px; max-width: 62ch; line-height: 1.7; }
+  .ck-pull { font-style: italic; font-size: clamp(16px, 2.2vw, 19px); color: var(--rosa) !important; border-left: 2px solid var(--rosa); padding-left: 18px; margin: 26px 0 8px !important; }
+  .ck-counter {
+    position: sticky; top: 73px; z-index: 100; margin: 40px 0 8px;
+    background: rgba(11,11,11,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(242,242,240,.12); border-radius: 999px;
+    padding: 12px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,.9);
+  }
+  .ck-counter-txt { font-size: 13px; color: rgba(242,242,240,.62); font-weight: 400; }
+  .ck-counter-num { font-size: 15px; font-weight: 700; color: var(--bone); white-space: nowrap; }
+  #ck-count { color: var(--rosa); font-size: 20px; font-weight: 700; }
+  .ck-jump {
+    font-size: 13px; font-weight: 600; color: var(--rosa-600); background: none;
+    border: none; cursor: pointer; font-family: inherit; padding: 6px 4px;
+    opacity: 0; pointer-events: none; transition: opacity .3s; white-space: nowrap;
+  }
+  .ck-jump.show { opacity: 1; pointer-events: auto; }
+  .ck-jump:hover { color: var(--rosa-300); }
+  .ck-signals { padding: 18px 0 8px; }
+  .ck-list { list-style: none; }
+  .ck-signal {
+    background: var(--black-2); border: 1px solid rgba(242,242,240,.1);
+    border-left: 3px solid var(--rosa);
+    border-radius: 0 14px 14px 0; padding: 22px 24px; margin-bottom: 14px;
+    cursor: pointer; display: grid; grid-template-columns: 34px 1fr; gap: 18px; align-items: start;
+    transition: border-left-color .25s, background .25s, transform .25s;
+  }
+  .ck-signal:hover { transform: translateX(3px); border-left-color: var(--rosa-600); }
+  .ck-signal.ck-checked { background: rgba(213,132,142,.07); border-left-color: var(--rosa-600); border-color: rgba(213,132,142,.22); }
+  .ck-box {
+    width: 26px; height: 26px; border-radius: 8px;
+    border: 1.5px solid rgba(242,242,240,.35);
+    display: grid; place-items: center; margin-top: 2px; transition: all .25s; flex-shrink: 0;
+  }
+  .ck-signal.ck-checked .ck-box { background: var(--rosa-600); border-color: var(--rosa-600); }
+  .ck-check-svg { width: 15px; height: 15px; stroke: var(--black-2); stroke-width: 3; fill: none; opacity: 0; transform: scale(.4); transition: all .25s; }
+  .ck-signal.ck-checked .ck-check-svg { opacity: 1; transform: scale(1); }
+  .ck-signal h3 { font-size: clamp(15px, 2.2vw, 18px); font-weight: 600; color: var(--bone); line-height: 1.25; letter-spacing: -.01em; margin-bottom: 8px; }
+  .ck-signal p { font-size: 14px; font-weight: 300; color: rgba(242,242,240,.6); line-height: 1.6; margin-bottom: 6px; }
+  .ck-signal p:last-child { margin-bottom: 0; }
+  .ck-signal .ck-tell { color: var(--rosa-300); font-style: italic; }
+  .ck-result { padding: 48px 0 8px; }
+  .ck-result-card { background: var(--bone); color: var(--ink); border-radius: 22px; padding: clamp(28px, 5vw, 48px); }
+  .ck-result-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa-600); margin-bottom: 10px; }
+  .ck-result-card h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--navy); letter-spacing: -.02em; line-height: 1.1; margin-bottom: 8px; }
+  .ck-big { font-size: clamp(40px, 8vw, 64px); font-weight: 800; color: var(--rosa-600); line-height: 1; letter-spacing: -.03em; }
+  .ck-big-denom { font-size: .4em; color: rgba(64,63,63,.6); font-weight: 600; }
+  .ck-verdict { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e9e8e3; }
+  .ck-verdict h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .ck-verdict p { font-size: 15px; color: var(--ink); font-weight: 300; line-height: 1.6; }
+  .ck-cta { padding: 36px 0 0; }
+  .ck-cta-card {
+    background: #111; border: 1px solid rgba(242,242,240,.1);
+    border-radius: 22px; padding: clamp(28px, 5vw, 52px); position: relative; overflow: hidden;
+  }
+  .ck-cta-card::after {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(70% 60% at 100% 0%, rgba(213,132,142,.12), transparent 55%);
+    pointer-events: none;
+  }
+  .ck-cta-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa); margin-bottom: 12px; }
+  .ck-cta-h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--bone); letter-spacing: -.02em; line-height: 1.12; margin-bottom: 16px; }
+  .ck-cta-card p { font-size: 16px; font-weight: 300; color: rgba(242,242,240,.62); line-height: 1.65; max-width: 56ch; margin-bottom: 28px; }
+  .ck-btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--rosa-600); color: #fff; font-weight: 600; font-size: 15px;
+    padding: 14px 24px; border-radius: 14px; text-decoration: none;
+    transition: transform .25s, box-shadow .25s, background .25s;
+    position: relative; z-index: 1;
+  }
+  .ck-btn:hover { background: var(--rosa); transform: translateY(-2px); box-shadow: 0 18px 40px -16px rgba(213,132,142,.7); }
+  .ck-alt { margin-top: 18px; font-size: 14px; color: rgba(242,242,240,.62); margin-bottom: 0 !important; }
+  .ck-alt a { color: var(--rosa); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .ck-alt a:hover { border-bottom-color: var(--rosa); }
+  @media (max-width: 560px) {
+    .ck-counter { padding: 11px 18px; }
+    .ck-counter-txt { display: none; }
+    .ck-signal { grid-template-columns: 28px 1fr; gap: 14px; padding: 18px; }
+  }
+</style>
+
+<script>
+  const SIGNALS: [string, string, string][] = [
+    ["Tu facturación creció, pero tu marca quedó en otra etapa",
+     "El negocio factura hoy mucho más que el día que armaste el logo, la web o el catálogo. Pero la marca sigue contando la historia de la empresa que eras, no la que sos.",
+     "Si te da un poco de pudor mandar tu web a un cliente nuevo, esa es la señal."],
+    ["Tu web tarda más de 3 segundos en cargar",
+     "Cada segundo de más es gente que se va antes de ver lo que ofrecés. En una empresa que factura en serio, eso son ventas que ni se enteraron de que existías.",
+     "La velocidad no es un tema técnico: es el primer mensaje que das sobre cómo trabajás."],
+    ["No sabés de dónde vienen tus mejores clientes",
+     "Si te preguntamos cuál de tus canales trae a los clientes que más compran y la respuesta es \"y… de todo un poco\", estás decidiendo a ciegas.",
+     "Sin esa claridad, cada peso de inversión es una apuesta, no una estrategia."],
+    ["Tu competencia aparece primero y vos no",
+     "Cuando un cliente busca lo que vendés, la marca que aparece primero parece la más seria, aunque vos tengas mejor producto.",
+     "No es casualidad: es trabajo de posicionamiento que se puede hacer."],
+    ["Tu identidad cambia según quién la use",
+     "El logo de la factura no es igual al del local, ni al del Instagram, ni al de la propuesta que mandás por mail. Cada pieza parece de una empresa distinta.",
+     "Una marca que se ve coherente transmite que la empresa también lo es."],
+    ["Producís contenido, pero no sabés si sirve",
+     "Publicás en redes porque \"hay que estar\", pero no tenés idea de si eso te trae clientes o solo te quita tiempo.",
+     "Contenido sin estrategia es esfuerzo que se evapora."],
+    ["Dependés de las recomendaciones para crecer",
+     "El boca a boca es maravilloso y dice mucho de tu trabajo. Pero si es tu único motor, tu crecimiento depende de la suerte del mes.",
+     "Una marca sólida genera demanda propia, no solo la espera."],
+    ["Tus canales digitales están abandonados",
+     "El último posteo es de hace meses. La info de contacto está vieja. El catálogo online no coincide con lo que realmente vendés.",
+     "Un canal desactualizado comunica más que uno vacío: dice \"aquí no hay nadie\"."],
+    ["No tenés activos digitales propios",
+     "Tu presencia vive prestada en redes que no controlás. Si mañana cambia el algoritmo o se cae una plataforma, te quedás sin nada.",
+     "Una base de datos, una web propia, una comunidad: eso es patrimonio del negocio."],
+    ["Hablás de vos y no de tu cliente",
+     "Tu comunicación cuenta lo grande que sos, cuántos años tenés, cuántas máquinas importás. Pero el cliente quiere saber qué problema le resolvés a él.",
+     "La marca que entiende a su cliente siempre le gana a la que solo habla de sí misma."],
+    ["Tomás decisiones de marketing por intuición",
+     "\"Probemos esto\", \"me dijeron que conviene\", \"el sobrino sabe de redes\". Las decisiones se toman por corazonada, no por datos.",
+     "La intuición es valiosa, pero sola es cara. Los datos la hacen rentable."],
+    ["Sentís que tu marca no se parece a lo que sos",
+     "En el fondo sabés que tu empresa vale más de lo que muestra. Que hay algo propio, una forma de hacer las cosas, que todavía no está afuera.",
+     "Esa distancia entre lo que sos y lo que se ve es, justamente, donde empieza nuestro trabajo."],
+  ];
+
+  const VERDICTS: Record<string, [string, string]> = {
+    low:  ["Vas bien encaminado","Tu marca acompaña tu crecimiento. Vale revisar los detalles para no perder esa ventaja con el tiempo."],
+    mid:  ["Hay una brecha que cerrar","Tu negocio creció más rápido que tu marca. Es el momento ideal para alinearlas, antes de que esa distancia cueste más."],
+    high: ["Tu marca te está costando plata","Cada señal es una oportunidad que se escapa. La buena noticia: todo esto se puede resolver, y con orden."],
+    zero: ["Marcá las señales de arriba","A medida que vayas marcando, acá te mostramos qué significa tu resultado."],
+  };
+
+  const checkSvg = '<svg class="ck-check-svg" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const list = document.getElementById('ck-list')!;
+  let checked = 0;
+
+  SIGNALS.forEach((s) => {
+    const li = document.createElement('li');
+    li.className = 'ck-signal';
+    li.setAttribute('role', 'button');
+    li.setAttribute('tabindex', '0');
+    li.setAttribute('aria-pressed', 'false');
+    li.innerHTML = '<span class="ck-box">' + checkSvg + '</span>' +
+      '<div><h3>' + s[0] + '</h3><p>' + s[1] + '</p><p class="ck-tell">' + s[2] + '</p></div>';
+    const toggle = () => {
+      li.classList.toggle('ck-checked');
+      const on = li.classList.contains('ck-checked');
+      li.setAttribute('aria-pressed', String(on));
+      checked += on ? 1 : -1;
+      update();
+    };
+    li.addEventListener('click', toggle);
+    li.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+    });
+    list.appendChild(li);
+  });
+
+  const countEl = document.getElementById('ck-count')!;
+  const rcountEl = document.getElementById('ck-rcount')!;
+  const vTitle = document.getElementById('ck-verdict-title')!;
+  const vText = document.getElementById('ck-verdict-text')!;
+  const jump = document.getElementById('ck-jump')! as HTMLButtonElement;
+
+  function update() {
+    countEl.textContent = String(checked);
+    rcountEl.textContent = String(checked);
+    let v: [string, string];
+    if (checked === 0) v = VERDICTS.zero;
+    else if (checked <= 2) v = VERDICTS.low;
+    else if (checked <= 6) v = VERDICTS.mid;
+    else v = VERDICTS.high;
+    vTitle.textContent = v[0];
+    vText.textContent = v[1];
+    jump.classList.toggle('show', checked > 0);
+  }
+
+  jump.addEventListener('click', () => {
+    document.getElementById('ck-result')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  const prog = document.getElementById('ck-progress')! as HTMLElement;
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    prog.style.width = pct + '%';
+  }, { passive: true });
+</script>
