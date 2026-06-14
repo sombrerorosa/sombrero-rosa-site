@@ -38,3 +38,22 @@ export async function getBlogPost(slug: string) {
     }
   `, { slug });
 }
+
+export async function getLinksPage() {
+  return client.fetch(`*[_type == "linksPage"][0]{
+    headline,
+    tagline,
+    links[]{
+      _key,
+      label,
+      url,
+      description,
+      isPrimary
+    },
+    socialLinks[]{
+      _key,
+      platform,
+      url
+    }
+  }`);
+}
