@@ -1,0 +1,294 @@
+---
+import '../styles/global.css';
+import { getLinksPage } from '../lib/sanity';
+
+const fallbackData = {
+  headline: 'Hacemos crecer tu marca.',
+  tagline: 'Agencia de marketing full service.',
+  links: [
+    {
+      _key: '1',
+      label: '12 señales para tu marca',
+      url: '/recursos/checklist?utm_source=instagram&utm_medium=bio',
+      description: 'Diagnóstico gratuito · 3 minutos',
+      isPrimary: true,
+    },
+    {
+      _key: '2',
+      label: 'Las 7 preguntas del Principito',
+      url: '/recursos/7-preguntas?utm_source=instagram&utm_medium=bio',
+      description: 'Ejercicio de identidad de marca',
+      isPrimary: false,
+    },
+    {
+      _key: '3',
+      label: 'Nuestro sitio web',
+      url: '/?utm_source=instagram&utm_medium=bio',
+      description: null,
+      isPrimary: false,
+    },
+  ],
+  socialLinks: [
+    { _key: 's1', platform: 'instagram', url: 'https://instagram.com/sombrerorosastudio' },
+    { _key: 's2', platform: 'facebook',  url: 'https://facebook.com/sombrerorosastudio'  },
+  ],
+};
+
+let data: typeof fallbackData = fallbackData;
+try {
+  const remote = await getLinksPage();
+  if (remote?.links?.length) data = remote;
+} catch {}
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sombrero Rosa — Links</title>
+  <meta name="description" content="Agencia de marketing full service. Hacemos crecer tu marca." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/assets/logo-sombrero-rosa.png" />
+  <meta property="og:title" content="Sombrero Rosa" />
+  <meta property="og:image" content="/assets/logo-sombrero-rosa.png" />
+</head>
+<body class="lk-body">
+
+  <main class="lk-main">
+    <div class="lk-container">
+
+      <a href="/" class="lk-brand">
+        <img src="/assets/logo-sombrero-rosa.png" alt="" class="lk-logo" />
+        <span class="lk-brand-name">Sombrero Rosa</span>
+      </a>
+
+      {data.headline && <h1 class="lk-headline">{data.headline}</h1>}
+      {data.tagline  && <p  class="lk-tagline">{data.tagline}</p>}
+
+      <nav class="lk-links">
+        {data.links.map(link => (
+          <a
+            href={link.url}
+            class={`lk-link${link.isPrimary ? ' lk-link--primary' : ''}`}
+            target={link.url.startsWith('http') ? '_blank' : undefined}
+            rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <span class="lk-link-body">
+              <span class="lk-link-label">{link.label}</span>
+              {link.description && <span class="lk-link-desc">{link.description}</span>}
+            </span>
+            <span class="lk-link-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </nav>
+
+      {data.socialLinks?.length > 0 && (
+        <div class="lk-socials">
+          {data.socialLinks.map(s => (
+            <a href={s.url} class="lk-social" target="_blank" rel="noopener noreferrer" aria-label={s.platform}>
+              {s.platform === 'instagram' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4.5"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              )}
+              {s.platform === 'facebook' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              )}
+              {s.platform === 'linkedin' && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              )}
+              <span class="lk-social-label">{s.platform}</span>
+            </a>
+          ))}
+        </div>
+      )}
+
+      <p class="lk-footer">&copy; {new Date().getFullYear()} Sombrero Rosa</p>
+
+    </div>
+  </main>
+
+</body>
+</html>
+
+<style is:global>
+  .lk-body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--navy);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .lk-main {
+    width: 100%;
+    padding: 56px 24px 64px;
+  }
+
+  .lk-container {
+    max-width: 440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Brand */
+  .lk-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 28px;
+  }
+  .lk-logo {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+  }
+  .lk-brand-name {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.85);
+  }
+
+  /* Headline & tagline */
+  .lk-headline {
+    font-family: var(--font-display, Georgia, serif);
+    font-size: clamp(26px, 6vw, 34px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+    color: #fff;
+    text-align: center;
+    margin: 0 0 10px;
+  }
+  .lk-tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    margin: 0 0 40px;
+    line-height: 1.6;
+  }
+
+  /* Links */
+  .lk-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 36px;
+  }
+
+  .lk-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 22px;
+    border-radius: 14px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.04);
+    color: rgba(255,255,255,.85);
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    box-sizing: border-box;
+  }
+  .lk-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.22);
+  }
+
+  .lk-link--primary {
+    background: var(--rosa);
+    border-color: transparent;
+    color: #fff;
+  }
+  .lk-link--primary:hover {
+    background: var(--rosa-600, #c2185b);
+    border-color: transparent;
+  }
+
+  .lk-link-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .lk-link-label {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .lk-link-desc {
+    font-size: 12px;
+    font-weight: 400;
+    opacity: .65;
+  }
+  .lk-link--primary .lk-link-desc {
+    opacity: .8;
+  }
+  .lk-link-arrow {
+    font-size: 18px;
+    opacity: .5;
+    flex-shrink: 0;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .lk-link:hover .lk-link-arrow {
+    transform: translateX(3px);
+    opacity: .85;
+  }
+
+  /* Socials */
+  .lk-socials {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .lk-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,.4);
+    text-decoration: none;
+    transition: color .2s;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+  .lk-social:hover {
+    color: var(--rosa);
+    border-color: rgba(255,255,255,.08);
+  }
+  .lk-social-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  .lk-footer {
+    font-size: 11px;
+    color: rgba(255,255,255,.2);
+    letter-spacing: .05em;
+    margin: 0;
+  }
+</style>
