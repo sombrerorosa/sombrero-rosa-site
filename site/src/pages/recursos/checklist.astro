@@ -2,14 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import ResourceGate from '../../components/ResourceGate.astro';
 ---
 <Base
-  title="12 señales de que tu presencia digital no está a la altura de tu facturación — Sombrero Rosa"
-  description="Una checklist honesta para empresas que crecieron en facturación pero cuya marca todavía no acompañó ese crecimiento. Marcá las señales y descubrí dónde empezar."
+  title="¿Tu empresa creció más rápido que tu marca? — Sombrero Rosa"
+  description="12 señales de que tu presencia digital no está a la altura de tu facturación. Completá la checklist y recibí un diagnóstico personalizado."
 >
   <Header />
-  <ResourceGate resource="la checklist de las 12 señales" />
   <div id="ck-progress"></div>
 
   <main id="ck-app">
@@ -17,18 +15,25 @@ import ResourceGate from '../../components/ResourceGate.astro';
 
       <!-- HERO -->
       <header class="ck-hero">
-        <span class="ck-eyebrow">Guía gratuita</span>
-        <h1 class="ck-h1">12 señales de que tu presencia digital no está a la altura de tu <em>facturación</em>.</h1>
-        <p class="ck-lead">Una checklist honesta para empresas que crecieron de verdad, pero cuya marca todavía no acompañó ese crecimiento.</p>
-        <p class="ck-meta">Tardás 3 minutos. No pedimos tu mail para empezar.</p>
+        <span class="ck-eyebrow">Diagnóstico gratuito</span>
+        <h1 class="ck-h1">¿Tu empresa creció más rápido que tu marca?</h1>
+        <p class="ck-h1-sub">12 señales de que tu presencia digital no está a la altura de tu facturación.</p>
+        <p class="ck-lead">Una checklist honesta para empresas que crecieron de verdad, pero cuya comunicación y presencia digital todavía no acompañaron ese crecimiento.</p>
+        <p class="ck-meta">Al finalizar recibirás una evaluación orientativa y recomendaciones para fortalecer tu presencia digital.</p>
       </header>
 
       <!-- INTRO -->
       <section class="ck-intro">
         <div class="ck-intro-label">Antes de empezar</div>
-        <h2 class="ck-intro-h2">Esto no es un examen. Es un espejo.</h2>
-        <p>Si tu empresa factura bien, ya hiciste lo más difícil: construiste algo que funciona. Pero muchas veces, en ese camino, la marca queda atrás. La comunicación, la web y los canales digitales siguen contando la historia de una empresa más chica de la que hoy sos.</p>
-        <p>No vinimos a decirte qué está mal. Vinimos a ayudarte a ver lo que quizás ya intuías. Marcá las señales que reconozcas, con sinceridad. No hace falta marcarlas todas: con tres o cuatro, ya vale la pena tener una conversación.</p>
+        <h2 class="ck-intro-h2">Algunas señales que vamos a explorar</h2>
+        <ul class="ck-sample-list">
+          <li>Tu web tiene más de 3 años sin actualización.</li>
+          <li>Dependés de recomendaciones para conseguir clientes.</li>
+          <li>Tu propuesta de valor no está clara en menos de 10 segundos.</li>
+          <li>Tu empresa parece más chica de lo que realmente es.</li>
+        </ul>
+        <p>Si algo de esto te suena, seguí. No vinimos a decirte qué está mal — vinimos a ayudarte a ver lo que quizás ya intuías.</p>
+        <p>Marcá las señales que reconozcas con sinceridad. Con tres o cuatro, ya vale la pena tener una conversación.</p>
         <p class="ck-pull">Primero escuchamos. Después preguntamos. Recién ahí, construimos.</p>
       </section>
 
@@ -36,7 +41,7 @@ import ResourceGate from '../../components/ResourceGate.astro';
       <div class="ck-counter" id="ck-counter">
         <span class="ck-counter-txt">Señales que reconocés</span>
         <span class="ck-counter-num"><b id="ck-count">0</b> / 12</span>
-        <button class="ck-jump" id="ck-jump">Ver tu resultado →</button>
+        <button class="ck-jump" id="ck-jump">Ver mi diagnóstico →</button>
       </div>
 
       <!-- SIGNALS -->
@@ -55,16 +60,37 @@ import ResourceGate from '../../components/ResourceGate.astro';
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- EMAIL / DIAGNÓSTICO -->
       <section class="ck-cta">
         <div class="ck-cta-card">
-          <div class="ck-cta-label">El siguiente paso</div>
-          <h2 class="ck-cta-h2">Tomemos un café, aunque sea virtual.</h2>
-          <p>Si reconociste varias señales, no significa que algo esté mal. Significa que hay margen para crecer. Te ofrecemos una consultoría inicial gratuita: sin compromiso, sin presión, sin venderte humo. Una charla para entender tu negocio y mostrarte por dónde empezar.</p>
-          <a class="ck-btn" href="/#contacto">
-            Quiero mi consultoría gratuita
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+          <div class="ck-cta-label">Tu diagnóstico personalizado</div>
+          <h2 class="ck-cta-h2">Tu resultado en tu bandeja de entrada, con ideas concretas para actuar.</h2>
+          <p>Trabajamos con empresas que ya validaron su negocio y necesitan que su marca, comunicación y presencia digital acompañen el nivel que alcanzaron. Si querés recibir tu diagnóstico completo con 3 recomendaciones específicas para tu situación, dejanos tu mail.</p>
+
+          <form class="ck-email-form" id="ck-email-form" novalidate>
+            <div class="ck-form-row">
+              <label class="ck-form-label">
+                <span>Nombre <em>*</em></span>
+                <input type="text" name="name" placeholder="Juan" autocomplete="given-name" required />
+              </label>
+              <label class="ck-form-label">
+                <span>Email <em>*</em></span>
+                <input type="email" name="email" placeholder="hola@empresa.com" autocomplete="email" required />
+              </label>
+            </div>
+            <button type="submit" class="ck-btn" id="ck-form-btn">
+              Enviame mi diagnóstico
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+            <p class="ck-form-note">Prometemos cero spam. Solo criterio.</p>
+          </form>
+
+          <div class="ck-form-ok" id="ck-form-ok" hidden>
+            <div class="ck-form-ok-check">✓</div>
+            <h3>¡Perfecto! Ya enviamos tu diagnóstico.</h3>
+            <p>Revisá tu bandeja de entrada. En unos minutos vas a recibir tu evaluación con recomendaciones concretas para tu situación.</p>
+          </div>
+
           <p class="ck-alt">O escribinos por Instagram <a href="https://instagram.com/sombrerorosastudio" target="_blank" rel="noopener">@sombrerorosastudio</a></p>
         </div>
       </section>
@@ -89,6 +115,8 @@ import ResourceGate from '../../components/ResourceGate.astro';
   }
   #ck-app ::selection { background: var(--rosa); color: var(--black-2); }
   .ck-wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
   .ck-hero { padding: 80px 0 56px; position: relative; overflow: hidden; }
   .ck-hero::after {
     content: ""; position: absolute; inset: 0;
@@ -102,16 +130,34 @@ import ResourceGate from '../../components/ResourceGate.astro';
   .ck-eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--rosa); }
   .ck-h1 {
     font-size: clamp(28px, 5vw, 54px); font-weight: 700; line-height: 1.06;
-    letter-spacing: -.02em; margin: 22px 0 0; color: var(--bone);
+    letter-spacing: -.02em; margin: 22px 0 10px; color: var(--bone);
   }
-  .ck-h1 em { font-style: italic; font-weight: 600; color: var(--rosa); }
-  .ck-lead { margin-top: 22px; font-size: clamp(15px, 2vw, 18px); font-weight: 300; color: rgba(242,242,240,.62); max-width: 54ch; line-height: 1.65; }
-  .ck-meta { margin-top: 28px; font-size: 13px; letter-spacing: .04em; color: rgba(242,242,240,.5); }
+  .ck-h1-sub {
+    font-size: clamp(16px, 2.2vw, 20px); font-weight: 300; color: var(--rosa-300);
+    line-height: 1.4; margin-bottom: 20px; font-style: italic;
+  }
+  .ck-lead { font-size: clamp(15px, 2vw, 17px); font-weight: 300; color: rgba(242,242,240,.62); max-width: 54ch; line-height: 1.7; }
+  .ck-meta { margin-top: 20px; font-size: 13px; letter-spacing: .02em; color: rgba(242,242,240,.45); border-left: 2px solid rgba(213,132,142,.4); padding-left: 12px; }
+
+  /* Intro */
   .ck-intro { padding: 8px 0; }
   .ck-intro-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa-300); margin-bottom: 14px; }
   .ck-intro-h2 { font-size: clamp(20px, 2.8vw, 28px); font-weight: 600; letter-spacing: -.01em; color: var(--bone); line-height: 1.2; margin-bottom: 18px; }
+  .ck-sample-list {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 24px; padding: 20px 24px;
+    background: rgba(213,132,142,.06); border: 1px solid rgba(213,132,142,.15);
+    border-radius: 12px;
+  }
+  .ck-sample-list li {
+    font-size: 15px; font-weight: 300; color: rgba(242,242,240,.75);
+    display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;
+  }
+  .ck-sample-list li::before { content: '•'; color: var(--rosa); font-size: 16px; flex-shrink: 0; line-height: 1.5; }
   #ck-app .ck-intro p { font-size: 16px; font-weight: 300; color: rgba(242,242,240,.62); margin-bottom: 16px; max-width: 62ch; line-height: 1.7; }
   .ck-pull { font-style: italic; font-size: clamp(16px, 2.2vw, 19px); color: var(--rosa) !important; border-left: 2px solid var(--rosa); padding-left: 18px; margin: 26px 0 8px !important; }
+
+  /* Counter */
   .ck-counter {
     position: sticky; top: 73px; z-index: 100; margin: 40px 0 8px;
     background: rgba(11,11,11,.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
@@ -129,6 +175,8 @@ import ResourceGate from '../../components/ResourceGate.astro';
   }
   .ck-jump.show { opacity: 1; pointer-events: auto; }
   .ck-jump:hover { color: var(--rosa-300); }
+
+  /* Signals / Blocks */
   .ck-signals { padding: 18px 0 8px; }
   .ck-block { margin-bottom: 36px; }
   .ck-block-head {
@@ -162,6 +210,8 @@ import ResourceGate from '../../components/ResourceGate.astro';
   .ck-signal p { font-size: 14px; font-weight: 300; color: rgba(242,242,240,.6); line-height: 1.6; margin-bottom: 6px; }
   .ck-signal p:last-child { margin-bottom: 0; }
   .ck-signal .ck-tell { color: var(--rosa-300); font-style: italic; }
+
+  /* Result */
   .ck-result { padding: 48px 0 8px; }
   .ck-result-card { background: var(--bone); color: var(--ink); border-radius: 22px; padding: clamp(28px, 5vw, 48px); }
   .ck-result-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa-600); margin-bottom: 10px; }
@@ -170,7 +220,9 @@ import ResourceGate from '../../components/ResourceGate.astro';
   .ck-big-denom { font-size: .4em; color: rgba(64,63,63,.6); font-weight: 600; }
   .ck-verdict { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e9e8e3; }
   .ck-verdict h3 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
-  .ck-verdict p { font-size: 15px; color: var(--ink); font-weight: 300; line-height: 1.6; }
+  .ck-verdict p { font-size: 15px; color: var(--ink); font-weight: 300; line-height: 1.65; }
+
+  /* CTA / Email form */
   .ck-cta { padding: 36px 0 0; }
   .ck-cta-card {
     background: #111; border: 1px solid rgba(242,242,240,.1);
@@ -183,22 +235,50 @@ import ResourceGate from '../../components/ResourceGate.astro';
   }
   .ck-cta-label { font-size: 12px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--rosa); margin-bottom: 12px; }
   .ck-cta-h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 700; color: var(--bone); letter-spacing: -.02em; line-height: 1.12; margin-bottom: 16px; }
-  .ck-cta-card p { font-size: 16px; font-weight: 300; color: rgba(242,242,240,.62); line-height: 1.65; max-width: 56ch; margin-bottom: 28px; }
+  .ck-cta-card > p { font-size: 15px; font-weight: 300; color: rgba(242,242,240,.62); line-height: 1.65; max-width: 56ch; margin-bottom: 28px; }
+
+  /* Email form */
+  .ck-email-form { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 1; }
+  .ck-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .ck-form-label { display: flex; flex-direction: column; gap: 5px; }
+  .ck-form-label span { font-size: 12px; font-weight: 600; color: rgba(242,242,240,.7); letter-spacing: .02em; }
+  .ck-form-label span em { color: var(--rosa); font-style: normal; }
+  .ck-form-label input {
+    border: 1.5px solid rgba(242,242,240,.15); border-radius: 10px;
+    padding: 11px 14px; font-size: 14px; font-family: inherit;
+    color: var(--bone); background: rgba(242,242,240,.06); outline: none;
+    transition: border-color .2s, background .2s;
+  }
+  .ck-form-label input:focus { border-color: var(--rosa); background: rgba(213,132,142,.08); }
+  .ck-form-label input.ck-err { border-color: #d44; }
+  .ck-form-label input::placeholder { opacity: .35; }
   .ck-btn {
     display: inline-flex; align-items: center; gap: 9px;
     background: var(--rosa-600); color: #fff; font-weight: 600; font-size: 15px;
-    padding: 14px 24px; border-radius: 14px; text-decoration: none;
+    padding: 14px 24px; border-radius: 14px; border: none; cursor: pointer;
+    font-family: inherit; text-decoration: none;
     transition: transform .25s, box-shadow .25s, background .25s;
-    position: relative; z-index: 1;
+    position: relative; z-index: 1; align-self: flex-start;
   }
-  .ck-btn:hover { background: var(--rosa); transform: translateY(-2px); box-shadow: 0 18px 40px -16px rgba(213,132,142,.7); }
-  .ck-alt { margin-top: 18px; font-size: 14px; color: rgba(242,242,240,.62); margin-bottom: 0 !important; }
+  .ck-btn:hover:not(:disabled) { background: var(--rosa); transform: translateY(-2px); box-shadow: 0 18px 40px -16px rgba(213,132,142,.7); }
+  .ck-btn:disabled { opacity: .6; cursor: not-allowed; }
+  .ck-form-note { font-size: 11px; color: rgba(242,242,240,.35); line-height: 1.5; }
+
+  /* Form success */
+  .ck-form-ok { text-align: center; padding: 24px 0 8px; }
+  .ck-form-ok-check { font-size: 44px; line-height: 1; color: var(--rosa); margin-bottom: 12px; }
+  .ck-form-ok h3 { font-size: 20px; font-weight: 700; color: var(--bone); margin-bottom: 8px; }
+  .ck-form-ok p { font-size: 15px; font-weight: 300; color: rgba(242,242,240,.62); line-height: 1.65; }
+
+  .ck-alt { margin-top: 20px; font-size: 14px; color: rgba(242,242,240,.5); position: relative; z-index: 1; }
   .ck-alt a { color: var(--rosa); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
   .ck-alt a:hover { border-bottom-color: var(--rosa); }
+
   @media (max-width: 560px) {
     .ck-counter { padding: 11px 18px; }
     .ck-counter-txt { display: none; }
     .ck-signal { grid-template-columns: 28px 1fr; gap: 14px; padding: 18px; }
+    .ck-form-row { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -254,16 +334,17 @@ import ResourceGate from '../../components/ResourceGate.astro';
   ];
 
   const VERDICTS: Record<string, [string, string]> = {
-    low:  ["Vas bien encaminado","Tu marca acompaña tu crecimiento. Vale revisar los detalles para no perder esa ventaja con el tiempo."],
-    mid:  ["Hay una brecha que cerrar","Tu negocio creció más rápido que tu marca. Es el momento ideal para alinearlas, antes de que esa distancia cueste más."],
-    high: ["Tu marca te está costando plata","Cada señal es una oportunidad que se escapa. La buena noticia: todo esto se puede resolver, y con orden."],
-    zero: ["Marcá las señales de arriba","A medida que vayas marcando, acá te mostramos qué significa tu resultado."],
+    zero: ["Marcá las señales de arriba", "A medida que vayas marcando, acá te mostramos qué significa tu resultado."],
+    low:  ["Tu presencia está razonablemente alineada con tu crecimiento.", "Hay oportunidades puntuales de mejora, pero no aparece una brecha importante entre lo que construiste y cómo se percibe desde afuera. Vale la pena revisar los detalles para no perder esa ventaja."],
+    mid:  ["Hay una brecha que está creciendo.", "Tu empresa creció más rápido que su comunicación. Esto suele traducirse en pérdida de oportunidades, menor percepción de valor y más dificultad para diferenciarte. Es el momento ideal para alinear ambas."],
+    high: ["Tu marca no refleja la empresa que construiste.", "Probablemente estés transmitiendo una imagen menor a tu realidad. Esto impacta en ventas, en cómo te ven los clientes nuevos y en la capacidad de posicionarte donde realmente querés llegar."],
+    top:  ["Estás operando con una identidad que ya no te representa.", "Tu negocio evolucionó, pero tu presencia digital sigue contando una historia de hace años. Acá hay una oportunidad de transformación importante — y vale la pena tomarla con orden y con criterio."],
   };
 
   const checkSvg = '<svg class="ck-check-svg" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const root = document.getElementById('ck-signals')!;
   let checked = 0;
-
+  const checkedSignals: string[] = [];
   const blockCounters: { el: HTMLElement; count: number; total: number }[] = [];
 
   GROUPS.forEach((g, gi) => {
@@ -293,11 +374,14 @@ import ResourceGate from '../../components/ResourceGate.astro';
       li.setAttribute('aria-pressed', 'false');
       li.innerHTML = '<span class="ck-box">' + checkSvg + '</span>' +
         '<div><h3>' + s[0] + '</h3><p>' + s[1] + '</p><p class="ck-tell">' + s[2] + '</p></div>';
+
       const toggle = () => {
         li.classList.toggle('ck-checked');
         const on = li.classList.contains('ck-checked');
         li.setAttribute('aria-pressed', String(on));
         checked += on ? 1 : -1;
+        if (on) checkedSignals.push(s[0]);
+        else checkedSignals.splice(checkedSignals.indexOf(s[0]), 1);
         const bc = blockCounters[gi];
         bc.count += on ? 1 : -1;
         bc.el.innerHTML = '<b>' + bc.count + '</b>/' + bc.total;
@@ -314,22 +398,26 @@ import ResourceGate from '../../components/ResourceGate.astro';
     root.appendChild(block);
   });
 
-  const countEl = document.getElementById('ck-count')!;
-  const rcountEl = document.getElementById('ck-rcount')!;
-  const vTitle = document.getElementById('ck-verdict-title')!;
-  const vText = document.getElementById('ck-verdict-text')!;
-  const jump = document.getElementById('ck-jump')! as HTMLButtonElement;
+  const countEl    = document.getElementById('ck-count')!;
+  const rcountEl   = document.getElementById('ck-rcount')!;
+  const vTitle     = document.getElementById('ck-verdict-title')!;
+  const vText      = document.getElementById('ck-verdict-text')!;
+  const jump       = document.getElementById('ck-jump')! as HTMLButtonElement;
+
+  function getVerdict(): [string, string] {
+    if (checked === 0) return VERDICTS.zero;
+    if (checked <= 2)  return VERDICTS.low;
+    if (checked <= 5)  return VERDICTS.mid;
+    if (checked <= 8)  return VERDICTS.high;
+    return VERDICTS.top;
+  }
 
   function update() {
-    countEl.textContent = String(checked);
+    countEl.textContent  = String(checked);
     rcountEl.textContent = String(checked);
-    let v: [string, string];
-    if (checked === 0) v = VERDICTS.zero;
-    else if (checked <= 2) v = VERDICTS.low;
-    else if (checked <= 6) v = VERDICTS.mid;
-    else v = VERDICTS.high;
+    const v = getVerdict();
     vTitle.textContent = v[0];
-    vText.textContent = v[1];
+    vText.textContent  = v[1];
     jump.classList.toggle('show', checked > 0);
   }
 
@@ -337,10 +425,77 @@ import ResourceGate from '../../components/ResourceGate.astro';
     document.getElementById('ck-result')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
+  /* ── Email form ── */
+  const emailForm = document.getElementById('ck-email-form')! as HTMLFormElement;
+  const formBtn   = document.getElementById('ck-form-btn')! as HTMLButtonElement;
+  const formOk    = document.getElementById('ck-form-ok')!;
+
+  emailForm.querySelectorAll('input').forEach(inp =>
+    inp.addEventListener('input', () => inp.classList.remove('ck-err'))
+  );
+
+  emailForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nameEl  = emailForm.elements.namedItem('name')  as HTMLInputElement;
+    const emailEl = emailForm.elements.namedItem('email') as HTMLInputElement;
+
+    let valid = true;
+    [nameEl, emailEl].forEach(el => {
+      if (!el.value.trim()) { el.classList.add('ck-err'); valid = false; }
+    });
+    if (!valid) return;
+
+    formBtn.disabled   = true;
+    formBtn.textContent = 'Enviando…';
+
+    const [v0, v1] = getVerdict();
+    const perBlock = blockCounters
+      .map((bc, i) => GROUPS[i].title + ': ' + bc.count + '/' + bc.total)
+      .join(', ');
+    const signalList = checkedSignals.length
+      ? checkedSignals.map(s => '• ' + s).join('\n')
+      : '(ninguna marcada)';
+
+    const diagMsg =
+      `CHECKLIST — 12 SEÑALES\n` +
+      `Resultado: ${checked}/12 — ${v0}\n\n` +
+      `Por bloque: ${perBlock}\n\n` +
+      `Señales marcadas:\n${signalList}`;
+
+    try {
+      const res = await fetch(
+        'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [
+              { name: 'firstname', value: nameEl.value.trim() },
+              { name: 'email',     value: emailEl.value.trim() },
+              { name: 'message',   value: diagMsg },
+            ],
+            context: { pageUri: window.location.href, pageName: document.title }
+          })
+        }
+      );
+
+      if (res.ok) {
+        emailForm.hidden = true;
+        formOk.hidden    = false;
+      } else {
+        throw new Error();
+      }
+    } catch {
+      formBtn.disabled    = false;
+      formBtn.textContent = 'Enviame mi diagnóstico';
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    }
+  });
+
+  /* ── Progress bar ── */
   const prog = document.getElementById('ck-progress')! as HTMLElement;
   window.addEventListener('scroll', () => {
     const h = document.documentElement;
-    const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
-    prog.style.width = pct + '%';
+    prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
   }, { passive: true });
 </script>
