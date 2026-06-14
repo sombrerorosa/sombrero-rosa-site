@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import ResourceGate from '../../components/ResourceGate.astro';
 ---
 <Base
   title="Las 7 Preguntas del Principito — Sombrero Rosa"
@@ -13,7 +12,6 @@ import ResourceGate from '../../components/ResourceGate.astro';
   </Fragment>
 
   <Header />
-  <ResourceGate resource="Las 7 Preguntas del Principito" />
 
   <div id="p7-progress-bar"></div>
   <nav id="p7-nav-dots" aria-label="Navegación por secciones"></nav>
@@ -203,13 +201,29 @@ import ResourceGate from '../../components/ResourceGate.astro';
         </p>
         <div class="p7-cta-box" style="text-align:left;">
           <div class="p7-cta-title">El siguiente paso</div>
-          <p class="p7-cta-text">Compartinos tus respuestas y agendamos una llamada de 30 minutos para explorar juntos cómo ayudarte a encontrar la voz de tu marca.</p>
-          <ul class="p7-check-list" style="margin-bottom:20px;">
-            <li>Sin compromiso ni presión</li>
-            <li>La llamada es exploratoria — para los dos</li>
-            <li>Si hay fit, te contamos cómo trabajamos</li>
-          </ul>
-          <a href="/#contacto" class="p7-btn-start">Hablar con el equipo →</a>
+          <p class="p7-cta-text">Dejanos tu mail y te enviamos un análisis orientativo basado en tus respuestas, con ideas concretas para encontrar la voz de tu marca. Sin compromiso.</p>
+          <form id="p7-submit-form" novalidate style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <label style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Nombre *</span>
+                <input type="text" name="p7name" placeholder="Juan" autocomplete="given-name" required
+                  style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Email *</span>
+                <input type="email" name="p7email" placeholder="hola@empresa.com" autocomplete="email" required
+                  style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
+              </label>
+            </div>
+            <button type="submit" id="p7-submit-btn" class="p7-btn-start" style="align-self:flex-start;">
+              Enviame el análisis →
+            </button>
+            <p style="font-size:11px;opacity:.35;line-height:1.5;">Prometemos cero spam. Solo criterio.</p>
+          </form>
+          <div id="p7-submit-ok" hidden style="text-align:center;padding:16px 0;">
+            <div style="font-size:40px;color:var(--rosa);margin-bottom:10px;">✓</div>
+            <p style="font-size:16px;font-weight:500;color:#F7F4F0;">¡Listo! Revisá tu bandeja de entrada.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -411,4 +425,59 @@ import ResourceGate from '../../components/ResourceGate.astro';
   }, { threshold: 0.35 });
 
   sections.forEach(sec => observer.observe(sec));
+
+  /* ── Submit form ── */
+  const p7form = document.getElementById('p7-submit-form') as HTMLFormElement | null;
+  const p7btn  = document.getElementById('p7-submit-btn') as HTMLButtonElement | null;
+  const p7ok   = document.getElementById('p7-submit-ok');
+
+  p7form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const nameEl  = p7form.elements.namedItem('p7name')  as HTMLInputElement;
+    const emailEl = p7form.elements.namedItem('p7email') as HTMLInputElement;
+    if (!nameEl.value.trim() || !emailEl.value.trim()) return;
+
+    if (p7btn) { p7btn.textContent = 'Enviando…'; p7btn.style.pointerEvents = 'none'; }
+
+    const labels = ['¿Qué tiene tu marca que ninguna otra puede copiar exactamente?',
+      '¿A quién le estás hablando de verdad?',
+      '¿Qué problema concreto resolvés?',
+      '¿Qué querés que sienta alguien cuando interactúa con tu marca?',
+      '¿Qué NO querés que se asocie con tu marca?',
+      '¿Cómo te imaginás tu marca dentro de 3 años?',
+      '¿Qué deseás vos de tu marca?',
+      'Pregunta opcional'];
+
+    const textareas = Array.from(document.querySelectorAll('#p7-app .p7-textarea')) as HTMLTextAreaElement[];
+    const answers = textareas.map((ta, i) =>
+      (labels[i] ? labels[i] + ':\n' : 'Extra:\n') + (ta.value.trim() || '(sin respuesta)')
+    ).join('\n\n');
+
+    const msg = `7 PREGUNTAS DEL PRINCIPITO\n\n${answers}`;
+
+    try {
+      const res = await fetch(
+        'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [
+              { name: 'firstname', value: nameEl.value.trim() },
+              { name: 'email',     value: emailEl.value.trim() },
+              { name: 'message',   value: msg },
+            ],
+            context: { pageUri: window.location.href, pageName: document.title }
+          })
+        }
+      );
+      if (res.ok) {
+        if (p7form) p7form.hidden = true;
+        if (p7ok)   p7ok.hidden   = false;
+      } else { throw new Error(); }
+    } catch {
+      if (p7btn) { p7btn.textContent = 'Enviame el análisis →'; p7btn.style.pointerEvents = ''; }
+      alert('Hubo un error al enviar. Por favor intentá de nuevo.');
+    }
+  });
 </script>
