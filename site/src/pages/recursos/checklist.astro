@@ -500,12 +500,17 @@ import Footer from '../../components/Footer.astro';
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             fields: [
-              { name: 'firstname', value: nameEl.value.trim() },
-              { name: 'email',     value: emailEl.value.trim() },
-              { name: 'phone',     value: phoneEl.value.trim() },
-              { name: 'company',   value: companyEl.value.trim() },
-              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
-              { name: 'message',   value: diagMsg },
+              { name: 'firstname',   value: nameEl.value.trim() },
+              { name: 'email',       value: emailEl.value.trim() },
+              { name: 'mobilephone', value: phoneEl.value.trim() },
+              { name: 'company',     value: companyEl.value.trim() },
+              ...(websiteEl.value.trim() ? [{
+                name: 'website',
+                value: /^https?:\/\//i.test(websiteEl.value.trim())
+                  ? websiteEl.value.trim()
+                  : 'https://' + websiteEl.value.trim()
+              }] : []),
+              { name: 'message',     value: diagMsg },
             ],
             context: { pageUri: window.location.href, pageName: document.title }
           })
