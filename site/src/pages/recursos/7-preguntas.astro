@@ -499,24 +499,20 @@ import Footer from '../../components/Footer.astro';
     const msg = `7 PREGUNTAS DEL PRINCIPITO\n\n${answers}`;
 
     try {
-      const res = await fetch(
-        'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fields: [
-              { name: 'firstname', value: nameEl.value.trim() },
-              { name: 'email',     value: emailEl.value.trim() },
-              { name: 'phone',     value: phoneEl.value.trim() },
-              { name: 'company',   value: companyEl.value.trim() },
-              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
-              { name: 'message',   value: msg },
-            ],
-            context: { pageUri: window.location.href, pageName: document.title }
-          })
-        }
-      );
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstname: nameEl.value.trim(),
+          email:     emailEl.value.trim(),
+          phone:     phoneEl.value.trim(),
+          company:   companyEl.value.trim(),
+          website:   websiteEl.value.trim(),
+          message:   msg,
+          pageUri:   window.location.href,
+          pageName:  document.title,
+        })
+      });
       if (res.ok) {
         if (p7form) p7form.hidden = true;
         if (p7ok)   p7ok.hidden   = false;
