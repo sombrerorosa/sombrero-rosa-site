@@ -203,7 +203,7 @@ import Footer from '../../components/Footer.astro';
           <div class="p7-cta-title">El siguiente paso</div>
           <p class="p7-cta-text">Dejanos tu mail y te enviamos un análisis orientativo basado en tus respuestas, con ideas concretas para encontrar la voz de tu marca. Sin compromiso.</p>
           <form id="p7-submit-form" novalidate style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="p7-form-row">
               <label style="display:flex;flex-direction:column;gap:4px;">
                 <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Nombre *</span>
                 <input type="text" name="p7name" placeholder="Juan" autocomplete="given-name" required
@@ -215,7 +215,7 @@ import Footer from '../../components/Footer.astro';
                   style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
               </label>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="p7-form-row">
               <label style="display:flex;flex-direction:column;gap:4px;">
                 <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Celular *</span>
                 <input type="tel" name="p7phone" placeholder="+54 11 1234-5678" autocomplete="tel" required
@@ -251,6 +251,14 @@ import Footer from '../../components/Footer.astro';
 
 <style is:global>
   /* ── 7 PREGUNTAS PAGE ── */
+  .p7-form-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 640px) {
+    .p7-form-row { grid-template-columns: 1fr; }
+    #p7-submit-btn { width: 100%; text-align: center; }
+  }
+
   #p7-progress-bar {
     position: fixed; top: 73px; left: 0; height: 3px;
     background: linear-gradient(90deg, var(--rosa), #C9A84C);
