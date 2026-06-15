@@ -215,6 +215,23 @@ import Footer from '../../components/Footer.astro';
                   style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
               </label>
             </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+              <label style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Celular *</span>
+                <input type="tel" name="p7phone" placeholder="+54 11 1234-5678" autocomplete="tel" required
+                  style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
+              </label>
+              <label style="display:flex;flex-direction:column;gap:4px;">
+                <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Empresa *</span>
+                <input type="text" name="p7company" placeholder="Mi Empresa SA" autocomplete="organization" required
+                  style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
+              </label>
+            </div>
+            <label style="display:flex;flex-direction:column;gap:4px;">
+              <span style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.6;">Sitio web</span>
+              <input type="url" name="p7website" placeholder="www.miempresa.com" autocomplete="url"
+                style="background:rgba(247,244,240,.06);border:1.5px solid rgba(247,244,240,.15);border-radius:8px;padding:10px 13px;font-size:14px;font-family:inherit;color:#F7F4F0;outline:none;" />
+            </label>
             <button type="submit" id="p7-submit-btn" class="p7-btn-start" style="align-self:flex-start;">
               Enviame el análisis →
             </button>
@@ -433,9 +450,35 @@ import Footer from '../../components/Footer.astro';
 
   p7form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const nameEl  = p7form.elements.namedItem('p7name')  as HTMLInputElement;
-    const emailEl = p7form.elements.namedItem('p7email') as HTMLInputElement;
-    if (!nameEl.value.trim() || !emailEl.value.trim()) return;
+    const nameEl    = p7form.elements.namedItem('p7name')    as HTMLInputElement;
+    const emailEl   = p7form.elements.namedItem('p7email')   as HTMLInputElement;
+    const phoneEl   = p7form.elements.namedItem('p7phone')   as HTMLInputElement;
+    const companyEl = p7form.elements.namedItem('p7company') as HTMLInputElement;
+    const websiteEl = p7form.elements.namedItem('p7website') as HTMLInputElement;
+
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRx = /^[\+]?[\d\s\-\(\)]{7,20}$/;
+    const urlRx   = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-./?%&=]*)?$/;
+
+    const errStyle = '1.5px solid #d44';
+    const okStyle  = '1.5px solid rgba(247,244,240,.15)';
+    let valid = true;
+
+    [nameEl, emailEl, phoneEl, companyEl].forEach(el => {
+      const empty = !el.value.trim();
+      el.style.border = empty ? errStyle : okStyle;
+      if (empty) valid = false;
+    });
+    if (emailEl.value.trim() && !emailRx.test(emailEl.value.trim())) {
+      emailEl.style.border = errStyle; valid = false;
+    }
+    if (phoneEl.value.trim() && !phoneRx.test(phoneEl.value.trim())) {
+      phoneEl.style.border = errStyle; valid = false;
+    }
+    if (websiteEl.value.trim() && !urlRx.test(websiteEl.value.trim())) {
+      websiteEl.style.border = errStyle; valid = false;
+    }
+    if (!valid) return;
 
     if (p7btn) { p7btn.textContent = 'Enviando…'; p7btn.style.pointerEvents = 'none'; }
 
@@ -465,6 +508,9 @@ import Footer from '../../components/Footer.astro';
             fields: [
               { name: 'firstname', value: nameEl.value.trim() },
               { name: 'email',     value: emailEl.value.trim() },
+              { name: 'phone',     value: phoneEl.value.trim() },
+              { name: 'company',   value: companyEl.value.trim() },
+              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
               { name: 'message',   value: msg },
             ],
             context: { pageUri: window.location.href, pageName: document.title }
