@@ -1,5 +1,10 @@
 const HS_API = 'https://api.hubapi.com';
 
+const CORS = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+};
+
 async function upsertContact(token, props) {
   const res = await fetch(`${HS_API}/crm/v3/objects/contacts/batch/upsert`, {
     method: 'POST',
@@ -9,32 +14,8 @@ async function upsertContact(token, props) {
     }),
   });
   if (!res.ok) throw new Error(`Contact upsert failed: ${await res.text()}`);
-  const data = await res.json();
-  return data.results?.[0]?.id;
+  return res.json();
 }
-
-async function createNote(token, contactId, html) {
-  const payload = {
-    properties: {
-      hs_note_body: html,
-      hs_timestamp: Date.now().toString(),
-    },
-    associations: contactId
-      ? [{ to: { id: contactId }, types: [{ associationCategory: 'HUBSPOT_DEFINED', associationTypeId: 202 }] }]
-      : [],
-  };
-  const res = await fetch(`${HS_API}/crm/v3/objects/notes`, {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-  return res.ok;
-}
-
-const CORS = {
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
-};
 
 export async function onRequestPost({ request, env }) {
   const token = env.HUBSPOT_TOKEN;
@@ -51,31 +32,19 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400, headers: CORS });
   }
 
-  try {
-    const contactProps = {
-      firstname,
-      email,
-      ...(phone   && { phone }),
-      ...(company && { company }),
-      ...(website && { website }),
-    };
+  const source = pageName ? `[${pageName}] ` : '';
+  const contactProps = {
+    firstname,
+    email,
+    ...(phone   && { phone }),
+    ...(company && { company }),
+    ...(website && { website }),
+    ...(message && { message: source + message }),
+  };
 
-    const contactId = await upsertContact(token, contactProps);
+  await upsertContact(token, contactProps);
 
-    const safeMsg = (message || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const noteHtml = [
-      `<p><strong>Recurso:</strong> ${pageName || ''}</p>`,
-      `<p><strong>URL:</strong> ${pageUri || ''}</p>`,
-      `<hr>`,
-      `<pre style="white-space:pre-wrap;font-size:13px">${safeMsg}</pre>`,
-    ].join('\n');
-
-    await createNote(token, contactId, noteHtml);
-
-    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: CORS });
-  } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: CORS });
-  }
+  return new Response(JSON.stringify({ ok: true }), { status: 200, headers: CORS });
 }
 
 export function onRequestOptions() {
