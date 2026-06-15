@@ -506,18 +506,23 @@ import Footer from '../../components/Footer.astro';
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             fields: [
-              { name: 'firstname', value: nameEl.value.trim() },
-              { name: 'email',     value: emailEl.value.trim() },
-              { name: 'phone',     value: phoneEl.value.trim() },
-              { name: 'company',   value: companyEl.value.trim() },
-              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
-              { name: 'message',   value: msg },
+              { name: 'firstname',   value: nameEl.value.trim() },
+              { name: 'email',       value: emailEl.value.trim() },
+              { name: 'mobilephone', value: phoneEl.value.trim() },
+              { name: 'company',     value: companyEl.value.trim() },
+              ...(websiteEl.value.trim() ? [{
+                name: 'website',
+                value: /^https?:\/\//i.test(websiteEl.value.trim())
+                  ? websiteEl.value.trim()
+                  : 'https://' + websiteEl.value.trim()
+              }] : []),
+              { name: 'message',     value: msg },
             ],
             context: { pageUri: window.location.href, pageName: document.title }
           })
       });
       if (res.ok) {
-        if (p7form) p7form.hidden = true;
+        if (p7form) p7form.style.display = 'none';
         if (p7ok)   p7ok.hidden   = false;
       } else { throw new Error(); }
       if (p7form) p7form.style.display = 'none';
