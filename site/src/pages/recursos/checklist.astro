@@ -78,6 +78,20 @@ import Footer from '../../components/Footer.astro';
                 <input type="email" name="email" placeholder="hola@empresa.com" autocomplete="email" required />
               </label>
             </div>
+            <div class="ck-form-row">
+              <label class="ck-form-label">
+                <span>Celular <em>*</em></span>
+                <input type="tel" name="phone" placeholder="+54 11 1234-5678" autocomplete="tel" required />
+              </label>
+              <label class="ck-form-label">
+                <span>Empresa <em>*</em></span>
+                <input type="text" name="company" placeholder="Mi Empresa SA" autocomplete="organization" required />
+              </label>
+            </div>
+            <label class="ck-form-label">
+              <span>Sitio web</span>
+              <input type="url" name="website" placeholder="www.miempresa.com" autocomplete="url" />
+            </label>
             <button type="submit" class="ck-btn" id="ck-form-btn">
               Enviame mi diagnóstico
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -436,13 +450,29 @@ import Footer from '../../components/Footer.astro';
 
   emailForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const nameEl  = emailForm.elements.namedItem('name')  as HTMLInputElement;
-    const emailEl = emailForm.elements.namedItem('email') as HTMLInputElement;
+    const nameEl    = emailForm.elements.namedItem('name')    as HTMLInputElement;
+    const emailEl   = emailForm.elements.namedItem('email')   as HTMLInputElement;
+    const phoneEl   = emailForm.elements.namedItem('phone')   as HTMLInputElement;
+    const companyEl = emailForm.elements.namedItem('company') as HTMLInputElement;
+    const websiteEl = emailForm.elements.namedItem('website') as HTMLInputElement;
+
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRx = /^[\+]?[\d\s\-\(\)]{7,20}$/;
+    const urlRx   = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-./?%&=]*)?$/;
 
     let valid = true;
-    [nameEl, emailEl].forEach(el => {
+    [nameEl, emailEl, phoneEl, companyEl].forEach(el => {
       if (!el.value.trim()) { el.classList.add('ck-err'); valid = false; }
     });
+    if (emailEl.value.trim() && !emailRx.test(emailEl.value.trim())) {
+      emailEl.classList.add('ck-err'); valid = false;
+    }
+    if (phoneEl.value.trim() && !phoneRx.test(phoneEl.value.trim())) {
+      phoneEl.classList.add('ck-err'); valid = false;
+    }
+    if (websiteEl.value.trim() && !urlRx.test(websiteEl.value.trim())) {
+      websiteEl.classList.add('ck-err'); valid = false;
+    }
     if (!valid) return;
 
     formBtn.disabled   = true;
@@ -472,6 +502,9 @@ import Footer from '../../components/Footer.astro';
             fields: [
               { name: 'firstname', value: nameEl.value.trim() },
               { name: 'email',     value: emailEl.value.trim() },
+              { name: 'phone',     value: phoneEl.value.trim() },
+              { name: 'company',   value: companyEl.value.trim() },
+              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
               { name: 'message',   value: diagMsg },
             ],
             context: { pageUri: window.location.href, pageName: document.title }
