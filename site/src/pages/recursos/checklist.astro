@@ -101,8 +101,8 @@ import Footer from '../../components/Footer.astro';
 
           <div class="ck-form-ok" id="ck-form-ok" hidden>
             <div class="ck-form-ok-check">✓</div>
-            <h3>¡Perfecto! Ya enviamos tu diagnóstico.</h3>
-            <p>Revisá tu bandeja de entrada. En unos minutos vas a recibir tu evaluación con recomendaciones concretas para tu situación.</p>
+            <h3>¡Perfecto! Recibimos tu información.</h3>
+            <p>En los próximos días te enviaremos tu evaluación con recomendaciones concretas para tu situación.</p>
           </div>
 
           <p class="ck-alt">O escribinos por Instagram <a href="https://instagram.com/sombrerorosastudio" target="_blank" rel="noopener">@sombrerorosastudio</a></p>
@@ -493,24 +493,31 @@ import Footer from '../../components/Footer.astro';
       `Señales marcadas:\n${signalList}`;
 
     try {
-      const res = await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstname: nameEl.value.trim(),
-          email:     emailEl.value.trim(),
-          phone:     phoneEl.value.trim(),
-          company:   companyEl.value.trim(),
-          website:   websiteEl.value.trim(),
-          message:   diagMsg,
-          pageUri:   window.location.href,
-          pageName:  document.title,
-        })
-      });
+      const res = await fetch(
+        'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: [
+              { name: 'firstname', value: nameEl.value.trim() },
+              { name: 'email',     value: emailEl.value.trim() },
+              { name: 'phone',     value: phoneEl.value.trim() },
+              { name: 'company',   value: companyEl.value.trim() },
+              ...(websiteEl.value.trim() ? [{ name: 'website', value: websiteEl.value.trim() }] : []),
+              { name: 'message',   value: diagMsg },
+            ],
+            context: { pageUri: window.location.href, pageName: document.title }
+          })
+        }
+      );
 
       if (res.ok) {
-        emailForm.hidden = true;
-        formOk.hidden    = false;
+        emailForm.style.display = 'none';
+        formOk.removeAttribute('hidden');
+        if (typeof (window as any).fbq === 'function') {
+          (window as any).fbq('track', 'Lead', { content_name: 'Checklist 12 señales' });
+        }
       } else {
         throw new Error();
       }
