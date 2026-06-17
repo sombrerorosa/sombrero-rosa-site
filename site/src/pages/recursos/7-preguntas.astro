@@ -536,7 +536,7 @@ import Footer from '../../components/Footer.astro';
       if (p7form) p7form.style.display = 'none';
       if (p7ok)   p7ok.removeAttribute('hidden');
       if (typeof (window as any).fbq === 'function') {
-        (window as any).fbq('track', 'Lead', { content_name: '7 preguntas del Principito' });
+        (window as any).fbq('track', 'CompleteRegistration', { content_name: '7 preguntas del Principito' });
       }
     } catch {
       if (p7btn) { p7btn.textContent = 'Enviame el análisis →'; p7btn.style.pointerEvents = ''; }
