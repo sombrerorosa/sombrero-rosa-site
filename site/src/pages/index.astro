@@ -8,42 +8,40 @@ const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
 const _hero = page?.hero;
 const hero = {
-  pill:         _hero?.pill         || 'Agencia boutique de marketing full service',
-  headline:     _hero?.headline     || 'Creer, Crear & Crecer',
-  lead:         _hero?.lead         || 'Hacemos crecer tu marca, negocio y relación con clientes a través de estrategias de marketing full service que generan resultados reales y medibles.',
-  quote:        _hero?.quote        || '"El mundo te preguntará quién eres. Y si no lo sabes, el mundo te lo dirá."',
-  quoteAuthor:  _hero?.quoteAuthor  || '— Carl Jung',
+  pill:         _hero?.pill         || 'Agencia de marketing full service',
+  headline:     _hero?.headline     || 'Creemos en tu marca. La ayudamos a que el mundo la vea. Y la hacemos crecer.',
+  lead:         _hero?.lead         || 'Primero escuchamos. Después preguntamos. Recién ahí, construimos. Así trabajamos cada marca que pasa por acá.',
+  quote:        _hero?.quote        || '',
+  quoteAuthor:  _hero?.quoteAuthor  || '',
   ctaPrimary:   _hero?.ctaPrimary   || 'Conocer servicios',
   ctaSecondary: _hero?.ctaSecondary || 'Empezar proyecto',
 };
 const _svc = page?.services;
 const services = {
-  title:   _svc?.title   || 'Servicios',
-  lead:    _svc?.lead    || 'Somos una agencia de marketing full service.',
+  eyebrow: _svc?.eyebrow || 'Servicios',
+  title:   _svc?.title   || 'Seis formas de hacer crecer tu marca',
+  lead:    _svc?.lead    || 'Esto es exactamente en lo que te podemos ayudar.',
   ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
   items: _svc?.items?.length ? _svc.items : [
-    { icon: 'user-circle', title: 'Tu marca se conoce', desc: 'Te ayudamos a hacer más conocida tu marca en tu público objetivo.',
-      expandDesc: 'Desarrollamos estrategias integrales de branding y comunicación digital para posicionar tu marca en la mente de tu audiencia ideal.',
-      expandItems: ['Estrategia de marca', 'Redes sociales', 'Generación de contenido', 'Community management', 'Publicidad digital para brand awareness', 'Optimización SEO'] },
-    { icon: 'trending-up', title: 'Tu negocio crece', desc: 'Creamos campañas para atraer nuevos clientes a tu empresa.',
-      expandDesc: 'Implementamos estrategias de performance marketing orientadas a resultados medibles y crecimiento sostenible de tu negocio.',
-      expandItems: ['Performance digital', 'Publicidad en Meta, Google y YouTube', 'Identificación de audiencias', 'Lead nurturing', 'Email Marketing Automatizado', 'CRO (Conversion Rate Optimization)'] },
-    { icon: 'heart', title: 'Te prefieren', desc: 'Te proponemos ideas para encantar a tus clientes y colaboradores.',
-      expandDesc: 'Fortalecemos la relación con tus clientes actuales y optimizamos la experiencia de tu equipo para crear una marca verdaderamente preferida.',
-      expandItems: ['Comunicación digital', 'Optimización de la base de clientes', 'Gestión de Reseñas y Reputación Online', 'Eventos de relacionamiento con clientes', 'Marketing Interno'] },
+    { title: 'Branding',              desc: 'Encontramos lo que ya sos, y le damos forma. Identidad de marca, contenido y redes sociales, sistemas visuales. No corregimos marcas — las descubrimos.' },
+    { title: 'Consultoría',           desc: 'Entendemos tu negocio — y a las personas que lo hacen andar. Estrategia y posicionamiento de marca, más consultoría en dinámica de equipos y liderazgo.' },
+    { title: 'Paid media',            desc: 'Campañas que atraen a quien realmente buscás. Meta, Google y LinkedIn Ads. Segmentación, testing y optimización constante.' },
+    { title: 'SEO y AEO',             desc: 'Que te encuentren cuando te buscan — y cuando le preguntan a una IA. SEO técnico y de contenidos, optimizado para cómo se recomienda hoy.' },
+    { title: 'Desarrollo web',        desc: 'Sitios rápidos, prolijos, que convierten. WordPress especializado, optimización de velocidad, arquitectura pensada para vender.' },
+    { title: 'Automatización con IA', desc: 'Herramientas que te devuelven tiempo, no que te sacan el trato humano. Agentes y flujos con n8n para lo repetitivo, sin perder cercanía.' },
   ],
 };
 const _man = page?.manifesto;
 const manifesto = {
-  title: _man?.title || '¿Por qué nosotros?',
-  lead:  _man?.lead  || 'Combinamos creatividad, tecnología y estrategia para crear experiencias de marca memorables.',
+  eyebrow:      _man?.eyebrow      || 'Cómo trabajamos',
+  title:        _man?.title        || 'No caminamos delante. Caminamos al lado.',
+  lead:         _man?.lead         || 'No llegamos con soluciones antes de entender el problema. Primero escuchamos. Recién ahí, construimos.',
+  trayectoria:  _man?.trayectoria  || 'Más de 15 años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
   items: _man?.items?.length ? _man.items : [
-    { icon: 'target',       title: 'Enfoque estratégico',     desc: 'Desarrollamos estrategias personalizadas basadas en datos y análisis profundo de tu mercado.' },
-    { icon: 'bar-chart-3',  title: 'Resultados medibles',     desc: 'Monitoreamos cada campaña con métricas específicas para asegurar el retorno de tu inversión.' },
-    { icon: 'users',        title: 'Atención personalizada',  desc: 'Como agencia boutique, dedicamos tiempo y recursos específicos a cada uno de nuestros clientes.' },
-    { icon: 'check-circle', title: 'Experiencia comprobada',  desc: 'Más de 15 años ayudando a empresas a crecer a través de estrategias de marketing efectivas.' },
-    { icon: 'shield',       title: 'Compromiso garantizado',  desc: 'Nos comprometemos con los resultados y trabajamos hasta lograr tus objetivos.' },
-    { icon: 'zap',          title: 'Agilidad y flexibilidad', desc: 'Respondemos rápidamente a las oportunidades del mercado y las necesidades de tu negocio.' },
+    { num: '01', title: 'Escuchamos',  desc: 'Las preguntas que nadie te hizo antes. Antes de proponer nada, entendemos tu negocio real. No un brief genérico.' },
+    { num: '02', title: 'Entendemos',  desc: 'No es lo mismo escuchar que entender. Procesamos qué significa lo que nos contaste, en tu contexto, con tu historia.' },
+    { num: '03', title: 'Construimos', desc: 'Estrategia con una razón detrás. Basada en datos reales de tu mercado. Cada decisión se puede explicar con claridad.' },
+    { num: '04', title: 'Medimos',     desc: 'Trabajamos hasta que los resultados se cumplan. Dashboards claros. No soltamos un proyecto a mitad de camino.' },
   ],
 };
 const _tools = page?.tools;
@@ -84,31 +82,15 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
 
     <section class="sr-services" id="servicios">
       <div class="sr-section-head sr-section-head--center" data-animate="up">
-        <div class="sr-section-num">01</div>
+        <div class="sr-section-num">{services.eyebrow}</div>
         <h2 class="sr-section-title sr-section-title--rose">{services.title}</h2>
         <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
       </div>
       <div class="sr-services-grid">
         {(services.items ?? []).map((s: any, i: number) => (
-          <article class="sr-service-card" data-animate={i === 0 ? 'left' : i === 2 ? 'right' : 'up'} style={`--anim-delay:${i * 0.1}s`}>
-            <div class="sr-service-top">
-              <div class={`sr-service-icon${i === 1 ? ' navy' : ''}`}><i data-lucide={s.icon}></i></div>
-              <button class="sr-service-plus" aria-label="Expandir" aria-expanded="false"><i data-lucide="plus"></i></button>
-            </div>
-            <div class="sr-service-clickable">
-              <h3 class="sr-service-title">{s.title}</h3>
-              <p class="sr-service-desc">{s.desc}</p>
-            </div>
-            {(s.expandDesc || s.expandItems?.length) && (
-              <div class="sr-service-expand">
-                {s.expandDesc && <p class="sr-service-expand-desc">{s.expandDesc}</p>}
-                {s.expandItems?.length && (
-                  <ul class="sr-service-expand-list">
-                    {s.expandItems.map((item: string) => <li>{item}</li>)}
-                  </ul>
-                )}
-              </div>
-            )}
+          <article class="sr-service-card" data-animate="up" style={`--anim-delay:${i * 0.07}s`}>
+            <h3 class="sr-service-title">{s.title}</h3>
+            <p class="sr-service-desc">{s.desc}</p>
           </article>
         ))}
       </div>
@@ -136,26 +118,30 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     <section class="sr-manifesto" id="nosotros">
       <div class="sr-manifesto-inner">
         <div class="sr-section-head sr-section-head--center" data-animate="up">
-          <div class="sr-section-num">02</div>
+          <div class="sr-section-num">{manifesto.eyebrow}</div>
           <h2 class="sr-section-title sr-section-title--rose">{manifesto.title}</h2>
           <p class="sr-section-lead sr-section-lead--center">{manifesto.lead}</p>
         </div>
         <div class="sr-manifesto-grid">
           {(manifesto.items ?? []).map((c: any, i: number) => (
-            <article class="sr-manifesto-card" data-animate={i % 3 === 0 ? 'left' : i % 3 === 2 ? 'right' : 'up'} style={`--anim-delay:${(i % 3) * 0.1}s`}>
-              <div class="sr-manifesto-icon"><i data-lucide={c.icon}></i></div>
-              <h3>{c.title}</h3><p>{c.desc}</p>
+            <article class="sr-manifesto-card" data-animate={i % 2 === 0 ? 'left' : 'right'} style={`--anim-delay:${(i % 2) * 0.1}s`}>
+              <div class="sr-manifesto-step-num">{c.num}</div>
+              <h3>{c.title}</h3>
+              <p>{c.desc}</p>
             </article>
           ))}
         </div>
+        {manifesto.trayectoria && (
+          <p class="sr-manifesto-trayectoria" data-animate="up">{manifesto.trayectoria}</p>
+        )}
       </div>
     </section>
 
     <section class="sr-contact" id="contacto">
       <div class="sr-section-head sr-section-head--center" data-animate="up">
-        <div class="sr-section-num">03</div>
+        <div class="sr-section-num">Conversemos</div>
         <h2 class="sr-section-title sr-section-title--rose">Conversemos</h2>
-        <p class="sr-section-lead sr-section-lead--center">Contanos sobre tu proyecto y descubrí cómo podemos ayudarte a hacer crecer tu negocio.</p>
+        <p class="sr-section-lead sr-section-lead--center">Contanos sobre tu proyecto. Nosotros escuchamos primero — recién ahí te decimos cómo podemos ayudarte a crecer.</p>
       </div>
       <div class="sr-contact-grid">
         <form class="sr-contact-form" id="contact-form" novalidate data-animate="left">
@@ -199,23 +185,6 @@ const animObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll('[data-animate]').forEach(el => animObserver.observe(el));
 
-/* Service card expand/collapse */
-document.querySelectorAll('.sr-service-card').forEach(card => {
-  const btn = card.querySelector('.sr-service-plus') as HTMLButtonElement | null;
-  const clickable = card.querySelector('.sr-service-clickable');
-
-  function toggle() {
-    const open = card.classList.toggle('is-open');
-    btn?.setAttribute('aria-expanded', String(open));
-    const icon = btn?.querySelector('i');
-    if (icon) icon.setAttribute('data-lucide', open ? 'minus' : 'plus');
-    // @ts-ignore
-    if (window.lucide) window.lucide.createIcons();
-  }
-
-  btn?.addEventListener('click', toggle);
-  clickable?.addEventListener('click', toggle);
-});
 
 document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();

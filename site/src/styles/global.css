@@ -141,7 +141,6 @@ ul, ol { list-style: none; padding: 0; }
   background: rgba(213,132,142,0.14); color: var(--rosa-300);
   font-size: 13px; font-weight: 500;
 }
-.sr-hero-pill::before { content: "✦"; font-size: 12px; }
 .sr-hero-headline {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(48px, 6.5vw, 84px); line-height: 1.05;
@@ -287,26 +286,30 @@ ul, ol { list-style: none; padding: 0; }
 .sr-manifesto-inner { position: relative; z-index: 1; }
 .sr-manifesto-grid {
   max-width: 1240px; margin: 56px auto 0; padding: 0 32px;
-  display: grid; grid-template-columns: repeat(3,1fr); gap: 20px;
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 20px;
 }
 .sr-manifesto-card {
   background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.10);
-  border-radius: var(--r-lg); padding: 28px;
-  text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;
+  border-radius: var(--r-lg); padding: 32px;
+  text-align: left; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
   transition: border-color var(--dur-3), background var(--dur-3);
 }
 .sr-manifesto-card:hover { border-color: var(--rosa); background: rgba(213,132,142,0.06); }
-.sr-manifesto-icon {
-  width: 56px; height: 56px; border-radius: 999px;
-  background: rgba(213,132,142,0.16); color: var(--rosa);
-  display: grid; place-items: center;
+.sr-manifesto-step-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 42px; line-height: 1; color: var(--rosa); opacity: 0.85;
+  margin-bottom: 4px;
 }
-.sr-manifesto-icon i { width: 24px; height: 24px; stroke-width: 1.75; }
 .sr-manifesto-card h3 {
-  font-family: var(--font-display); font-weight: 600; font-size: 20px;
-  color: var(--rosa); margin: 6px 0 0; line-height: 1.2;
+  font-family: var(--font-display); font-weight: 600; font-size: 22px;
+  color: #fff; margin: 0; line-height: 1.2;
 }
-.sr-manifesto-card p { font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.7); }
+.sr-manifesto-card p { font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+.sr-manifesto-trayectoria {
+  max-width: 1240px; margin: 48px auto 0; padding: 0 32px;
+  text-align: center; font-size: 13px; color: rgba(255,255,255,0.38);
+  font-style: italic; letter-spacing: 0.01em;
+}
 
 /* ---- CONTACT ------------------------------------------------- */
 .sr-contact { padding: 96px 32px 120px; background: var(--bone); }
