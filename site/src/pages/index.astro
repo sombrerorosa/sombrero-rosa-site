@@ -8,21 +8,21 @@ const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
 const _hero = page?.hero;
 const hero = {
-  pill:         _hero?.pill         || 'Agencia de marketing full service',
-  headline:     _hero?.headline     || 'Creemos en tu marca. La ayudamos a que el mundo la vea. Y la hacemos crecer.',
-  lead:         _hero?.lead         || 'Primero escuchamos. Después preguntamos. Recién ahí, construimos. Así trabajamos cada marca que pasa por acá.',
-  quote:        _hero?.quote        || '',
-  quoteAuthor:  _hero?.quoteAuthor  || '',
+  pill:         'Agencia de marketing full service',
+  headline:     'Creemos en tu marca. La ayudamos a que el mundo la vea. Y la hacemos crecer.',
+  lead:         'Primero escuchamos. Después preguntamos. Recién ahí, construimos. Así trabajamos cada marca que pasa por acá.',
+  quote:        '',
+  quoteAuthor:  '',
   ctaPrimary:   _hero?.ctaPrimary   || 'Conocer servicios',
   ctaSecondary: _hero?.ctaSecondary || 'Empezar proyecto',
 };
 const _svc = page?.services;
 const services = {
-  eyebrow: _svc?.eyebrow || 'Servicios',
-  title:   _svc?.title   || 'Seis formas de hacer crecer tu marca',
-  lead:    _svc?.lead    || 'Esto es exactamente en lo que te podemos ayudar.',
+  eyebrow: 'Servicios',
+  title:   'Seis formas de hacer crecer tu marca',
+  lead:    'Esto es exactamente en lo que te podemos ayudar.',
   ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
-  items: _svc?.items?.length ? _svc.items : [
+  items: [
     { title: 'Branding',              desc: 'Encontramos lo que ya sos, y le damos forma. Identidad de marca, contenido y redes sociales, sistemas visuales. No corregimos marcas — las descubrimos.' },
     { title: 'Consultoría',           desc: 'Entendemos tu negocio — y a las personas que lo hacen andar. Estrategia y posicionamiento de marca, más consultoría en dinámica de equipos y liderazgo.' },
     { title: 'Paid media',            desc: 'Campañas que atraen a quien realmente buscás. Meta, Google y LinkedIn Ads. Segmentación, testing y optimización constante.' },
@@ -31,13 +31,12 @@ const services = {
     { title: 'Automatización con IA', desc: 'Herramientas que te devuelven tiempo, no que te sacan el trato humano. Agentes y flujos con n8n para lo repetitivo, sin perder cercanía.' },
   ],
 };
-const _man = page?.manifesto;
 const manifesto = {
-  eyebrow:      _man?.eyebrow      || 'Cómo trabajamos',
-  title:        _man?.title        || 'No caminamos delante. Caminamos al lado.',
-  lead:         _man?.lead         || 'No llegamos con soluciones antes de entender el problema. Primero escuchamos. Recién ahí, construimos.',
-  trayectoria:  _man?.trayectoria  || 'Más de 15 años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
-  items: _man?.items?.length ? _man.items : [
+  eyebrow:     'Cómo trabajamos',
+  title:       'No caminamos delante. Caminamos al lado.',
+  lead:        'No llegamos con soluciones antes de entender el problema. Primero escuchamos. Recién ahí, construimos.',
+  trayectoria: 'Más de 15 años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
+  items: [
     { num: '01', title: 'Escuchamos',  desc: 'Las preguntas que nadie te hizo antes. Antes de proponer nada, entendemos tu negocio real. No un brief genérico.' },
     { num: '02', title: 'Entendemos',  desc: 'No es lo mismo escuchar que entender. Procesamos qué significa lo que nos contaste, en tu contexto, con tu historia.' },
     { num: '03', title: 'Construimos', desc: 'Estrategia con una razón detrás. Basada en datos reales de tu mercado. Cada decisión se puede explicar con claridad.' },
