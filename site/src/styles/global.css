@@ -107,60 +107,52 @@ ul, ol { list-style: none; padding: 0; }
 
 /* ---- HERO ---------------------------------------------------- */
 .sr-hero {
-  position: relative; background: var(--black-2); color: #fff;
-  padding: 96px 32px 110px; overflow: hidden; text-align: center;
-}
-.sr-hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-
-/* Hat fragments — invert makes white→black (invisible on dark bg), hat outline stays rose */
-.sr-hero-hat {
-  position: absolute; pointer-events: none; user-select: none;
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(300deg) brightness(1.1);
-  mix-blend-mode: screen;
-}
-/* Left side — big image, mostly off-screen, only right edge of hat visible */
-.hat-a { width: 680px; top: 60px; left: -230px; transform: rotate(-18deg); opacity: 0.22; }
-/* Right side — big, mostly off-screen, thin sliver near "Crecer" */
-.hat-b { width: 620px; top: -50px; right: -450px; transform: rotate(16deg); opacity: 0.16; }
-
-/* Single large orb top-left, very transparent */
-.sr-hero-orb {
-  position: absolute; border-radius: 999px;
-}
-.sr-hero-orb.a {
-  width: 600px; height: 600px; top: -300px; left: -300px;
-  background: radial-gradient(circle at 50% 50%, rgba(213,132,142,0.07), rgba(213,132,142,0) 65%);
+  position: relative; background: var(--bone); color: var(--ink);
+  padding: 72px 32px 96px; overflow: hidden;
 }
 .sr-hero-inner {
-  position: relative; z-index: 1; max-width: 880px; margin: 0 auto;
-  display: flex; flex-direction: column; align-items: center; gap: 20px;
+  position: relative; z-index: 1; max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
 }
+.sr-hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .sr-hero-pill {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 18px; border-radius: var(--r-pill);
-  background: rgba(213,132,142,0.14); color: var(--rosa-300);
-  font-size: 13px; font-weight: 500;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--navy);
 }
 .sr-hero-headline {
   font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(28px, 3.6vw, 46px); line-height: 1.15;
-  letter-spacing: -0.02em; color: #fff; margin: 0;
+  font-size: clamp(32px, 3.4vw, 48px); line-height: 1.15;
+  letter-spacing: -0.02em; color: var(--navy); margin: 0; max-width: 14ch;
 }
+.sr-hero-headline .is-rose { color: var(--rosa); }
 .sr-hero-lead {
-  margin-top: 4px; max-width: 64ch;
-  font-size: 17px; line-height: 1.55; color: rgba(255,255,255,0.78);
+  margin-top: 4px; max-width: 46ch;
+  font-size: 16px; line-height: 1.6; color: var(--ink-soft);
 }
-.sr-hero-quote {
-  margin-top: 24px; padding: 22px 32px;
-  border-left: 2px solid var(--rosa);
-  font-style: italic; font-size: 15px; line-height: 1.5;
-  color: rgba(255,255,255,0.72); max-width: 60ch; text-align: left;
+.sr-hero-ctas { margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+.sr-hero-features {
+  margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 20px 28px; width: 100%;
 }
-.sr-hero-quote cite {
-  display: block; margin-top: 8px; font-style: normal;
-  font-size: 13px; color: rgba(255,255,255,0.55);
+.sr-hero-feature {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; color: var(--ink-soft);
 }
-.sr-hero-ctas { margin-top: 16px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.sr-hero-feature i { width: 18px; height: 18px; color: var(--rosa); flex-shrink: 0; }
+
+.sr-hero-media { position: relative; }
+.sr-hero-photo {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 52% 42%;
+  border-radius: var(--r-xl); box-shadow: var(--shadow-md);
+}
+.sr-hero-tag {
+  position: absolute; top: -14px; right: 12px; z-index: 2;
+  font-family: var(--font-display); font-style: italic; font-weight: 500;
+  font-size: 14px; color: var(--rosa-600);
+  background: var(--bone); padding: 4px 10px;
+  transform: rotate(-3deg);
+}
 
 /* ---- SERVICES ------------------------------------------------ */
 .sr-services { padding: 96px 0 64px; background: var(--bone); }
@@ -410,6 +402,12 @@ ul, ol { list-style: none; padding: 0; }
   .sr-header > .btn-primary { display: none; }
   .sr-nav { display: none; }
   .sr-menu-btn { display: flex; align-items: center; }
+  .sr-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .sr-hero-media { order: -1; max-width: 480px; margin: 0 auto; width: 100%; }
+  .sr-hero-content { align-items: center; text-align: center; }
+  .sr-hero-headline { max-width: none; }
+  .sr-hero-lead { max-width: 52ch; }
+  .sr-hero-ctas, .sr-hero-features { justify-content: center; }
   .sr-nav.open {
     display: flex; flex-direction: column;
     position: fixed; inset: 0; top: 73px;
@@ -424,10 +422,9 @@ ul, ol { list-style: none; padding: 0; }
   .sr-contact-card.full, .sr-contact-card.whatsapp { grid-column: auto; }
 }
 @media (max-width: 640px) {
-  .sr-hero { padding: 72px 20px 88px; }
-  .sr-hero-ctas { flex-direction: column; align-items: center; }
-  .hat-a { width: 320px; left: -140px; top: auto; bottom: 40px; }
-  .hat-b { display: none; }
+  .sr-hero { padding: 56px 20px 64px; }
+  .sr-hero-ctas { flex-direction: column; align-items: stretch; }
+  .sr-hero-ctas .btn { justify-content: center; }
   .sr-services { padding: 72px 0 48px; }
   .sr-services-grid, .sr-services-cta { padding-left: 20px; padding-right: 20px; }
   .sr-contact { padding: 72px 20px 96px; }

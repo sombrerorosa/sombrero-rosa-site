@@ -8,13 +8,19 @@ const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
 const _hero = page?.hero;
 const hero = {
-  pill:         'Agencia de marketing full service',
-  headline:     'Creemos en tu marca. La ayudamos a que el mundo la vea. Y la hacemos crecer.',
-  lead:         'Primero escuchamos. Después preguntamos. Recién ahí, construimos. Así trabajamos cada marca que pasa por acá.',
-  quote:        '',
-  quoteAuthor:  '',
-  ctaPrimary:   _hero?.ctaPrimary   || 'Conocer servicios',
-  ctaSecondary: _hero?.ctaSecondary || 'Empezar proyecto',
+  pill:         'Agencia de marketing · Estrategia y creatividad',
+  headlinePre:  'Pensamos en tu negocio. Creamos ideas que lo hacen ',
+  headlineRose: 'crecer.',
+  lead:         'Combinamos estrategia, creatividad y tecnología para construir marcas con personalidad, generar oportunidades y acompañar su crecimiento.',
+  tag:          'Buenas marcas, mejores historias',
+  ctaPrimary:   _hero?.ctaPrimary   || 'Hablemos de tu proyecto',
+  ctaSecondary: _hero?.ctaSecondary || 'Conocer servicios',
+  features: [
+    { icon: 'sparkles',    label: 'Branding' },
+    { icon: 'bar-chart-2', label: 'Paid media' },
+    { icon: 'code-2',      label: 'Desarrollo web' },
+    { icon: 'brain-circuit', label: 'IA aplicada' },
+  ],
 };
 const _svc = page?.services;
 const services = {
@@ -62,19 +68,32 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
   <Header />
   <main>
     <section class="sr-hero" id="top">
-      <div class="sr-hero-bg" aria-hidden="true">
-        <img src="/assets/logo-sombrero-rosa.png" class="sr-hero-hat hat-a" alt="" />
-        <img src="/assets/logo-sombrero-rosa.png" class="sr-hero-hat hat-b" alt="" />
-        <span class="sr-hero-orb a"></span>
-      </div>
       <div class="sr-hero-inner">
-        <div class="sr-hero-pill">{hero.pill}</div>
-        <h1 class="sr-hero-headline">{hero.headline}</h1>
-        <p class="sr-hero-lead">{hero.lead}</p>
-        {hero.quote && <blockquote class="sr-hero-quote">{hero.quote}<cite>{hero.quoteAuthor}</cite></blockquote>}
-        <div class="sr-hero-ctas">
-          <a href="#servicios" class="btn btn-primary btn-pill">{hero.ctaPrimary}</a>
-          <a href="#contacto"  class="btn btn-ghost-on-dark btn-pill">{hero.ctaSecondary}</a>
+        <div class="sr-hero-content">
+          <div class="sr-hero-pill">{hero.pill}</div>
+          <h1 class="sr-hero-headline">{hero.headlinePre}<span class="is-rose">{hero.headlineRose}</span></h1>
+          <p class="sr-hero-lead">{hero.lead}</p>
+          <div class="sr-hero-ctas">
+            <a href="#contacto"  class="btn btn-primary btn-pill">{hero.ctaPrimary}</a>
+            <a href="#servicios" class="btn btn-ghost btn-pill">{hero.ctaSecondary}</a>
+          </div>
+          <ul class="sr-hero-features">
+            {hero.features.map((f) => (
+              <li class="sr-hero-feature">
+                <i data-lucide={f.icon}></i>
+                <span>{f.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="sr-hero-media">
+          <span class="sr-hero-tag">{hero.tag}</span>
+          <img
+            src="/assets/hero-office.jpg"
+            alt="Oficina de Sombrero Rosa con el logo en neón sobre la pared"
+            class="sr-hero-photo"
+            width="1916" height="821"
+          />
         </div>
       </div>
     </section>
