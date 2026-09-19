@@ -6,7 +6,6 @@ import { getHomePage, getSiteSettings } from '../lib/sanity';
 
 const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
-const _hero = page?.hero;
 const hero = {
   pill:         'Agencia de marketing · Estrategia y creatividad',
   headlinePre:  'Pensamos en tu negocio. Creamos ideas que lo hacen ',

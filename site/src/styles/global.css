@@ -108,13 +108,15 @@ ul, ol { list-style: none; padding: 0; }
 /* ---- HERO ---------------------------------------------------- */
 .sr-hero {
   position: relative; background: var(--bone); color: var(--ink);
-  padding: 72px 32px 96px; overflow: hidden;
+  padding: 56px 0 64px; overflow: hidden;
 }
 .sr-hero-inner {
-  position: relative; z-index: 1; max-width: 1240px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+  position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 0 32px;
 }
-.sr-hero-content { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.sr-hero-content {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
+  max-width: 560px;
+}
 .sr-hero-pill {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
@@ -123,7 +125,7 @@ ul, ol { list-style: none; padding: 0; }
 .sr-hero-headline {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(32px, 3.4vw, 48px); line-height: 1.15;
-  letter-spacing: -0.02em; color: var(--navy); margin: 0; max-width: 14ch;
+  letter-spacing: -0.02em; color: var(--navy); margin: 0;
 }
 .sr-hero-headline .is-rose { color: var(--rosa); }
 .sr-hero-lead {
@@ -141,16 +143,21 @@ ul, ol { list-style: none; padding: 0; }
 }
 .sr-hero-feature i { width: 18px; height: 18px; color: var(--rosa); flex-shrink: 0; }
 
-.sr-hero-media { position: relative; }
+/* Photo bleeds to the browser edge and fills the section's full height —
+   the section's height comes from the text column, not from the photo. */
+.sr-hero-media {
+  position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; width: 46%;
+}
 .sr-hero-photo {
-  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 52% 42%;
-  border-radius: var(--r-xl); box-shadow: var(--shadow-md);
+  width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 16%);
+          mask-image: linear-gradient(to right, transparent, #000 16%);
 }
 .sr-hero-tag {
-  position: absolute; top: -14px; right: 12px; z-index: 2;
+  position: absolute; top: 28px; right: 40px; z-index: 2;
   font-family: var(--font-display); font-style: italic; font-weight: 500;
-  font-size: 14px; color: var(--rosa-600);
-  background: var(--bone); padding: 4px 10px;
+  font-size: 14px; color: var(--navy);
+  text-shadow: 0 1px 3px rgba(255,255,255,0.7), 0 0 12px rgba(255,255,255,0.5);
   transform: rotate(-3deg);
 }
 
@@ -402,12 +409,20 @@ ul, ol { list-style: none; padding: 0; }
   .sr-header > .btn-primary { display: none; }
   .sr-nav { display: none; }
   .sr-menu-btn { display: flex; align-items: center; }
-  .sr-hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .sr-hero-media { order: -1; max-width: 480px; margin: 0 auto; width: 100%; }
-  .sr-hero-content { align-items: center; text-align: center; }
-  .sr-hero-headline { max-width: none; }
+  .sr-hero { padding: 40px 0 0; }
+  .sr-hero-inner { display: flex; flex-direction: column; padding: 0 24px; }
+  .sr-hero-content { align-items: center; text-align: center; max-width: none; }
   .sr-hero-lead { max-width: 52ch; }
   .sr-hero-ctas, .sr-hero-features { justify-content: center; }
+  .sr-hero-media {
+    position: static; order: -1; width: auto; margin: 0 -24px 32px;
+    aspect-ratio: 16 / 11;
+  }
+  .sr-hero-photo {
+    border-radius: 0; mask-image: none; -webkit-mask-image: none;
+    object-position: 55% 40%;
+  }
+  .sr-hero-tag { top: 16px; right: 24px; }
   .sr-nav.open {
     display: flex; flex-direction: column;
     position: fixed; inset: 0; top: 73px;
@@ -422,7 +437,8 @@ ul, ol { list-style: none; padding: 0; }
   .sr-contact-card.full, .sr-contact-card.whatsapp { grid-column: auto; }
 }
 @media (max-width: 640px) {
-  .sr-hero { padding: 56px 20px 64px; }
+  .sr-hero-inner { padding: 0 20px; }
+  .sr-hero-media { margin: 0 -20px 32px; }
   .sr-hero-ctas { flex-direction: column; align-items: stretch; }
   .sr-hero-ctas .btn { justify-content: center; }
   .sr-services { padding: 72px 0 48px; }
