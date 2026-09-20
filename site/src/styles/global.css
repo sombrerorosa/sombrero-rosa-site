@@ -126,23 +126,24 @@ ul, ol { list-style: none; padding: 0; }
   position: relative; z-index: 2; max-width: 1240px; width: 100%; margin: 0 auto;
   padding: 120px 32px 64px;
 }
-/* The card's own glass panel keeps crisp, legible edges. A separate,
-   unmasked glow sibling sits behind it — a box-shadow on the panel
-   itself would get clipped by its own rounded corners at the same
-   radius, so the soft "feathered" blend into the hero-glass layer
-   lives on this extra box instead. */
+/* Trying to fully hide the seam between the card and the hero-glass
+   layer (via a mask or an outer glow) never read as clean across
+   real browsers — two translucent blurred layers don't blend
+   reliably. Instead the card owns its edge on purpose: a soft
+   elevation shadow plus a thin light inset border, so it reads as a
+   deliberately raised glass panel rather than a stray line. */
 .sr-hero-card-wrap { position: relative; max-width: 600px; }
-.sr-hero-card-glow {
-  position: absolute; inset: 0; z-index: 0;
-  border-radius: 36px;
-  box-shadow: 0 0 70px 30px rgba(255,255,255,0.55), 0 0 130px 60px rgba(255,255,255,0.3);
-}
 .sr-hero-card {
-  position: relative; z-index: 1; padding: 48px 44px;
+  position: relative; padding: 48px 44px;
   background: rgba(255,255,255,0.34);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   backdrop-filter: blur(20px) saturate(140%);
   border-radius: 36px;
+  border: 1px solid rgba(255,255,255,0.5);
+  box-shadow:
+    0 30px 60px -20px rgba(17,23,32,0.4),
+    0 12px 28px -12px rgba(17,23,32,0.3),
+    0 1px 0 rgba(255,255,255,0.6) inset;
   display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
 }
 .sr-hero-pill {
