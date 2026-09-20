@@ -62,7 +62,8 @@ const manifesto = {
   eyebrow:     'Cómo trabajamos',
   title:       'No caminamos delante. Caminamos al lado.',
   lead:        'No llegamos con soluciones antes de entender el problema. Primero escuchamos. Recién ahí, construimos.',
-  trayectoria: 'Más de 15 años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
+  trayectoriaNum:   '15+',
+  trayectoriaLabel: 'años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
   items: [
     { num: '01', title: 'Escuchamos',  desc: 'Las preguntas que nadie te hizo antes. Antes de proponer nada, entendemos tu negocio real. No un brief genérico.' },
     { num: '02', title: 'Entendemos',  desc: 'No es lo mismo escuchar que entender. Procesamos qué significa lo que nos contaste, en tu contexto, con tu historia.' },
@@ -168,6 +169,8 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     </section>
 
     <section class="sr-manifesto" id="nosotros">
+      <div class="sr-manifesto-glow sr-manifesto-glow-a" aria-hidden="true"></div>
+      <div class="sr-manifesto-glow sr-manifesto-glow-b" aria-hidden="true"></div>
       <div class="sr-manifesto-inner">
         <div class="sr-section-head sr-section-head--center" data-animate="up">
           <div class="sr-section-num">{manifesto.eyebrow}</div>
@@ -176,15 +179,19 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
         </div>
         <div class="sr-manifesto-grid">
           {(manifesto.items ?? []).map((c: any, i: number) => (
-            <article class="sr-manifesto-card" data-animate={i % 2 === 0 ? 'left' : 'right'} style={`--anim-delay:${(i % 2) * 0.1}s`}>
+            <article class="sr-manifesto-card" data-animate="up" style={`--anim-delay:${i * 0.07}s`}>
               <div class="sr-manifesto-step-num">{c.num}</div>
               <h3>{c.title}</h3>
               <p>{c.desc}</p>
             </article>
           ))}
         </div>
-        {manifesto.trayectoria && (
-          <p class="sr-manifesto-trayectoria" data-animate="up">{manifesto.trayectoria}</p>
+        {manifesto.trayectoriaNum && (
+          <div class="sr-manifesto-stat" data-animate="up">
+            <span class="sr-manifesto-stat-num">{manifesto.trayectoriaNum}</span>
+            <span class="sr-manifesto-stat-divider" aria-hidden="true"></span>
+            <span class="sr-manifesto-stat-label">{manifesto.trayectoriaLabel}</span>
+          </div>
         )}
       </div>
     </section>
