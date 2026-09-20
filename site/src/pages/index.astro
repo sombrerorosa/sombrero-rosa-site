@@ -6,36 +6,64 @@ import { getHomePage, getSiteSettings } from '../lib/sanity';
 
 const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
-const _hero = page?.hero;
 const hero = {
-  pill:         'Agencia de marketing full service',
-  headline:     'Creemos en tu marca. La ayudamos a que el mundo la vea. Y la hacemos crecer.',
-  lead:         'Primero escuchamos. Después preguntamos. Recién ahí, construimos. Así trabajamos cada marca que pasa por acá.',
-  quote:        '',
-  quoteAuthor:  '',
-  ctaPrimary:   _hero?.ctaPrimary   || 'Conocer servicios',
-  ctaSecondary: _hero?.ctaSecondary || 'Empezar proyecto',
+  pill:         'Agencia de Marketing Full Service',
+  headlinePre:  'Pensamos en tu negocio. Creamos ideas que lo hacen ',
+  headlineRose: 'crecer.',
+  lead:         'Combinamos estrategia, creatividad y tecnología para construir marcas con personalidad, generar oportunidades y acompañar su crecimiento.',
+  ctaPrimary:   'Hablemos de tu proyecto',
+  ctaSecondary: 'Conocer servicios',
+  features: [
+    { icon: 'sparkles',    label: 'Branding' },
+    { icon: 'bar-chart-2', label: 'Paid media' },
+    { icon: 'code-2',      label: 'Desarrollo web' },
+    { icon: 'brain-circuit', label: 'IA aplicada' },
+  ],
 };
 const _svc = page?.services;
 const services = {
   eyebrow: 'Servicios',
-  title:   'Seis formas de hacer crecer tu marca',
+  title:   'Tres ejes para hacer crecer tu marca',
   lead:    'Esto es exactamente en lo que te podemos ayudar.',
   ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
-  items: [
-    { title: 'Branding',              desc: 'Encontramos lo que ya sos, y le damos forma. Identidad de marca, contenido y redes sociales, sistemas visuales. No corregimos marcas — las descubrimos.' },
-    { title: 'Consultoría',           desc: 'Entendemos tu negocio — y a las personas que lo hacen andar. Estrategia y posicionamiento de marca, más consultoría en dinámica de equipos y liderazgo.' },
-    { title: 'Paid media',            desc: 'Campañas que atraen a quien realmente buscás. Meta, Google y LinkedIn Ads. Segmentación, testing y optimización constante.' },
-    { title: 'SEO y AEO',             desc: 'Que te encuentren cuando te buscan — y cuando le preguntan a una IA. SEO técnico y de contenidos, optimizado para cómo se recomienda hoy.' },
-    { title: 'Desarrollo web',        desc: 'Sitios rápidos, prolijos, que convierten. WordPress especializado, optimización de velocidad, arquitectura pensada para vender.' },
-    { title: 'Automatización con IA', desc: 'Herramientas que te devuelven tiempo, no que te sacan el trato humano. Agentes y flujos con n8n para lo repetitivo, sin perder cercanía.' },
+  groups: [
+    {
+      num: '01', bg: 'navy-light',
+      title: 'Construimos tu presencia',
+      lead: 'Una base sólida para que tu marca se vea, se entienda y se recuerde.',
+      items: [
+        { title: 'Estrategia y branding', desc: 'Definimos tu propuesta de valor y construimos una identidad de marca con personalidad.', tags: 'Estrategia · Identidad · Branding' },
+        { title: 'Diseño web y e-commerce',             desc: 'Sitios web y tiendas online que presentan tu negocio y facilitan que te contacten.', tags: 'Diseño · Desarrollo · Conversión' },
+        { title: 'Contenidos y redes sociales',         desc: 'Contenidos que expresan tu marca y generan vínculos con tu audiencia.', tags: 'Contenido · Redes · Comunidad' },
+      ],
+    },
+    {
+      num: '02', bg: 'navy-mid',
+      title: 'Generamos oportunidades',
+      lead: 'Conectamos tu propuesta con las personas que necesitan lo que ofrecés.',
+      items: [
+        { title: 'Publicidad digital y performance', desc: 'Campañas en plataformas digitales orientadas a generar oportunidades medibles.', tags: 'Google Ads · Meta Ads · Performance' },
+        { title: 'SEO y visibilidad digital',         desc: 'Mejoramos la visibilidad de tu negocio en buscadores y experiencias de búsqueda con IA.', tags: 'SEO técnico · Contenidos · SEO local' },
+      ],
+    },
+    {
+      num: '03', bg: 'navy-dark',
+      title: 'Fortalecemos relaciones y cultura',
+      lead: 'Cuidamos los vínculos con tus clientes y tu equipo, y creamos los momentos que los sostienen en el tiempo.',
+      items: [
+        { title: 'CRM, automatización y fidelización', desc: 'Conectamos herramientas, automatizamos comunicaciones y mejoramos la experiencia de tus clientes.', tags: 'CRM · Email marketing · IA · Fidelización' },
+        { title: 'Consultoría de negocios y cultura',  desc: 'Acompañamos decisiones de negocio, posicionamiento y liderazgo, y trabajamos la cultura interna para que el equipo que sostiene la marca crezca con ella.', tags: 'Negocio · Posicionamiento · Cultura · Liderazgo' },
+        { title: 'Eventos de relacionamiento',         desc: 'Diseñamos y producimos encuentros que fortalecen el vínculo con clientes, equipos y aliados.', tags: 'Eventos · Networking · Experiencias' },
+      ],
+    },
   ],
 };
 const manifesto = {
   eyebrow:     'Cómo trabajamos',
   title:       'No caminamos delante. Caminamos al lado.',
   lead:        'No llegamos con soluciones antes de entender el problema. Primero escuchamos. Recién ahí, construimos.',
-  trayectoria: 'Más de 15 años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
+  trayectoriaNum:   '15+',
+  trayectoriaLabel: 'años de experiencia profesional combinada entre quienes lideramos Sombrero Rosa.',
   items: [
     { num: '01', title: 'Escuchamos',  desc: 'Las preguntas que nadie te hizo antes. Antes de proponer nada, entendemos tu negocio real. No un brief genérico.' },
     { num: '02', title: 'Entendemos',  desc: 'No es lo mismo escuchar que entender. Procesamos qué significa lo que nos contaste, en tu contexto, con tu historia.' },
@@ -59,22 +87,35 @@ const whatsapp = settings?.whatsapp || 'https://wa.me/541172465685';
 const address  = settings?.address  || 'Buenos Aires, Argentina';
 ---
 <Base>
-  <Header />
+  <Header overlay />
   <main>
     <section class="sr-hero" id="top">
-      <div class="sr-hero-bg" aria-hidden="true">
-        <img src="/assets/logo-sombrero-rosa.png" class="sr-hero-hat hat-a" alt="" />
-        <img src="/assets/logo-sombrero-rosa.png" class="sr-hero-hat hat-b" alt="" />
-        <span class="sr-hero-orb a"></span>
-      </div>
+      <img
+        src="/assets/hero-office-2.webp"
+        alt="Sala de reuniones de Sombrero Rosa"
+        class="sr-hero-photo"
+        width="1672" height="941"
+      />
+      <div class="sr-hero-glass" aria-hidden="true"></div>
       <div class="sr-hero-inner">
-        <div class="sr-hero-pill">{hero.pill}</div>
-        <h1 class="sr-hero-headline">{hero.headline}</h1>
-        <p class="sr-hero-lead">{hero.lead}</p>
-        {hero.quote && <blockquote class="sr-hero-quote">{hero.quote}<cite>{hero.quoteAuthor}</cite></blockquote>}
-        <div class="sr-hero-ctas">
-          <a href="#servicios" class="btn btn-primary btn-pill">{hero.ctaPrimary}</a>
-          <a href="#contacto"  class="btn btn-ghost-on-dark btn-pill">{hero.ctaSecondary}</a>
+        <div class="sr-hero-card-wrap">
+          <div class="sr-hero-card">
+            <div class="sr-hero-pill">{hero.pill}</div>
+            <h1 class="sr-hero-headline">{hero.headlinePre}<span class="is-rose">{hero.headlineRose}</span></h1>
+            <p class="sr-hero-lead">{hero.lead}</p>
+            <div class="sr-hero-ctas">
+              <a href="#contacto"  class="btn btn-primary btn-pill">{hero.ctaPrimary}</a>
+              <a href="#servicios" class="btn btn-ghost btn-pill">{hero.ctaSecondary}</a>
+            </div>
+            <ul class="sr-hero-features">
+              {hero.features.map((f) => (
+                <li class="sr-hero-feature">
+                  <i data-lucide={f.icon}></i>
+                  <span>{f.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -85,12 +126,25 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
         <h2 class="sr-section-title sr-section-title--rose">{services.title}</h2>
         <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
       </div>
-      <div class="sr-services-grid">
-        {(services.items ?? []).map((s: any, i: number) => (
-          <article class="sr-service-card" data-animate="up" style={`--anim-delay:${i * 0.07}s`}>
-            <h3 class="sr-service-title">{s.title}</h3>
-            <p class="sr-service-desc">{s.desc}</p>
-          </article>
+      <div class="sr-services-groups">
+        {(services.groups ?? []).map((g: any, i: number) => (
+          <div class={`sr-services-group is-${g.bg}`} data-animate="up" style={`--anim-delay:${i * 0.08}s`}>
+            <span class="sr-services-group-num">{g.num}</span>
+            <h3 class="sr-services-group-title">{g.title}</h3>
+            <p class="sr-services-group-lead">{g.lead}</p>
+            <div class="sr-service-subcards">
+              {(g.items ?? []).map((s: any) => (
+                <article class="sr-service-subcard">
+                  <div class="sr-service-subcard-top">
+                    <h4 class="sr-service-subcard-title">{s.title}</h4>
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                  <p class="sr-service-subcard-desc">{s.desc}</p>
+                  <span class="sr-service-subcard-tags">{s.tags}</span>
+                </article>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
       <div class="sr-services-cta">
@@ -115,6 +169,8 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
     </section>
 
     <section class="sr-manifesto" id="nosotros">
+      <div class="sr-manifesto-glow sr-manifesto-glow-a" aria-hidden="true"></div>
+      <div class="sr-manifesto-glow sr-manifesto-glow-b" aria-hidden="true"></div>
       <div class="sr-manifesto-inner">
         <div class="sr-section-head sr-section-head--center" data-animate="up">
           <div class="sr-section-num">{manifesto.eyebrow}</div>
@@ -123,15 +179,19 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
         </div>
         <div class="sr-manifesto-grid">
           {(manifesto.items ?? []).map((c: any, i: number) => (
-            <article class="sr-manifesto-card" data-animate={i % 2 === 0 ? 'left' : 'right'} style={`--anim-delay:${(i % 2) * 0.1}s`}>
+            <article class="sr-manifesto-card" data-animate="up" style={`--anim-delay:${i * 0.07}s`}>
               <div class="sr-manifesto-step-num">{c.num}</div>
               <h3>{c.title}</h3>
               <p>{c.desc}</p>
             </article>
           ))}
         </div>
-        {manifesto.trayectoria && (
-          <p class="sr-manifesto-trayectoria" data-animate="up">{manifesto.trayectoria}</p>
+        {manifesto.trayectoriaNum && (
+          <div class="sr-manifesto-stat" data-animate="up">
+            <span class="sr-manifesto-stat-num">{manifesto.trayectoriaNum}</span>
+            <span class="sr-manifesto-stat-divider" aria-hidden="true"></span>
+            <span class="sr-manifesto-stat-label">{manifesto.trayectoriaLabel}</span>
+          </div>
         )}
       </div>
     </section>

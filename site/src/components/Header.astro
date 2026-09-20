@@ -1,8 +1,8 @@
 ---
-interface Props { currentPath?: string; }
-const { currentPath = Astro.url.pathname } = Astro.props;
+interface Props { currentPath?: string; overlay?: boolean; }
+const { currentPath = Astro.url.pathname, overlay = false } = Astro.props;
 ---
-<header class="sr-header">
+<header class="sr-header" class:list={[{ 'sr-header--overlay': overlay }]}>
   <a class="sr-brand" href="/" aria-label="Sombrero Rosa, inicio">
     <img src="/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
     <span class="sr-brand-word">
@@ -53,6 +53,22 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     display: none; background: none; border: 0; padding: 8px;
     color: var(--navy); margin-left: auto;
   }
+
+  /* Overlay mode: the header itself is glass at the top of the hero
+     (not fully transparent), and turns into the normal solid header
+     once the page scrolls past it. */
+  .sr-header--overlay {
+    position: fixed; top: 0; left: 0; right: 0;
+    transition: background var(--dur-3) var(--ease-out), backdrop-filter var(--dur-3) var(--ease-out);
+  }
+  .sr-header--overlay:not(.is-scrolled) {
+    background: #ffffff75;
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom-color: transparent;
+    box-shadow: 0 12px 28px -8px rgba(17,23,32,0.28);
+  }
+
   @media (max-width: 980px) {
     .sr-header {
       padding: 16px 24px;
@@ -85,4 +101,11 @@ const { currentPath = Astro.url.pathname } = Astro.props;
   }
   btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
   nav.querySelectorAll('.sr-nav-link').forEach(l => l.addEventListener('click', () => setOpen(false)));
+
+  const header = document.querySelector('.sr-header--overlay');
+  if (header) {
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 </script>
