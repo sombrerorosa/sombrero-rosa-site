@@ -26,13 +26,34 @@ const services = {
   title:   'Seis formas de hacer crecer tu marca',
   lead:    'Esto es exactamente en lo que te podemos ayudar.',
   ctaText: _svc?.ctaText || '¿Listo para hacer crecer tu negocio?',
-  items: [
-    { title: 'Branding',              desc: 'Encontramos lo que ya sos, y le damos forma. Identidad de marca, contenido y redes sociales, sistemas visuales. No corregimos marcas — las descubrimos.' },
-    { title: 'Consultoría',           desc: 'Entendemos tu negocio — y a las personas que lo hacen andar. Estrategia y posicionamiento de marca, más consultoría en dinámica de equipos y liderazgo.' },
-    { title: 'Paid media',            desc: 'Campañas que atraen a quien realmente buscás. Meta, Google y LinkedIn Ads. Segmentación, testing y optimización constante.' },
-    { title: 'SEO y AEO',             desc: 'Que te encuentren cuando te buscan — y cuando le preguntan a una IA. SEO técnico y de contenidos, optimizado para cómo se recomienda hoy.' },
-    { title: 'Desarrollo web',        desc: 'Sitios rápidos, prolijos, que convierten. WordPress especializado, optimización de velocidad, arquitectura pensada para vender.' },
-    { title: 'Automatización con IA', desc: 'Herramientas que te devuelven tiempo, no que te sacan el trato humano. Agentes y flujos con n8n para lo repetitivo, sin perder cercanía.' },
+  groups: [
+    {
+      num: '01', bg: 'rosa',
+      title: 'Construimos tu presencia',
+      lead: 'Una base sólida para que tu marca se vea, se entienda y se recuerde.',
+      items: [
+        { title: 'Estrategia, branding y consultoría', desc: 'Definimos tu propuesta de valor y construimos una identidad con personalidad, con consultoría en posicionamiento, equipos y liderazgo cuando la marca lo necesita.', tags: 'Estrategia · Identidad · Consultoría' },
+        { title: 'Diseño web y e-commerce',             desc: 'Sitios web y tiendas online que presentan tu negocio y facilitan que te contacten.', tags: 'Diseño · Desarrollo · Conversión' },
+        { title: 'Contenidos y redes sociales',         desc: 'Contenidos que expresan tu marca y generan vínculos con tu audiencia.', tags: 'Contenido · Redes · Comunidad' },
+      ],
+    },
+    {
+      num: '02', bg: 'navy',
+      title: 'Generamos oportunidades',
+      lead: 'Conectamos tu propuesta con las personas que necesitan lo que ofrecés.',
+      items: [
+        { title: 'Publicidad digital y performance', desc: 'Campañas en plataformas digitales orientadas a generar oportunidades medibles.', tags: 'Google Ads · Meta Ads · Performance' },
+        { title: 'SEO y visibilidad digital',         desc: 'Mejoramos la visibilidad de tu negocio en buscadores y experiencias de búsqueda con IA.', tags: 'SEO técnico · Contenidos · SEO local' },
+      ],
+    },
+    {
+      num: '03', bg: 'neutral',
+      title: 'Fortalecemos las relaciones',
+      lead: 'Transformamos contactos en vínculos duraderos y procesos más eficientes.',
+      items: [
+        { title: 'CRM, automatización y fidelización', desc: 'Conectamos herramientas, automatizamos comunicaciones y mejoramos la experiencia de tus clientes.', tags: 'CRM · Email marketing · IA · Fidelización' },
+      ],
+    },
   ],
 };
 const manifesto = {
@@ -102,12 +123,25 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
         <h2 class="sr-section-title sr-section-title--rose">{services.title}</h2>
         <p class="sr-section-lead sr-section-lead--center">{services.lead}</p>
       </div>
-      <div class="sr-services-grid">
-        {(services.items ?? []).map((s: any, i: number) => (
-          <article class="sr-service-card" data-animate="up" style={`--anim-delay:${i * 0.07}s`}>
-            <h3 class="sr-service-title">{s.title}</h3>
-            <p class="sr-service-desc">{s.desc}</p>
-          </article>
+      <div class="sr-services-groups">
+        {(services.groups ?? []).map((g: any, i: number) => (
+          <div class={`sr-services-group is-${g.bg}`} data-animate="up" style={`--anim-delay:${i * 0.08}s`}>
+            <span class="sr-services-group-num">{g.num}</span>
+            <h3 class="sr-services-group-title">{g.title}</h3>
+            <p class="sr-services-group-lead">{g.lead}</p>
+            <div class="sr-service-subcards">
+              {(g.items ?? []).map((s: any) => (
+                <article class="sr-service-subcard">
+                  <div class="sr-service-subcard-top">
+                    <h4 class="sr-service-subcard-title">{s.title}</h4>
+                    <i data-lucide="arrow-up-right"></i>
+                  </div>
+                  <p class="sr-service-subcard-desc">{s.desc}</p>
+                  <span class="sr-service-subcard-tags">{s.tags}</span>
+                </article>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
       <div class="sr-services-cta">
