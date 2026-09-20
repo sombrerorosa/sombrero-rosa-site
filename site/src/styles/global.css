@@ -107,15 +107,32 @@ ul, ol { list-style: none; padding: 0; }
 
 /* ---- HERO ---------------------------------------------------- */
 .sr-hero {
-  position: relative; background: var(--bone); color: var(--ink);
-  padding: 56px 0 64px; overflow: hidden;
+  position: relative; min-height: 92vh; overflow: hidden;
+  display: flex; align-items: center; color: var(--ink);
+}
+.sr-hero-photo {
+  position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 38%;
+}
+.sr-hero-scrim {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(17,23,32,0.55) 0%, rgba(17,23,32,0.12) 30%,
+    rgba(17,23,32,0.05) 55%, rgba(17,23,32,0.35) 100%);
 }
 .sr-hero-inner {
-  position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 0 32px;
+  position: relative; z-index: 2; max-width: 1240px; width: 100%; margin: 0 auto;
+  padding: 120px 32px 64px;
 }
-.sr-hero-content {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 20px;
-  max-width: min(520px, 35vw);
+.sr-hero-card {
+  max-width: 600px; padding: 44px 40px;
+  background: rgba(255,255,255,0.46);
+  -webkit-backdrop-filter: blur(28px) saturate(110%);
+  backdrop-filter: blur(28px) saturate(110%);
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: var(--r-xl);
+  box-shadow: 0 24px 60px -20px rgba(17,23,32,0.35);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
 }
 .sr-hero-pill {
   display: inline-flex; align-items: center; gap: 8px;
@@ -124,45 +141,23 @@ ul, ol { list-style: none; padding: 0; }
 }
 .sr-hero-headline {
   font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(32px, 3.4vw, 48px); line-height: 1.15;
+  font-size: clamp(30px, 3vw, 44px); line-height: 1.15;
   letter-spacing: -0.02em; color: var(--navy); margin: 0;
 }
-.sr-hero-headline .is-rose { color: var(--rosa); }
+.sr-hero-headline .is-rose { color: var(--rosa-600); }
 .sr-hero-lead {
-  margin-top: 4px; max-width: 46ch;
-  font-size: 16px; line-height: 1.6; color: var(--ink-soft);
+  font-size: 16px; line-height: 1.6; color: var(--navy-700);
 }
-.sr-hero-ctas { margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; }
+.sr-hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 .sr-hero-features {
-  margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border);
-  display: flex; flex-wrap: wrap; gap: 20px 28px; width: 100%;
+  margin-top: 6px; padding-top: 20px; border-top: 1px solid rgba(25,49,73,0.16);
+  display: flex; flex-wrap: wrap; gap: 16px 24px; width: 100%;
 }
 .sr-hero-feature {
   display: inline-flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 500; color: var(--ink-soft);
+  font-size: 13px; font-weight: 500; color: var(--navy-700);
 }
-.sr-hero-feature i { width: 18px; height: 18px; color: var(--rosa); flex-shrink: 0; }
-
-/* Photo bleeds to the browser edge and fills the section's full height —
-   the section's height comes from the text column, not from the photo.
-   Photo is 75% of the hero width, right-aligned; the fade (mask-image
-   stops below are local to the photo's own box) runs from 40% to 50%
-   of the full hero width. */
-.sr-hero-media {
-  position: absolute; z-index: 1; top: 0; right: 0; bottom: 0; width: 75%;
-}
-.sr-hero-photo {
-  width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 20%, #000 33.33%);
-          mask-image: linear-gradient(to right, transparent 0%, transparent 20%, #000 33.33%);
-}
-.sr-hero-tag {
-  position: absolute; top: 28px; right: 40px; z-index: 2;
-  font-family: var(--font-display); font-style: italic; font-weight: 500;
-  font-size: 14px; color: var(--navy);
-  text-shadow: 0 1px 3px rgba(255,255,255,0.7), 0 0 12px rgba(255,255,255,0.5);
-  transform: rotate(-3deg);
-}
+.sr-hero-feature i { width: 17px; height: 17px; color: var(--rosa-600); flex-shrink: 0; }
 
 /* ---- SERVICES ------------------------------------------------ */
 .sr-services { padding: 96px 0 64px; background: var(--bone); }
@@ -412,20 +407,9 @@ ul, ol { list-style: none; padding: 0; }
   .sr-header > .btn-primary { display: none; }
   .sr-nav { display: none; }
   .sr-menu-btn { display: flex; align-items: center; }
-  .sr-hero { padding: 40px 0 0; }
-  .sr-hero-inner { display: flex; flex-direction: column; padding: 0 24px; }
-  .sr-hero-content { align-items: center; text-align: center; max-width: none; }
-  .sr-hero-lead { max-width: 52ch; }
-  .sr-hero-ctas, .sr-hero-features { justify-content: center; }
-  .sr-hero-media {
-    position: static; order: -1; width: auto; margin: 0 -24px 32px;
-    aspect-ratio: 16 / 11;
-  }
-  .sr-hero-photo {
-    border-radius: 0; mask-image: none; -webkit-mask-image: none;
-    object-position: 55% 40%;
-  }
-  .sr-hero-tag { top: 16px; right: 24px; }
+  .sr-hero { min-height: 100vh; }
+  .sr-hero-inner { padding: 96px 24px 48px; }
+  .sr-hero-card { max-width: none; padding: 32px 24px; }
   .sr-nav.open {
     display: flex; flex-direction: column;
     position: fixed; inset: 0; top: 73px;
@@ -440,8 +424,7 @@ ul, ol { list-style: none; padding: 0; }
   .sr-contact-card.full, .sr-contact-card.whatsapp { grid-column: auto; }
 }
 @media (max-width: 640px) {
-  .sr-hero-inner { padding: 0 20px; }
-  .sr-hero-media { margin: 0 -20px 32px; }
+  .sr-hero-inner { padding: 88px 20px 40px; }
   .sr-hero-ctas { flex-direction: column; align-items: stretch; }
   .sr-hero-ctas .btn { justify-content: center; }
   .sr-services { padding: 72px 0 48px; }

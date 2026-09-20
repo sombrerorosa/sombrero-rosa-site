@@ -11,7 +11,6 @@ const hero = {
   headlinePre:  'Pensamos en tu negocio. Creamos ideas que lo hacen ',
   headlineRose: 'crecer.',
   lead:         'Combinamos estrategia, creatividad y tecnología para construir marcas con personalidad, generar oportunidades y acompañar su crecimiento.',
-  tag:          'Buenas marcas, mejores historias',
   ctaPrimary:   'Hablemos de tu proyecto',
   ctaSecondary: 'Conocer servicios',
   features: [
@@ -64,11 +63,18 @@ const whatsapp = settings?.whatsapp || 'https://wa.me/541172465685';
 const address  = settings?.address  || 'Buenos Aires, Argentina';
 ---
 <Base>
-  <Header />
+  <Header overlay />
   <main>
     <section class="sr-hero" id="top">
+      <img
+        src="/assets/hero-office-2.webp"
+        alt="Sala de reuniones de Sombrero Rosa"
+        class="sr-hero-photo"
+        width="1672" height="941"
+      />
+      <div class="sr-hero-scrim" aria-hidden="true"></div>
       <div class="sr-hero-inner">
-        <div class="sr-hero-content">
+        <div class="sr-hero-card">
           <div class="sr-hero-pill">{hero.pill}</div>
           <h1 class="sr-hero-headline">{hero.headlinePre}<span class="is-rose">{hero.headlineRose}</span></h1>
           <p class="sr-hero-lead">{hero.lead}</p>
@@ -84,15 +90,6 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
               </li>
             ))}
           </ul>
-        </div>
-        <div class="sr-hero-media">
-          <span class="sr-hero-tag">{hero.tag}</span>
-          <img
-            src="/assets/hero-office.jpg"
-            alt="Oficina de Sombrero Rosa con el logo en neón sobre la pared"
-            class="sr-hero-photo"
-            width="1916" height="821"
-          />
         </div>
       </div>
     </section>

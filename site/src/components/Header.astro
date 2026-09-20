@@ -1,8 +1,8 @@
 ---
-interface Props { currentPath?: string; }
-const { currentPath = Astro.url.pathname } = Astro.props;
+interface Props { currentPath?: string; overlay?: boolean; }
+const { currentPath = Astro.url.pathname, overlay = false } = Astro.props;
 ---
-<header class="sr-header">
+<header class="sr-header" class:list={[{ 'sr-header--overlay': overlay }]}>
   <a class="sr-brand" href="/" aria-label="Sombrero Rosa, inicio">
     <img src="/assets/logo-sombrero-rosa.png" alt="" class="sr-brand-mark" />
     <span class="sr-brand-word">
@@ -53,6 +53,27 @@ const { currentPath = Astro.url.pathname } = Astro.props;
     display: none; background: none; border: 0; padding: 8px;
     color: var(--navy); margin-left: auto;
   }
+
+  /* Overlay mode: transparent header floating over a hero photo, turns
+     solid once the page scrolls past the hero. */
+  .sr-header--overlay {
+    position: fixed; top: 0; left: 0; right: 0;
+  }
+  .sr-header--overlay:not(.is-scrolled) {
+    background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+    border-bottom-color: rgba(255,255,255,0.16);
+  }
+  .sr-header--overlay:not(.is-scrolled) .sr-brand-word .top,
+  .sr-header--overlay:not(.is-scrolled) .sr-nav-link,
+  .sr-header--overlay:not(.is-scrolled) .sr-menu-btn {
+    color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.35);
+  }
+  .sr-header--overlay:not(.is-scrolled) .sr-brand-word .bot { color: var(--rosa-200); text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+  .sr-header--overlay:not(.is-scrolled) .sr-nav-link:hover,
+  .sr-header--overlay:not(.is-scrolled) .sr-nav-link[data-active="true"] { color: var(--rosa-200); }
+  .sr-header--overlay:not(.is-scrolled) .sr-nav-link::after { background: #fff; }
+  .sr-header--overlay.is-scrolled { transition: background var(--dur-3) var(--ease-out); }
+
   @media (max-width: 980px) {
     .sr-header {
       padding: 16px 24px;
@@ -85,4 +106,11 @@ const { currentPath = Astro.url.pathname } = Astro.props;
   }
   btn.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
   nav.querySelectorAll('.sr-nav-link').forEach(l => l.addEventListener('click', () => setOpen(false)));
+
+  const header = document.querySelector('.sr-header--overlay');
+  if (header) {
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 </script>
