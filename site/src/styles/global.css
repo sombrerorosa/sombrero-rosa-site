@@ -126,17 +126,23 @@ ul, ol { list-style: none; padding: 0; }
   position: relative; z-index: 2; max-width: 1240px; width: 100%; margin: 0 auto;
   padding: 120px 32px 64px;
 }
-/* Its own glass panel, with a soft feathered edge (radial mask) instead
-   of a hard rounded-rectangle border, so it stays legible without
-   looking like a stamped-down box. */
+/* The card's own glass panel keeps crisp, legible edges. A separate,
+   unmasked glow sibling sits behind it — a box-shadow on the panel
+   itself would get clipped by its own rounded corners at the same
+   radius, so the soft "feathered" blend into the hero-glass layer
+   lives on this extra box instead. */
+.sr-hero-card-wrap { position: relative; max-width: 600px; }
+.sr-hero-card-glow {
+  position: absolute; inset: 0; z-index: 0;
+  border-radius: 36px;
+  box-shadow: 0 0 70px 30px rgba(255,255,255,0.55), 0 0 130px 60px rgba(255,255,255,0.3);
+}
 .sr-hero-card {
-  position: relative; max-width: 600px; padding: 48px 44px;
+  position: relative; z-index: 1; padding: 48px 44px;
   background: rgba(255,255,255,0.34);
   -webkit-backdrop-filter: blur(20px) saturate(140%);
   backdrop-filter: blur(20px) saturate(140%);
   border-radius: 36px;
-  -webkit-mask-image: radial-gradient(ellipse 90% 88% at 50% 50%, #000 62%, transparent 100%);
-          mask-image: radial-gradient(ellipse 90% 88% at 50% 50%, #000 62%, transparent 100%);
   display: flex; flex-direction: column; align-items: flex-start; gap: 18px;
 }
 .sr-hero-pill {
@@ -414,7 +420,7 @@ ul, ol { list-style: none; padding: 0; }
   .sr-menu-btn { display: flex; align-items: center; }
   .sr-hero { min-height: 100vh; }
   .sr-hero-inner { padding: 96px 24px 48px; }
-  .sr-hero-card { max-width: none; }
+  .sr-hero-card-wrap { max-width: none; }
   .sr-nav.open {
     display: flex; flex-direction: column;
     position: fixed; inset: 0; top: 73px;
