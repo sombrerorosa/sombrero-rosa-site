@@ -87,6 +87,17 @@ const { currentPath = Astro.url.pathname, overlay = false } = Astro.props;
     }
     .sr-nav.open .sr-nav-link { font-size: 20px; padding: 14px 0; border-bottom: 1px solid var(--border); }
   }
+
+  /* Very narrow phones (small/folded screens): shrink the brand lockup
+     and tighten spacing so logo + wordmark + menu button never force
+     the header wider than the viewport. */
+  @media (max-width: 360px) {
+    .sr-header { padding: 12px 14px; gap: 10px; }
+    .sr-brand { gap: 8px; }
+    .sr-brand-mark { width: 32px; height: 32px; }
+    .sr-brand-word { font-size: 13px; }
+    .sr-menu-btn { padding: 6px; }
+  }
 </style>
 
 <script>
