@@ -1,0 +1,391 @@
+---
+import Base from '../layouts/Base.astro';
+import { getSiteSettings } from '../lib/sanity';
+
+const settings = await getSiteSettings();
+const whatsapp = settings?.whatsapp || 'https://wa.me/541172465685';
+const phone    = settings?.phone    || '+54 11 7246 5685';
+const email    = settings?.email    || 'hola@sombrerorosa.com';
+
+const hero = {
+  headline: 'Tu empresa ya funciona. Profesionalizá su imagen digital.',
+  subhead:  'Pack de digitalización para pymes: todo lo que necesitás para tener presencia digital profesional, sin vueltas.',
+  chips: ['Listo en 15 días', '+15 años de experiencia combinada'],
+};
+
+const checklist = [
+  { title: 'Sitio web',              desc: 'Hasta 3 páginas (Home, Servicios, Nosotros), con formulario de contacto incluido.' },
+  { title: 'Hosting',                desc: 'Versión gratuita incluida, o usá el tuyo si ya tenés uno.' },
+  { title: 'CMS',                    desc: 'Para que puedas actualizar tu sitio vos mismo, sin depender de nadie.' },
+  { title: 'Google Analytics',       desc: 'Para saber quién te visita y qué funciona.' },
+  { title: 'Google My Business',     desc: 'Para que tu negocio tenga presencia verificada en Google.' },
+  { title: 'WhatsApp configurado',   desc: 'Para que las consultas no se pierdan.' },
+];
+
+const whyUs = [
+  { title: 'Experiencia real',                    desc: 'Más de 15 años de experiencia profesional combinada. No aprendimos haciendo tu proyecto — llegamos con el camino ya recorrido.' },
+  { title: 'Un método, no una improvisación',     desc: 'Escuchamos, entendemos, construimos y medimos. El mismo proceso con el que trabajamos marcas grandes, aplicado a tu negocio.' },
+  { title: 'Equipo multidisciplinario',           desc: 'Estrategia, diseño y comunicación en un mismo equipo. Un freelance resuelve una parte. Nosotros vemos el negocio completo.' },
+  { title: 'Seguimos cerca, no desaparecemos',    desc: 'El Pack termina en la publicación, pero la relación no. Estamos para lo que nos necesiten después — ya sea una duda, un ajuste, o dar el siguiente paso.' },
+];
+
+const faqs = [
+  { q: '¿Cómo es el proceso de trabajo?', a: 'Kickoff (nos contás tu negocio) → Mockup (te mostramos cómo va a verse) → Feedback → Desarrollo de la versión final → Feedback final → Publicación. Todo dentro de los 15 días.' },
+  { q: '¿Qué pasa si necesito más de lo que incluye el Pack?', a: 'El precio final depende del alcance — se conversa en la primera charla, sin sorpresas.' },
+  { q: '¿En cuánto tiempo tengo mi sitio funcionando?', a: '15 días desde el kickoff.' },
+  { q: '¿El hosting está incluido?', a: 'Sí, con una versión gratuita. Si preferís usar tu propio hosting, también se puede.' },
+  { q: '¿Y el dominio?', a: 'No está incluido en el Pack, pero te explicamos cómo comprarlo — es un trámite simple y rápido, y te acompañamos en el paso a paso.' },
+  { q: '¿Puedo pedir cambios durante el proceso?', a: 'Sí, el proceso incluye dos instancias de feedback (sobre el mockup y antes de publicar) para ajustar lo que haga falta.' },
+  { q: '¿Y después de publicado?', a: 'El Pack en sí no incluye soporte post-lanzamiento formal, pero seguimos disponibles para lo que necesiten.' },
+  { q: '¿Necesito algo que no está en el Pack (redes sociales, más páginas, otro servicio)?', a: '¿Necesitás algo más allá del Pack? Lo cotizamos a medida.' },
+];
+---
+<Base
+  title="Pack de digitalización para pymes — Sombrero Rosa"
+  description="Todo lo que necesitás para tener presencia digital profesional, sin vueltas. Sitio web, hosting, CMS, Analytics, Google My Business y WhatsApp configurado. Desde $500.000."
+>
+  <header class="pd-header">
+    <a class="pd-brand" href="/" aria-label="Sombrero Rosa, inicio">
+      <img src="/assets/logo-sombrero-rosa.png" alt="" class="pd-brand-mark" />
+      <span class="pd-brand-word">
+        <span class="top">sombrero</span>
+        <span class="bot">rosa</span>
+      </span>
+    </a>
+    <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+      <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+      <span>Escribir por WhatsApp</span>
+    </a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="pd-hero">
+      <span class="pd-glow pd-glow-a" aria-hidden="true"></span>
+      <span class="pd-glow pd-glow-b" aria-hidden="true"></span>
+      <div class="pd-hero-inner">
+        <div class="pd-pill">Pack de digitalización para pymes</div>
+        <h1 class="pd-hero-headline">{hero.headline}</h1>
+        <p class="pd-hero-subhead">{hero.subhead}</p>
+        <div class="pd-hero-ctas">
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+            Escribir por WhatsApp →
+          </a>
+          <a href="#incluye" class="btn btn-ghost btn-pill">Ver qué incluye</a>
+        </div>
+        <ul class="pd-chips">
+          {hero.chips.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUÉ INCLUYE + FORM -->
+    <section class="pd-includes" id="incluye">
+      <div class="pd-section-head">
+        <div class="sr-section-num">Qué incluye</div>
+        <h2 class="sr-section-title sr-section-title--rose">Todo lo que necesitás, en un solo Pack</h2>
+      </div>
+      <div class="pd-includes-grid">
+        <ul class="pd-checklist">
+          {checklist.map((item) => (
+            <li>
+              <span class="pd-check"><i data-lucide="check"></i></span>
+              <div>
+                <strong>{item.title}</strong>
+                <p>{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <form class="pd-form" id="pack-form" novalidate>
+          <h3>Contanos sobre tu negocio y te escribimos para coordinar la primera charla.</h3>
+          <div class="pd-form-row">
+            <label><span>Nombre</span><input type="text" name="name" placeholder="Juan" /></label>
+            <label><span>Apellido</span><input type="text" name="apellidos" placeholder="García" /></label>
+          </div>
+          <label><span>Empresa</span><input type="text" name="company" placeholder="Mi empresa" /></label>
+          <label><span>Correo*</span><input type="email" name="email" placeholder="hola@empresa.com" required /></label>
+          <label><span>WhatsApp</span><input type="tel" name="phone" placeholder="+54 11 1234 5678" /></label>
+          <label><span>Contanos de tu negocio</span><textarea name="msg" rows="3" placeholder="A qué se dedica tu negocio, qué necesitás…"></textarea></label>
+          <button type="submit" class="btn btn-primary btn-pill">Quiero mi Pack de digitalización</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- POR QUÉ SOMBRERO ROSA -->
+    <section class="pd-why">
+      <span class="pd-glow pd-glow-c" aria-hidden="true"></span>
+      <div class="pd-why-inner">
+        <div class="pd-section-head pd-section-head--dark">
+          <div class="sr-section-num">Por qué elegirnos</div>
+          <h2 class="sr-section-title sr-section-title--rose">No contratás a una persona. Contratás un equipo con método.</h2>
+        </div>
+        <div class="pd-why-grid">
+          {whyUs.map((w) => (
+            <article class="pd-why-card">
+              <h3>{w.title}</h3>
+              <p>{w.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRECIO -->
+    <section class="pd-price">
+      <div class="pd-price-inner">
+        <div class="pd-price-num">Desde $500.000</div>
+        <p class="pd-price-desc">
+          Incluye sitio web (hasta 3 páginas), hosting, CMS, Google Analytics, Google My Business y WhatsApp configurado.
+          El precio final depende del alcance de tu proyecto — te lo confirmamos sin vueltas en la primera charla.
+        </p>
+        <p class="pd-price-upsell">¿Necesitás algo más allá del Pack? Lo cotizamos a medida.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="pd-faq">
+      <div class="pd-section-head">
+        <div class="sr-section-num">Preguntas frecuentes</div>
+        <h2 class="sr-section-title sr-section-title--rose">Todo lo que necesitás saber</h2>
+      </div>
+      <div class="pd-faq-list">
+        {faqs.map((f) => (
+          <details class="pd-faq-item">
+            <summary>
+              <span>{f.q}</span>
+              <i data-lucide="plus" class="pd-faq-icon"></i>
+            </summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="pd-cta">
+      <h2>¿Listo para profesionalizar tu imagen digital?</h2>
+      <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-pill">
+        Escribir por WhatsApp →
+      </a>
+    </section>
+  </main>
+
+  <footer class="pd-footer">
+    <span>Sombrero Rosa · Canning, Buenos Aires</span>
+    <span class="pd-footer-sep">·</span>
+    <a href={`mailto:${email}`}>{email}</a>
+    <span class="pd-footer-sep">·</span>
+    <a href={`tel:${phone.replace(/\s/g,'')}`}>{phone}</a>
+  </footer>
+
+  <style>
+    /* ---- minimal header ---- */
+    .pd-header {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 16px 32px;
+      background: rgba(242,242,240,0.92);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .pd-brand { display: inline-flex; align-items: center; gap: 10px; }
+    .pd-brand-mark { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+    .pd-brand-word {
+      font-family: var(--font-display); font-weight: 600; font-size: 15px;
+      line-height: 1; display: flex; flex-direction: column; gap: 2px;
+    }
+    .pd-brand-word .top { color: var(--navy); }
+    .pd-brand-word .bot { color: var(--rosa); }
+
+    /* ---- shared soft glow (no photos) ---- */
+    .pd-glow { position: absolute; border-radius: 999px; pointer-events: none; filter: blur(90px); }
+    .pd-glow-a { width: 520px; height: 520px; top: -180px; left: -140px; background: radial-gradient(circle, rgba(213,132,142,0.28), transparent 70%); }
+    .pd-glow-b { width: 460px; height: 460px; bottom: -160px; right: -120px; background: radial-gradient(circle, rgba(25,49,73,0.10), transparent 70%); }
+    .pd-glow-c { width: 560px; height: 560px; top: -200px; right: -160px; background: radial-gradient(circle, rgba(213,132,142,0.30), transparent 70%); }
+
+    /* ---- hero ---- */
+    .pd-hero { position: relative; overflow: hidden; background: var(--bone); padding: 88px 32px 72px; text-align: center; }
+    .pd-hero-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+    .pd-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: var(--r-pill);
+      background: rgba(213,132,142,0.12); color: var(--rosa-600);
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .pd-hero-headline {
+      font-family: var(--font-display); font-weight: 600;
+      font-size: clamp(30px, 4vw, 48px); line-height: 1.15;
+      letter-spacing: -0.02em; color: var(--navy); margin: 0;
+    }
+    .pd-hero-subhead { font-size: 17px; line-height: 1.6; color: var(--ink-soft); max-width: 56ch; }
+    .pd-hero-ctas { margin-top: 8px; display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .pd-chips { margin-top: 4px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .pd-chips li {
+      font-size: 13px; font-weight: 500; color: var(--navy);
+      padding: 6px 14px; border-radius: var(--r-pill); background: var(--paper); border: 1px solid var(--border);
+    }
+
+    /* ---- section head (shared) ---- */
+    .pd-section-head { max-width: 1240px; margin: 0 auto; padding: 0 32px 40px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .pd-section-head--dark .sr-section-num { color: rgba(255,255,255,0.5); }
+    .pd-section-head--dark .sr-section-num::after { background: var(--rosa); }
+    .pd-section-head--dark .sr-section-title--rose { color: var(--rosa); }
+
+    /* ---- qué incluye + form ---- */
+    .pd-includes { padding: 88px 0; background: var(--paper); }
+    .pd-includes-grid {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .pd-checklist { display: flex; flex-direction: column; gap: 22px; }
+    .pd-checklist li { display: flex; gap: 14px; align-items: flex-start; }
+    .pd-check {
+      width: 28px; height: 28px; border-radius: 999px; flex-shrink: 0;
+      background: var(--rosa); color: #fff; display: grid; place-items: center;
+    }
+    .pd-check i { width: 15px; height: 15px; stroke-width: 3; }
+    .pd-checklist strong { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--navy); }
+    .pd-checklist p { margin-top: 3px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+
+    .pd-form {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
+      padding: 28px; box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .pd-form h3 { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--navy); line-height: 1.4; margin: 0 0 4px; }
+    .pd-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .pd-form label { display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; color: var(--navy); }
+    .pd-form input, .pd-form textarea {
+      font-family: var(--font-sans); font-size: 14px; font-weight: 400;
+      border: 1px solid var(--border); border-radius: 10px; padding: 11px 12px;
+      outline-color: var(--rosa); background: #fff; color: var(--ink);
+    }
+    .pd-form textarea { resize: vertical; }
+    .pd-form-ok { text-align: center; padding: 24px 0; }
+    .pd-form-ok-mark {
+      width: 44px; height: 44px; border-radius: 999px; margin: 0 auto 12px;
+      background: var(--rosa); color: #fff; display: grid; place-items: center; font-size: 20px;
+    }
+
+    /* ---- por qué sombrero rosa (dark) ---- */
+    .pd-why { position: relative; overflow: hidden; background: var(--black-2); padding: 88px 0; }
+    .pd-why-inner { position: relative; z-index: 1; }
+    .pd-why-grid {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+    }
+    .pd-why-card {
+      background: rgba(255,255,255,0.05);
+      -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.10); border-radius: var(--r-lg);
+      padding: 26px 24px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .pd-why-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: #fff; margin: 0; line-height: 1.25; }
+    .pd-why-card p { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.7); }
+
+    /* ---- precio ---- */
+    .pd-price { background: var(--bone); padding: 88px 32px; }
+    .pd-price-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .pd-price-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(38px, 5vw, 56px); color: var(--rosa); letter-spacing: -0.02em;
+    }
+    .pd-price-desc { margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+    .pd-price-upsell { margin-top: 20px; font-family: var(--font-display); font-weight: 500; font-size: 15px; color: var(--navy); }
+
+    /* ---- FAQ ---- */
+    .pd-faq { padding: 88px 0 96px; background: var(--paper); }
+    .pd-faq-list { max-width: 780px; margin: 0 auto; padding: 0 32px; display: flex; flex-direction: column; gap: 10px; }
+    .pd-faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--r-md); padding: 4px 20px; }
+    .pd-faq-item summary {
+      list-style: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 0; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--navy);
+    }
+    .pd-faq-item summary::-webkit-details-marker { display: none; }
+    .pd-faq-icon { width: 18px; height: 18px; color: var(--rosa); flex-shrink: 0; transition: transform var(--dur-2) var(--ease-out); }
+    .pd-faq-item[open] .pd-faq-icon { transform: rotate(45deg); }
+    .pd-faq-item p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); padding: 0 0 18px; }
+
+    /* ---- CTA final ---- */
+    .pd-cta { background: var(--bone); padding: 24px 32px 96px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .pd-cta h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(22px, 3vw, 30px); color: var(--navy); max-width: 22ch; }
+
+    /* ---- minimal footer ---- */
+    .pd-footer {
+      background: var(--black-2); color: rgba(255,255,255,0.6);
+      padding: 24px 32px; text-align: center; font-size: 13px;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    }
+    .pd-footer a { color: rgba(255,255,255,0.6); transition: color var(--dur-2); }
+    .pd-footer a:hover { color: var(--rosa-300); }
+    .pd-footer-sep { opacity: 0.4; }
+
+    @media (max-width: 900px) {
+      .pd-includes-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pd-why-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .pd-header { padding: 14px 20px; }
+      .pd-header .btn span { display: none; }
+      .pd-hero { padding: 64px 20px 56px; }
+      .pd-includes, .pd-why, .pd-faq { padding-left: 0; padding-right: 0; }
+      .pd-includes-grid, .pd-why-grid, .pd-faq-list, .pd-section-head { padding-left: 20px; padding-right: 20px; }
+      .pd-why-grid { grid-template-columns: 1fr; }
+      .pd-form-row { grid-template-columns: 1fr; }
+      .pd-price { padding: 64px 20px; }
+      .pd-cta { padding: 16px 20px 72px; }
+    }
+  </style>
+
+  <script>
+    document.getElementById('pack-form')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget as HTMLFormElement;
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+      const fields = [
+        { name: 'firstname', value: (form.elements.namedItem('name')     as HTMLInputElement)?.value ?? '' },
+        { name: 'lastname',  value: (form.elements.namedItem('apellidos') as HTMLInputElement)?.value ?? '' },
+        { name: 'company',   value: (form.elements.namedItem('company')   as HTMLInputElement)?.value ?? '' },
+        { name: 'email',     value: (form.elements.namedItem('email')     as HTMLInputElement)?.value ?? '' },
+        { name: 'phone',     value: (form.elements.namedItem('phone')     as HTMLInputElement)?.value ?? '' },
+        { name: 'message',   value: (form.elements.namedItem('msg')       as HTMLTextAreaElement)?.value ?? '' },
+      ];
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+
+      try {
+        const res = await fetch(
+          'https://api.hsforms.com/submissions/v3/integration/submit/49258509/c58deb6c-93ea-4146-b632-3a396983e3a3',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields,
+              context: { pageUri: window.location.href, pageName: 'Pack de digitalización — Sombrero Rosa' }
+            })
+          }
+        );
+
+        if (res.ok) {
+          form.innerHTML = `
+            <div class="pd-form-ok">
+              <div class="pd-form-ok-mark">✓</div>
+              <h3>¡Gracias! Ya recibimos tu consulta.</h3>
+              <p style="font-size:14px;color:var(--ink-soft);margin-top:6px;">Te escribimos a la brevedad para coordinar la primera charla.</p>
+            </div>`;
+        } else {
+          throw new Error('server error');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Quiero mi Pack de digitalización';
+        alert('Hubo un error al enviar. Por favor intentá de nuevo, o escribinos directo por WhatsApp.');
+      }
+    });
+  </script>
+</Base>
