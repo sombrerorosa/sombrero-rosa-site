@@ -86,17 +86,27 @@ const faqs = [
         <h2 class="sr-section-title sr-section-title--rose">Todo lo que necesitás, en un solo Pack</h2>
       </div>
       <div class="pd-includes-grid">
-        <ul class="pd-checklist">
-          {checklist.map((item) => (
-            <li>
-              <span class="pd-check"><i data-lucide="check"></i></span>
-              <div>
-                <strong>{item.title}</strong>
-                <p>{item.desc}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ul class="pd-checklist">
+            {checklist.map((item) => (
+              <li>
+                <span class="pd-check"><i data-lucide="check"></i></span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <div class="pd-includes-price">
+            <div class="pd-includes-price-num">Desde $500.000</div>
+            <p class="pd-includes-price-desc">
+              El precio final depende del alcance de tu proyecto — te lo confirmamos sin vueltas en la primera charla.
+            </p>
+            <p class="pd-includes-price-upsell">¿Necesitás algo más allá del Pack? Lo cotizamos a medida.</p>
+          </div>
+        </div>
 
         <form class="pd-form" id="pack-form" novalidate>
           <h3>Contanos sobre tu negocio y te escribimos para coordinar la primera charla.</h3>
@@ -110,18 +120,6 @@ const faqs = [
           <label><span>Contanos de tu negocio</span><textarea name="msg" rows="3" placeholder="A qué se dedica tu negocio, qué necesitás…"></textarea></label>
           <button type="submit" class="btn btn-primary btn-pill">Quiero mi Pack de digitalización</button>
         </form>
-      </div>
-    </section>
-
-    <!-- PRECIO -->
-    <section class="pd-price">
-      <div class="pd-price-inner">
-        <div class="pd-price-num">Desde $500.000</div>
-        <p class="pd-price-desc">
-          Incluye sitio web (hasta 3 páginas), hosting, CMS, Google Analytics, Google My Business y WhatsApp configurado.
-          El precio final depende del alcance de tu proyecto — te lo confirmamos sin vueltas en la primera charla.
-        </p>
-        <p class="pd-price-upsell">¿Necesitás algo más allá del Pack? Lo cotizamos a medida.</p>
       </div>
     </section>
 
@@ -249,6 +247,14 @@ const faqs = [
     .pd-checklist strong { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--navy); }
     .pd-checklist p { margin-top: 3px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
 
+    .pd-includes-price { margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .pd-includes-price-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(30px, 3vw, 38px); color: var(--rosa); letter-spacing: -0.02em;
+    }
+    .pd-includes-price-desc { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--ink-soft); }
+    .pd-includes-price-upsell { margin-top: 12px; font-family: var(--font-display); font-weight: 500; font-size: 14px; color: var(--navy); }
+
     .pd-form {
       background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg);
       padding: 28px; box-shadow: var(--shadow-sm);
@@ -284,16 +290,6 @@ const faqs = [
     }
     .pd-why-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: #fff; margin: 0; line-height: 1.25; }
     .pd-why-card p { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.7); }
-
-    /* ---- precio ---- */
-    .pd-price { background: var(--bone); padding: 88px 32px; }
-    .pd-price-inner { max-width: 640px; margin: 0 auto; text-align: center; }
-    .pd-price-num {
-      font-family: var(--font-display); font-weight: 700;
-      font-size: clamp(38px, 5vw, 56px); color: var(--rosa); letter-spacing: -0.02em;
-    }
-    .pd-price-desc { margin-top: 16px; font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
-    .pd-price-upsell { margin-top: 20px; font-family: var(--font-display); font-weight: 500; font-size: 15px; color: var(--navy); }
 
     /* ---- FAQ ---- */
     .pd-faq { padding: 88px 0 96px; background: var(--paper); }
@@ -335,7 +331,6 @@ const faqs = [
       .pd-includes-grid, .pd-why-grid, .pd-faq-list, .pd-section-head { padding-left: 20px; padding-right: 20px; }
       .pd-why-grid { grid-template-columns: 1fr; }
       .pd-form-row { grid-template-columns: 1fr; }
-      .pd-price { padding: 64px 20px; }
       .pd-cta { padding: 16px 20px 72px; }
     }
   </style>
