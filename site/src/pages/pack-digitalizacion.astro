@@ -132,8 +132,9 @@ const faqs = [
           <h2 class="sr-section-title sr-section-title--rose">No contratás a una persona. Contratás un equipo con método.</h2>
         </div>
         <div class="pd-why-grid">
-          {whyUs.map((w) => (
+          {whyUs.map((w, i) => (
             <article class="pd-why-card">
+              <div class="pd-why-num">{String(i + 1).padStart(2, '0')}</div>
               <h3>{w.title}</h3>
               <p>{w.desc}</p>
             </article>
@@ -269,6 +270,7 @@ const faqs = [
       outline-color: var(--rosa); background: #fff; color: var(--ink);
     }
     .pd-form textarea { resize: vertical; }
+    .pd-form button[type="submit"] { justify-content: center; }
     .pd-form-ok { text-align: center; padding: 24px 0; }
     .pd-form-ok-mark {
       width: 44px; height: 44px; border-radius: 999px; margin: 0 auto 12px;
@@ -287,6 +289,13 @@ const faqs = [
       -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
       border: 1px solid rgba(255,255,255,0.10); border-radius: var(--r-lg);
       padding: 26px 24px; display: flex; flex-direction: column; gap: 8px;
+      transition: border-color var(--dur-3), background var(--dur-3);
+    }
+    .pd-why-card:hover { border-color: var(--rosa); background: rgba(213,132,142,0.08); }
+    .pd-why-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 36px; line-height: 1; color: var(--rosa); opacity: 0.85;
+      margin-bottom: 2px;
     }
     .pd-why-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: #fff; margin: 0; line-height: 1.25; }
     .pd-why-card p { font-size: 13.5px; line-height: 1.55; color: rgba(255,255,255,0.7); }
