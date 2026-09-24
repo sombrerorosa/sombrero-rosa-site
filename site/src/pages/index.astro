@@ -58,13 +58,6 @@ const services = {
     },
   ],
 };
-const packPromo = {
-  eyebrow: 'Pack de digitalización',
-  title:   '¿Tu pyme todavía no tiene presencia digital profesional?',
-  desc:    'Sitio web, hosting, CMS, Google Analytics, Google My Business y WhatsApp configurado — listo en 15 días.',
-  price:   'Desde $500.000',
-  cta:     'Ver el Pack',
-};
 const manifesto = {
   eyebrow:     'Cómo trabajamos',
   title:       'No caminamos delante. Caminamos al lado.',
@@ -158,21 +151,6 @@ const address  = settings?.address  || 'Buenos Aires, Argentina';
         <span class="sr-services-cta-text">{services.ctaText}</span>
         <a href="#contacto" class="btn btn-primary btn-pill">Empezar mi proyecto</a>
       </div>
-    </section>
-
-    <section class="sr-pack-promo">
-      <a href="/pack-digitalizacion" class="sr-pack-promo-card" data-animate="up">
-        <span class="sr-pack-promo-glow" aria-hidden="true"></span>
-        <div class="sr-pack-promo-text">
-          <span class="sr-pack-promo-eyebrow">{packPromo.eyebrow}</span>
-          <h3 class="sr-pack-promo-title">{packPromo.title}</h3>
-          <p class="sr-pack-promo-desc">{packPromo.desc}</p>
-        </div>
-        <div class="sr-pack-promo-action">
-          <span class="sr-pack-promo-price">{packPromo.price}</span>
-          <span class="btn btn-primary btn-pill">{packPromo.cta} <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></span>
-        </div>
-      </a>
     </section>
 
     <section class="sr-tools" aria-labelledby="tools-h">
