@@ -178,6 +178,7 @@ ul, ol { list-style: none; padding: 0; }
 .sr-services-group {
   border-radius: var(--r-xl); padding: 32px 28px;
   display: flex; flex-direction: column; gap: 4px;
+  box-shadow: 0 16px 32px -20px rgba(25,49,73,0.35);
 }
 .sr-services-group.is-navy-light { background: #eef2f6; }
 .sr-services-group.is-navy-mid   { background: #c7d3e0; }
