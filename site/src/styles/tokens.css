@@ -8,16 +8,27 @@
   --rosa-500: #c66773;
   --rosa-600: #ae4f5b;
   --hot:      #e55a7a;
-  --navy:     #193149;
-  --navy-700: #112338;
+
+  /* Grafito: neutro oscuro sin matiz, reemplaza a navy (deprecado, alias abajo) */
+  --grafito:        #141616;
+  --grafito-2:      #1e2121;
+  --grafito-3:      #3b4141;
+  --grafito-muted:  #a3a6a4;
+  --black:          #020202;
+
+  /* Deprecados: alias de los tokens grafito de arriba. Migrar nuevos usos a
+     --grafito/--grafito-2 (fondos) o --black (texto fuerte). */
+  --navy:     var(--grafito);
+  --navy-700: var(--grafito-2);
+
   --ink:      #403f3f;
   --ink-soft: #6b6968;
   --bone:     #f2f2f0;
   --paper:    #fafafa;
   --black-2:  #0b0b0b;
 
-  --border:        rgba(25,49,73,0.10);
-  --border-strong: rgba(25,49,73,0.22);
+  --border:        rgba(20,22,22,0.10);
+  --border-strong: rgba(20,22,22,0.22);
 
   --font-sans:    'Poppins', ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Poppins', ui-sans-serif, sans-serif;
@@ -27,8 +38,9 @@
   --r-xl:   32px;
   --r-pill: 999px;
 
-  --shadow-sm:   0 2px 6px rgba(25,49,73,0.08);
-  --shadow-md:   0 12px 28px -10px rgba(25,49,73,0.18);
+  --shadow-sm:   0 2px 6px rgba(20,22,22,0.08);
+  --shadow-md:   0 12px 28px -10px rgba(20,22,22,0.18);
+  --shadow-lg:   0 28px 60px -20px rgba(20,22,22,0.28);
   --shadow-rosa: 0 18px 40px -16px rgba(213,132,142,0.55);
 
   --ease-out: cubic-bezier(0.22,1,0.36,1);
