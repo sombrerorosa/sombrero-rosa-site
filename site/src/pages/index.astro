@@ -276,6 +276,15 @@ document.getElementById('contact-form')?.addEventListener('submit', async (e) =>
     );
 
     if (res.ok) {
+      // @ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      // @ts-ignore
+      window.dataLayer.push({
+        event: 'generate_lead',
+        form_id: 'contact-form',
+        form_location: 'home'
+      });
+
       form.innerHTML = `
         <div class="sr-contact-ok">
           <div class="sr-contact-ok-mark">✓</div>

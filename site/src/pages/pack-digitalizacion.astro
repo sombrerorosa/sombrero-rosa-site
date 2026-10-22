@@ -376,6 +376,15 @@ const faqs = [
         );
 
         if (res.ok) {
+          // @ts-ignore
+          window.dataLayer = window.dataLayer || [];
+          // @ts-ignore
+          window.dataLayer.push({
+            event: 'generate_lead',
+            form_id: 'pack-form',
+            form_location: 'pack-digitalizacion'
+          });
+
           form.innerHTML = `
             <div class="pd-form-ok">
               <div class="pd-form-ok-mark">✓</div>
