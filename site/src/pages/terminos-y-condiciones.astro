@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'noviembre de 2026';
+---
+<Base
+  title="Términos y Condiciones — Sombrero Rosa"
+  description="Condiciones de uso del sitio sombrerorosa.com y de los servicios de Sombrero Rosa, conforme a la legislación argentina."
+>
+  <Header currentPath="/terminos-y-condiciones" />
+  <main>
+    <article class="legal-page">
+      <div class="legal-hero">
+        <div class="legal-hero-inner">
+          <span class="sr-section-num">Legal</span>
+          <h1 class="legal-title">Términos y Condiciones del Servicio</h1>
+          <p class="legal-updated">Última actualización: {lastUpdated}</p>
+        </div>
+      </div>
+
+      <div class="legal-body-wrap">
+        <div class="prose">
+          <h2>1. Aceptación de los términos</h2>
+          <p>El acceso y uso de sombrerorosa.com implica la aceptación de estos Términos y Condiciones. Si no estás de acuerdo, te pedimos que no uses el sitio.</p>
+
+          <h2>2. Quiénes somos</h2>
+          <p>Este sitio es operado por <strong>Sombrero Rosa</strong>, agencia de marketing full service con domicilio en Canning, Provincia de Buenos Aires, Argentina. Podés contactarnos en <a href="mailto:hola@sombrerorosa.com">hola@sombrerorosa.com</a>. Los datos de identificación fiscal completos pueden solicitarse por ese mismo medio.</p>
+
+          <h2>3. Qué ofrece este sitio</h2>
+          <p>El sitio describe los servicios de la Agencia (estrategia y branding, diseño web, contenidos y redes, publicidad digital, SEO, CRM y automatización, consultoría de negocios, entre otros) y permite iniciar contacto a través de formularios o WhatsApp. <strong>El sitio no es una tienda online</strong>: no se realizan compras ni pagos a través de él. Los alcances, plazos y precios de cualquier servicio se acuerdan por separado, en una propuesta comercial específica entre la Agencia y cada cliente.</p>
+
+          <h2>4. Uso del sitio</h2>
+          <p>Te comprometés a usar el sitio de forma lícita, sin: (a) intentar vulnerar su seguridad o funcionamiento; (b) extraer o reutilizar su contenido con fines comerciales sin autorización; (c) enviar información falsa a través de los formularios de contacto.</p>
+
+          <h2>5. Formularios y comunicaciones</h2>
+          <p>Al completar un formulario, aceptás que usemos los datos provistos para responderte y, si corresponde, dar inicio a una relación comercial, conforme a nuestra <a href="/politica-de-privacidad">Política de Privacidad</a>. Podés contactarnos también por WhatsApp al número publicado en el sitio.</p>
+
+          <h2>6. Propiedad intelectual</h2>
+          <p>Los textos, imágenes, diseño, logo y demás contenido del sitio son propiedad de Sombrero Rosa o se usan con la debida autorización, y están protegidos por la <strong>Ley N.° 11.723 de Propiedad Intelectual</strong>. No está permitida su reproducción total o parcial sin autorización previa.</p>
+
+          <h2>7. Enlaces a terceros</h2>
+          <p>El sitio puede incluir enlaces a redes sociales u otros sitios externos (Instagram, Facebook, WhatsApp, HubSpot). No somos responsables por el contenido o las prácticas de privacidad de esos sitios de terceros.</p>
+
+          <h2>8. Contratación de servicios</h2>
+          <p>Los servicios de la Agencia se contratan mediante una propuesta comercial o contrato específico, posterior al contacto inicial a través del sitio. Esos acuerdos, y no el presente documento, rigen el alcance, los plazos, los precios y las condiciones de cada proyecto. En lo que corresponda, se aplican las disposiciones de la <strong>Ley N.° 24.240 de Defensa del Consumidor</strong> y del <strong>Código Civil y Comercial de la Nación</strong>.</p>
+
+          <h2>9. Limitación de responsabilidad</h2>
+          <p>La Agencia no garantiza que el sitio esté libre de errores o interrupciones, y no se responsabiliza por daños derivados del uso del sitio, salvo los casos en que la ley disponga lo contrario de forma imperativa.</p>
+
+          <h2>10. Protección de datos personales</h2>
+          <p>El tratamiento de tus datos personales se rige por nuestra <a href="/politica-de-privacidad">Política de Privacidad</a>, que forma parte de estos términos.</p>
+
+          <h2>11. Modificaciones</h2>
+          <p>Podemos modificar estos Términos y Condiciones en cualquier momento. Los cambios entran en vigencia desde su publicación en esta página.</p>
+
+          <h2>12. Ley aplicable y jurisdicción</h2>
+          <p>Estos términos se rigen por las leyes de la <strong>República Argentina</strong>. Ante cualquier controversia, las partes se someten a la competencia de los tribunales ordinarios de la Provincia de Buenos Aires, sin perjuicio de los derechos que la Ley N.° 24.240 reconoce al consumidor de acudir a los tribunales de su propio domicilio.</p>
+
+          <h2>13. Contacto</h2>
+          <p><a href="mailto:hola@sombrerorosa.com">hola@sombrerorosa.com</a> · <a href="tel:+541172465685">+54 11 7246 5685</a>.</p>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal-hero { background: var(--black-2); color: #fff; padding: 72px 32px 56px; }
+  .legal-hero-inner { max-width: 760px; margin: 0 auto; }
+  .legal-hero .sr-section-num { color: rgba(255,255,255,0.5); }
+  .legal-hero .sr-section-num::after { background: var(--rosa); }
+  .legal-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(32px, 4vw, 44px); line-height: 1.15;
+    letter-spacing: -0.02em; margin: 10px 0 0; color: #fff;
+  }
+  .legal-updated { margin-top: 12px; font-size: 14px; color: rgba(255,255,255,0.6); }
+  .legal-body-wrap { padding: 64px 32px 96px; background: var(--paper); }
+
+  @media (max-width: 640px) {
+    .legal-hero { padding: 56px 20px 40px; }
+    .legal-body-wrap { padding: 48px 20px 72px; }
+  }
+</style>
