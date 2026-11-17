@@ -44,7 +44,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <!-- End Google Tag Manager (noscript) -->
   <slot />
   <WhatsAppBubble />
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Lucide servido desde el propio sitio y con versión fija: antes se cargaba
+       "latest" desde un CDN externo, o sea código de terceros sin control. Para
+       actualizarlo, reemplazar el archivo en public/vendor/ y esta ruta. -->
+  <script is:inline src="/vendor/lucide-1.73.0.min.js"></script>
   <script>
     // @ts-ignore
     if (window.lucide) window.lucide.createIcons();

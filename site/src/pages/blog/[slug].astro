@@ -19,18 +19,26 @@ function formatDate(iso: string) {
 }
 
 /* Convert Sanity block content to plain HTML (minimal, no extra deps) */
+function esc(value: unknown): string {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' } as Record<string, string>
+  )[c]);
+}
+
+/* El texto viene de Sanity y se inserta con set:html, así que se escapa
+   acá: lo único que llega como HTML son las etiquetas que arma esta función. */
 function blocksToHtml(blocks: any[]): string {
   if (!blocks) return '';
   return blocks.map((block: any) => {
     if (block._type === 'image') {
       const src = urlFor(block).width(900).url();
       const alt = block.alt ?? '';
-      return `<img src="${src}" alt="${alt}" loading="lazy" />`;
+      return `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" />`;
     }
     if (block._type !== 'block') return '';
     const tag = { h2:'h2', h3:'h3', blockquote:'blockquote', normal:'p' }[block.style as string] ?? 'p';
     const inner = (block.children ?? []).map((span: any) => {
-      let t = span.text ?? '';
+      let t = esc(span.text);
       if (span.marks?.includes('strong')) t = `<strong>${t}</strong>`;
       if (span.marks?.includes('em'))     t = `<em>${t}</em>`;
       return t;
