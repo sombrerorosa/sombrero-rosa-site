@@ -11,7 +11,7 @@ export default {
       type: 'object',
       fields: [
         { name: 'pill',      title: 'Etiqueta (pill)',  type: 'string',
-          initialValue: 'Agencia boutique de marketing full service' },
+          initialValue: 'Agencia de marketing' },
         { name: 'headline',  title: 'Titular principal', type: 'string',
           initialValue: 'Creer, Crear & Crecer' },
         { name: 'lead',      title: 'Bajada',           type: 'text', rows: 3 },

@@ -55,6 +55,24 @@ export default {
         },
       ],
     },
+    {
+      name: 'faq',
+      title: 'Preguntas frecuentes (opcional)',
+      description: 'Si cargás preguntas acá, se muestran al final de la nota y se publican también como datos estructurados FAQPage.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'faqItem',
+          title: 'Pregunta',
+          fields: [
+            { name: 'question', title: 'Pregunta', type: 'string', validation: (R: any) => R.required() },
+            { name: 'answer',   title: 'Respuesta', type: 'text', rows: 3, validation: (R: any) => R.required() },
+          ],
+          preview: { select: { title: 'question' } },
+        },
+      ],
+    },
   ],
   preview: {
     select: { title: 'title', subtitle: 'publishedAt', media: 'mainImage' },

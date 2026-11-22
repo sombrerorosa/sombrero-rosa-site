@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import WhatsAppBubble from '../components/WhatsAppBubble.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { getSiteSettings } from '../lib/sanity';
+import { organizationSchema } from '../lib/jsonld';
 
 interface Props {
   title?: string;
@@ -8,11 +11,12 @@ interface Props {
   image?: string;
 }
 const {
-  title = 'Sombrero Rosa — Agencia que conecta',
-  description = 'Agencia de marketing full service. Hacemos crecer tu marca, negocio y relación con clientes.',
+  title = 'Sombrero Rosa · Agencia de marketing en Buenos Aires | Otra mirada. Mejores decisiones.',
+  description = 'Agencia de marketing. Hacemos crecer tu marca, negocio y relación con clientes.',
   image = '/assets/logo-sombrero-rosa.png',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const settings = await getSiteSettings();
 ---
 <!doctype html>
 <html lang="es">
@@ -35,6 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" type="image/png" href="/assets/logo-sombrero-rosa.png" />
+  <JsonLd schema={organizationSchema(settings)} />
   <slot name="head" />
 </head>
 <body>
