@@ -2,8 +2,16 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
+import { SITE_URL, breadcrumbSchema } from '../../lib/jsonld';
+
+const breadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: SITE_URL },
+  { name: 'Recursos', url: `${SITE_URL}/recursos` },
+]);
 ---
 <Base title="Recursos — Sombrero Rosa" description="Herramientas gratuitas para pensar tu marca con más claridad.">
+  <JsonLd slot="head" schema={breadcrumb} />
   <Header />
   <main class="rc-main">
     <section class="rc-hero">

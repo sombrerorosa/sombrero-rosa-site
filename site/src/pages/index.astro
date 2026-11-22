@@ -2,12 +2,14 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { getHomePage, getSiteSettings } from '../lib/sanity';
+import { websiteSchema } from '../lib/jsonld';
 
 const [page, settings] = await Promise.all([getHomePage(), getSiteSettings()]);
 
 const hero = {
-  pill:         'Agencia de Marketing Full Service',
+  pill:         'Agencia de marketing',
   headlinePre:  'Pensamos en tu negocio. Creamos ideas que lo hacen ',
   headlineRose: 'crecer.',
   lead:         'Combinamos estrategia, creatividad y tecnología para construir marcas con personalidad, generar oportunidades y acompañar su crecimiento.',
@@ -87,6 +89,7 @@ const whatsapp = settings?.whatsapp || 'https://wa.me/541172465685';
 const address  = settings?.address  || 'Buenos Aires, Argentina';
 ---
 <Base>
+  <JsonLd slot="head" schema={websiteSchema()} />
   <Header overlay />
   <main>
     <section class="sr-hero" id="top">

@@ -2,7 +2,9 @@
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import JsonLd from '../../components/JsonLd.astro';
 import { getBlogPosts, getBlogPost, urlFor } from '../../lib/sanity';
+import { SITE_URL, blogPostingSchema, breadcrumbSchema, faqPageSchema } from '../../lib/jsonld';
 
 export async function getStaticPaths() {
   const posts = await getBlogPosts();
@@ -41,6 +43,15 @@ function blocksToHtml(blocks: any[]): string {
 
 const bodyHtml = blocksToHtml(post.body);
 const coverUrl = post.mainImage ? urlFor(post.mainImage).width(1200).url() : null;
+const postUrl = `${SITE_URL}/blog/${slug}`;
+const postSchema = blogPostingSchema(post, postUrl, coverUrl);
+const breadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: SITE_URL },
+  { name: 'Blog', url: `${SITE_URL}/blog` },
+  { name: post.title, url: postUrl },
+]);
+const faqs = (post.faq ?? []).filter((f: any) => f?.question && f?.answer);
+const faqSchema = faqs.length ? faqPageSchema(faqs) : null;
 ---
 
 <Base
@@ -48,6 +59,7 @@ const coverUrl = post.mainImage ? urlFor(post.mainImage).width(1200).url() : nul
   description={post.excerpt ?? ''}
   image={coverUrl ?? undefined}
 >
+  <JsonLd slot="head" schema={faqSchema ? [postSchema, breadcrumb, faqSchema] : [postSchema, breadcrumb]} />
   <Header currentPath="/blog" />
   <main>
     <article>
@@ -68,6 +80,23 @@ const coverUrl = post.mainImage ? urlFor(post.mainImage).width(1200).url() : nul
 
       <div class="post-body-wrap">
         <div class="prose" set:html={bodyHtml} />
+
+        {faqs.length > 0 && (
+          <div class="post-faq">
+            <h2>Preguntas frecuentes</h2>
+            <div class="post-faq-list">
+              {faqs.map((f: any) => (
+                <details class="post-faq-item">
+                  <summary>
+                    <span>{f.question}</span>
+                    <i data-lucide="plus" class="post-faq-icon"></i>
+                  </summary>
+                  <p>{f.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </article>
 
@@ -102,6 +131,20 @@ const coverUrl = post.mainImage ? urlFor(post.mainImage).width(1200).url() : nul
   .post-cover { width: 100%; border-radius: var(--r-xl); box-shadow: var(--shadow-md); }
 
   .post-body-wrap { max-width: 760px; margin: 0 auto; padding: 0 32px 80px; }
+
+  .post-faq { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); }
+  .post-faq h2 { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--navy); margin: 0 0 20px; }
+  .post-faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .post-faq-item { background: var(--paper); border: 1px solid var(--border); border-radius: var(--r-md); padding: 4px 20px; }
+  .post-faq-item summary {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 16px 0; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--navy);
+  }
+  .post-faq-item summary::-webkit-details-marker { display: none; }
+  .post-faq-icon { width: 18px; height: 18px; color: var(--rosa); flex-shrink: 0; transition: transform var(--dur-2) var(--ease-out); }
+  .post-faq-item[open] .post-faq-icon { transform: rotate(45deg); }
+  .post-faq-item p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); padding: 0 0 18px; margin: 0; }
 
   .post-footer-cta {
     background: var(--bone); border-top: 1px solid var(--border);
